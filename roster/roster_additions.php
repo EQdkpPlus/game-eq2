@@ -23,7 +23,7 @@ array_unshift($table_presets, array('name' => 'eq2_charicon', 'sort' => false, '
 $hptt_page_settings['table_presets'] = $table_presets;
 
 if ($this->config->get('roster_classorrole') == 'role'){
-	$members = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, true, true, $skip_twinks))));
+	$members = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
 	$arrRoleMembers = array();
 	foreach ($members as $memberid => $defaultroleid){
 		if ((int)$defaultroleid == 0){
@@ -48,7 +48,7 @@ if ($this->config->get('roster_classorrole') == 'role'){
 	
 	
 } else {
-	$members = $this->pdh->aget('member', 'classid', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, true, true, $skip_twinks))));
+	$members = $this->pdh->aget('member', 'classid', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
 	$arrClassMembers = array();
 	foreach ($members as $memberid => $classid){
 		$arrClassMembers[$classid][] = $memberid;
