@@ -24,29 +24,30 @@ $german_array = array(
 		0 => 'Unbekannt',
 		1 => 'Assassine',
 		2 => 'Berserker',
+		25 => 'Bestienfürst',
 		3 => 'Brigant',
-		4 => 'Raufbold',
-		5 => 'Erzwinger',
 		6 => 'Elementalist',
-		7 => 'Schänder',
-		8 => 'Klagesänger',
+		5 => 'Erzwinger',
 		9 => 'Furie',
-		10 => 'Wächter',
-		11 => 'Thaumaturgist',
+		23 => 'Hexenmeister',
 		12 => 'Inquisitor',
+		8 => 'Klagesänger',
 		13 => 'Mönch',
 		14 => 'Mystiker',
 		15 => 'Nekromant',
 		16 => 'Paladin',
-		17 => 'Waldläufer',
+		4 => 'Raufbold',
 		18 => 'Schattenritter',
+		7 => 'Schänder',
 		19 => 'Säbelrassler',
 		20 => 'Templer',
+		11 => 'Thaumaturgist',
 		21 => 'Troubadour',
+		17 => 'Waldläufer',
+		10 => 'Wächter',
 		22 => 'Wärter',
-		23 => 'Hexenmeister',
 		24 => 'Zauberer',
-		25 => 'Bestienfürst',
+		
 	),
 	'races' => array(
 		'Unbekannt',
@@ -76,6 +77,14 @@ $german_array = array(
 		'Böse',
 		'Neutral'
 	),
+	
+		'roles' => array(
+		1 => array(7, 9, 12, 14, 20, 22),
+		2 => array(2, 4, 10, 13, 16, 8),
+		3 => array(5, 6, 11, 15, 23, 24),
+		4 => array(1, 25, 3, 8, 17, 19, 21)
+	),
+	
 	'lang' => array(
 		'eq2'			=> 'EverQuest II',
 		'very_light'	=> 'Stoff',
@@ -86,6 +95,17 @@ $german_array = array(
 		'fighter'       => 'Kämpfer',
 		'mage'          => 'Magier',
 		'scout'         => 'Kundschafter',
+		'role1' => 'Heiler',
+		'role2' => 'Kämpfer',
+		'role3' => 'Magier',
+		'role4' => 'Kundschafter',
+		
+		// profilfelder
+		
+		'uc_gender'						=> 'Geschlecht',
+		'uc_male'						=> 'Männlich',
+		'uc_female'						=> 'Weiblich',
+		'uc_guild'						=> 'Gilde',
 		
 		'pk_tab_fs_eq2settings'			=> 'EQ2 Einstellungen',
 		'uc_faction'					=> 'Fraktion',

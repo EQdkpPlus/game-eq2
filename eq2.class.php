@@ -24,8 +24,8 @@ if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
 		public static $shortcuts = array('pdh');
 		protected $this_game	= 'eq2';
-		protected $types		= array('classes', 'races', 'factions', 'filters');
-		public $icons			= array('classes', 'races');
+		protected $types		= array('classes', 'races', 'factions', 'roles', 'filters');
+		public $icons			= array('classes', 'classes_big', 'races', 'events', 'roles', 'ranks');
 		protected $classes		= array();
 		protected $races		= array();
 		protected $factions		= array();
@@ -38,7 +38,7 @@ if(!class_exists('eq2')) {
 		protected $lang_file	= array();
 		protected $path			= '';
 		public $lang			= false;
-		public $version			= '2.1';
+		public $version			= '2.2';
 		
 		public $importers 		= array(
 			'char_import'		=> 'charimporter.php',						// filename of the character import

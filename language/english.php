@@ -23,6 +23,7 @@ $english_array = array(
 	'classes' => array(
 		0 => 'Unknown',
 		1 => 'Assassin',
+		25 => 'Beastlord',
 		2 => 'Berserker',
 		3 => 'Brigand',
 		4 => 'Bruiser',
@@ -46,7 +47,7 @@ $english_array = array(
 		22 => 'Warden',
 		23 => 'Warlock',
 		24 => 'Wizard',
-		25 => 'Beastlord',
+		
 	),
 	'races' => array(
 		'Unknown',
@@ -76,6 +77,13 @@ $english_array = array(
 		'Evil',
 		'Neutral'
 	),
+	'roles' => array(
+		1 => array(7, 9, 12, 14, 20, 22),
+		2 => array(2, 4, 10, 13, 16, 8),
+		3 => array(5, 6, 11, 15, 23, 24),
+		4 => array(1, 25, 3, 8, 17, 19, 21)
+	),
+	
 	'lang' => array(
 		'eq2'			=> 'EverQuest II',
 		'very_light'	=> 'Cloth',
@@ -86,6 +94,17 @@ $english_array = array(
 		'fighter'       => 'Fighter',
 		'mage'          => 'Mage',
 		'scout'         => 'Scout',
+		'role1' => 'Healers',
+		'role2' => 'Fighters',
+		'role3' => 'Mages',
+		'role4' => 'Scouts',
+		
+		// profile fields
+		
+		'uc_gender'						=> 'Gender',
+		'uc_male'						=> 'Male',
+		'uc_female'						=> 'Female',
+		'uc_guild'						=> 'Guild',
 		
 		'pk_tab_fs_eq2settings'			=> 'EQ2 Settings',
 		'uc_import_guild'				=> 'Import Guild',
