@@ -43,6 +43,7 @@
 									<li><a href='#char1_tabs-6'><span>Languages</span></a></li>
 									<li><a href='#char1_tabs-7'><span>Places</span></a></li>
 									<li><a href='#char1_tabs-8'><span>Factions</span></a></li>
+									<li><a href='#char1_tabs-9'><span>Raid Ready</span></a></li>
 									</ul>
 									
 									<div id="char1_tabs-1" style="height: 420px; overflow: auto;">
@@ -251,8 +252,6 @@
 																<!-- END equipment_list -->
 															</tbody>
 														</table>
-													
-													
 													</td><td width="50%" valign="top">
 														<table width="100%" class="colorswitch hoverrows">
 															<tbody>
@@ -334,6 +333,44 @@
 													<td width="50%">{faction_list.NAME}:</td><td class="{faction_list.CLASS}">{faction_list.VALUE}</td>
 												</tr>
 												<!-- END faction_list -->
+											</tbody>
+										</table>
+									</div>
+									<div id="char1_tabs-9" style="height: 420px; overflow: auto;">
+										<table width="100%" class="colorswitch hoverrows">
+											<tbody>
+												<!-- BEGIN raid_ready -->
+												<tr>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.CMARK}.png" />&nbsp;Crit Chance:</td><td width ="50%">Minimum Requirement = {raid_ready.MINCRIT}%</td>
+													<td width="25%"><b>{DATA_CRITCHANCE}%</b></td>
+												</tr>
+												<tr>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.MMARK}.png" />&nbsp;Fully Mastered?</td><td width="50%">Total % of Mastered Spells & CA's</td><td width="25%"><b>{raid_ready.MASTER}%</b></td>
+												</tr>
+												<tr><div>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.EMARK}.png" />&nbsp;Myth Buff:</td><td width="50%">{raid_ready.ER}</td>
+													<td width="25%"><!-- IF raid_ready.EICONID1 != 0 --><div class="spellbkg1"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID1}/spell" /></div><!-- ENDIF -->
+													                <!-- IF raid_ready.EICONID2 != 0 --><div class="spellbkg2"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID2}/spell" /></div><!-- ENDIF --></td>
+												</div></tr>
+												<tr>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.DMARK}.png" />&nbsp;X2 Debuff:</td><td width="50%">{raid_ready.DEBUFF}</td>
+													<td width="25%"><!-- IF raid_ready.DICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.DICONID}/spell" /><!-- ENDIF --></td>
+												</tr> 
+												<tr>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.GMARK}.png" />&nbsp;Deity:</td><td width="50%">{raid_ready.DEITY}</td>
+													<td width="25%"><!-- IF raid_ready.DPIC --><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/deity/{raid_ready.DPIC}.png" /><!-- ENDIF --></td>
+												</tr>
+												<tr>
+													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.SMARK}.png" />&nbsp;Singular Focus:</td><td width="50%">{raid_ready.SING}</td>
+													<td width="25%"><!-- IF raid_ready.SICO !=0 --><div class="singbkg"><img src="{CHAR_IMGURL}icons/{raid_ready.SICO}/spell" /></div><!-- ENDIF --></td>
+												</tr>
+												<tr>
+													<td width="25%">Equipped Food</td><td width="50%">{raid_ready.FDVALUE}</td><td width="25%"><!-- IF raid_ready.FDICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.FDICONID}/item" /><!-- ENDIF --></td>
+												</tr>
+												<tr>
+													<td width="25%">Equipped Drink</td><td width="50%">{raid_ready.DRVALUE}</td><td width="25%"><!-- IF raid_ready.DRICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.DRICONID}/item" /><!-- ENDIF --></td>
+												</tr>
+												<!-- END raid_ready -->
 											</tbody>
 										</table>
 									</div>

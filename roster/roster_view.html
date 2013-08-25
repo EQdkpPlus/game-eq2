@@ -1,0 +1,303 @@
+<div id="guild_header_wrap">
+	<!-- IF S_ARMORY_INFO -->
+	<div id="guild_header_banner"></td><td>
+		<div id="guild_name"><center>{GUILD}<center></div>
+		<div id="guild_realm"><center>{L_level} {LEVEL} &bull; {REALM}</center></div>
+	</div>
+	<!-- ENDIF  -->
+</div>
+<br clear="left" />
+<div id="eq2_roster">
+	<!-- IF S_ARMORY_INFO -->
+	<ul>
+		<li><a href='#roster'><span>{L_menu_roster}</span></a></li>
+		<li><a href='#achievements'><span>{GL_gachievements}</span></a></li>
+	</ul>
+	<div id="achievements">
+			<!-- BEGIN guildachievs -->
+			<div id="bar_guildachievs">
+			<center><h1>{guildachievs.TOTAL}</h1></center>
+			<center>{guildachievs.BAR}</center>
+			</div>	
+			<!-- END guildachievs -->
+			<div class="clear"></div>
+		<div id="expansions">
+		<ul>
+		    <li><a href='#avatar'><span>{GL_avatar}</span></a></li>
+			<li><a href='#chains'><span>{GL_chains}</span></a></li>
+			<li><a href='#velious'><span>{GL_velious}</span></a></li>
+			<li><a href='#sentinel'><span>{GL_sentinel}</span></a></li>
+			<li><a href='#shadow'><span>{GL_shadow}</span></a></li>
+			<li><a href='#kunark'><span>{GL_kunark}</span></a></li>
+			<li><a href='#faydwer'><span>{GL_faydwer}</span></a></li>
+			<li><a href='#fallen'><span>{GL_fallen}</span></a></li>
+			<li><a href='#kingdom'><span>{GL_kingdom}</span></a></li>
+			<li><a href='#desert'><span>{GL_desert}</span></a></li>
+			<li><a href='#splitpaw'><span>{GL_splitpaw}</span></a></li>		
+			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
+		</ul>
+			<div id="avatar">
+			<br><center>{AV}</center>
+			<center>
+			<!-- BEGIN avbar -->
+			<div id="bar_guildachieves">{avbar.BAR}</div>
+			<!-- END avbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN av_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{av_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{av_achievements.ANAME}<br /><i>{av_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{av_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END av_achievements -->
+			</table>
+			</div>
+			<div id="chains">
+			<br><center>{COE}</center>
+			<center>
+			<!-- BEGIN coebar -->
+			<div id="bar_guildachieves">{coebar.BAR}</div>
+			<!-- END coebar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN coe_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{coe_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{coe_achievements.ANAME}<br /><i>{coe_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{coe_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END coe_achievements -->
+			</table>
+			</div>
+			<div id="velious">
+			<br><center>{DOV}</center>
+			<center>
+			<!-- BEGIN dovbar -->
+			<div id="bar_guildachieves">{dovbar.BAR}</div>
+			<!-- END dovbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN dov_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{dov_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{dov_achievements.ANAME}<br /><i>{dov_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{dov_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END dov_achievements -->
+			</table>
+			</div>
+			<div id="sentinel">
+			<br><center>{SF}</center>
+			<center>
+			<!-- BEGIN sfbar -->
+			<div id="bar_guildachieves">{sfbar.BAR}</div>
+			<!-- END sfbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN sf_achievements -->
+			<tr>
+			<td class="nowrap"><div id='achicon'>{sf_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{sf_achievements.ANAME}<br /><i>{sf_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{sf_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END sf_achievements -->
+			</table>
+			</div>
+			<div id="shadow">
+			<br><center>{TSO}</center>
+			<center>
+			<!-- BEGIN tsobar -->
+			<div id="bar_guildachieves">{tsobar.BAR}</div>
+			<!-- END tsobar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN tso_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{tso_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{tso_achievements.ANAME}<br /><i>{tso_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{tso_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END tso_achievements -->
+			</table>
+			</div>
+			<div id="kunark">
+			<br><center>{ROK}</center>
+			<center>
+			<!-- BEGIN rokbar -->
+			<div id="bar_guildachieves">{rokbar.BAR}</div>
+			<!-- END rokbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN rok_achievements -->
+			<tr>
+			<td class="nowrap"><div id='achicon'>{rok_achievements.AICON}</div>
+			</td>
+			<td class="nowrap"">{rok_achievements.ANAME}<br /><i>{rok_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{rok_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END rok_achievements -->
+			</table>
+			</div>
+			<div id="faydwer">
+			<br><center>{EOF}</center>
+			<center>
+			<!-- BEGIN eofbar -->
+			<div id="bar_guildachieves">{eofbar.BAR}</div>
+			<!-- END eofbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN eof_achievements -->
+			<tr>
+			<td class="nowrap"><div id='achicon'>{eof_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{eof_achievements.ANAME}<br /><i>{eof_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{eof_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END eof_achievements -->
+			</table>
+			</div>
+			<div id="fallen">
+			<br><center>{FD}</center>
+			<center>
+			<!-- BEGIN fdbar -->
+			<div id="bar_guildachieves">{fdbar.BAR}</div>
+			<!-- END fdbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN fd_achievements -->
+			<tr>
+			<td class="nowrap"><div id='achicon'>{fd_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{fd_achievements.ANAME}<br /><i>{fd_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{fd_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END fd_achievements -->
+			</table>
+			</div>
+			<div id="kingdom">
+			<br><center>{KOS}</center>
+			<center>
+			<!-- BEGIN kosbar -->
+			<div id="bar_guildachieves">{kosbar.BAR}</div>
+			<!-- END kosbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN kos_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{kos_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{kos_achievements.ANAME}<br /><i>{kos_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{kos_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END kos_achievements -->
+			</table>
+			</div>
+			<div id="desert">
+			<br><center>{DOF}</center>
+			<center>
+			<!-- BEGIN dofbar -->
+			<div id="bar_guildachieves">{dofbar.BAR}</div>
+			<!-- END dofbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN dof_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{dof_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{dof_achievements.ANAME}<br /><i>{dof_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{dof_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END dof_achievements -->
+			</table>
+			</div>
+			<div id="splitpaw">
+			<br><center>{SS}</center>
+			<center>
+			<!-- BEGIN ssbar -->
+			<div id="bar_guildachieves">{ssbar.BAR}</div>
+			<!-- END ssbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN ss_achievements -->
+			<tr>
+			<td class="nowrap"><div id='achicon'>{ss_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{ss_achievements.ANAME}<br /><i>{ss_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{ss_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END ss_achievements -->
+			</table>
+			</div>
+			<div id="classic">
+			<br><center>{CLASSIC}</center>
+			<center>
+			<!-- BEGIN classicbar -->
+			<div id="bar_guildachieves">{classicbar.BAR}</div>
+			<!-- END classicbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN classic_achievements -->
+			<tr>
+			<td width="20"><div id='achicon'>{classic_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{classic_achievements.ANAME}<br /><i>{classic_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{classic_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END classic_achievements -->
+			</table>
+			</div>
+		</div>
+	</div>
+	<!-- ENDIF  -->
+	<div id="roster">
+	<!-- BEGIN class_row -->
+		<h1 class="class_{class_row.CLASS_ID}">{class_row.CLASS_ICONS} {class_row.CLASS_NAME}</h1>
+		<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="2">
+			{class_row.MEMBER_LIST}
+		</table>
+		<br /><br />
+	<!-- END class_row -->
+	</div>
+</div>

@@ -47,7 +47,6 @@ $english_array = array(
 		22 => 'Warden',
 		23 => 'Warlock',
 		24 => 'Wizard',
-		
 	),
 	'races' => array(
 		'Unknown',
@@ -79,11 +78,10 @@ $english_array = array(
 	),
 	'roles' => array(
 		1 => array(7, 9, 12, 14, 20, 22),
-		2 => array(2, 4, 10, 13, 16, 8),
+		2 => array(2, 4, 10, 13, 16, 18),
 		3 => array(5, 6, 11, 15, 23, 24),
 		4 => array(1, 25, 3, 8, 17, 19, 21)
 	),
-	
 	'lang' => array(
 		'eq2'			=> 'EverQuest II',
 		'very_light'	=> 'Cloth',
@@ -99,23 +97,21 @@ $english_array = array(
 		'role3' => 'Mages',
 		'role4' => 'Scouts',
 		
-		// profile fields
-		
+		// profile additions
 		'uc_gender'						=> 'Gender',
 		'uc_male'						=> 'Male',
 		'uc_female'						=> 'Female',
 		'uc_guild'						=> 'Guild',
-		
 		'pk_tab_fs_eq2settings'			=> 'EQ2 Settings',
 		'uc_import_guild'				=> 'Import Guild',
 		'uc_import_guild_help'			=> 'Import all characters of a guild',
 		'uc_servername'					=> 'Name of your realmserver',
-		'uc_lockserver'				=> 'Lock the realm name for users',
+		'uc_lockserver'					=> 'Lock the realm name for users',
 		'uc_faction'					=> 'Faction',
 		'uc_update_all'					=> 'Update all characters',
 		'uc_importer_cache'				=> 'Reset importer cache',
 		'uc_importer_cache_help'		=> 'Delete all the cached data of the import class.',
-		
+		'achievements'					=> 'Achievements',
 		'uc_class_filter'				=> 'Only character of the class',
 		'uc_class_nofilter'				=> 'No filter',
 		'uc_guild_name'					=> 'Guild-Name',
@@ -127,7 +123,11 @@ $english_array = array(
 		'uc_gimp_header_fnsh'			=> 'Guild import finished',
 		'uc_importcache_cleared'		=> 'The cache of the importer was successfully cleared.',
 		'uc_delete_chars_onimport'		=> 'Delete Chars that have left the guild',
-		
+		'uc_achievements'				=> 'Achievements',
+		'uc_critchance'                 => 'Minimum Crit Chance Requirement',
+		'gachievements'                 => 'Guild Achievements',
+		'graidready'                    => 'Raid Ready',
+		'heraldry'                      => 'Guild Heraldry',
 		'uc_noprofile_found'			=> 'No profile found',
 		'uc_profiles_complete'			=> 'Profiles updated successfully',
 		'uc_notyetupdated'				=> 'No new data (inactive character)',
@@ -135,14 +135,12 @@ $english_array = array(
 		'uc_error_with_id'				=> 'Error with this character\'s id, it has been left out',
 		'uc_notyourchar'				=> 'ATTENTION: You currently try to import a character that already exists in the database but is not owned by you. For security reasons, this action is not permitted. Please contact an administrator for solving this problem or try to use another character name.',
 		'uc_lastupdate'					=> 'Last Update',
-		
 		'uc_prof_import'				=> 'import',
 		'uc_import_forw'				=> 'continue',
 		'uc_imp_succ'					=> 'The data has been imported successfully',
 		'uc_upd_succ'					=> 'The data has been updated successfully',
 		'uc_imp_failed'					=> 'An error occured while updating the data. Please try again.',
 		"uc_updat_armory" 				=> "Refresh from SOE",
-		
 		'uc_charname'					=> 'Character\'s name',
 		'uc_servername'					=> 'Server\'s name',
 		'uc_charfound'					=> "The character <b>%1\$s</b> has been found in the armory.",

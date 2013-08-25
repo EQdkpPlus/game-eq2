@@ -56,7 +56,7 @@ $settingsdata_admin = array(
 				'options'	=> $this->game->get('factions'),
 				'default'	=> 'alliance'
 			),
-			'uc_servername'     => array(
+			'uc_servername' => array(
 				'name'		=> 'uc_servername',
 				'fieldtype'	=> 'autocomplete',
 				'size'		=> '21',
@@ -68,6 +68,19 @@ $settingsdata_admin = array(
 				'fieldtype'	=> 'checkbox',
 				'size'		=> false,
 				'options'	=> false,
+			),
+			'uc_critchance'	=> array(
+				'name'		=> 'uc_critchance',
+				'fieldtype'	=> 'text',
+				'size'		=> '4',
+				'options'	=> false,
+			),
+			'uc_showachieve'	=> array(
+				'name'		=> 'uc_showachieve',
+				'fieldtype'	=> 'dropdown',
+				'size'		=> '1',
+				'options'	=> array('yes' => 'Yes', 'no' => 'No'),
+				'default'   => 'yes',
 			)
 		)
 	)
