@@ -24,7 +24,7 @@
 		#guild_header_banner{
 			width:100%;
 			height:106px;
-			background: url('games/eq2/profiles/images/achievebanner.jpg') no-repeat scroll 0px 0px transparent;
+			/*background: url('games/eq2/profiles/images/achievebanner.jpg') no-repeat scroll 0px 0px transparent;*/
 			margin-top:20px;
 		}
 		#guild_emblem { 
