@@ -26,6 +26,7 @@ $realmnames = array(
 	'Storms',	//EU Francais
 	'Sebilis', //China
 	'Test', //Public Test Server
+	'Beta', //Public Beta Server
 	//US English
 	'Butcherblock',
 	'Nagafen',

@@ -24,7 +24,7 @@
 		#guild_header_banner{
 			width:100%;
 			height:106px;
-			/*background: url('games/eq2/profiles/images/achievebanner.jpg') no-repeat scroll 0px 0px transparent;*/
+			background: url('games/eq2/profiles/images/achievebanner.jpg') no-repeat scroll 0px 0px transparent;
 			margin-top:20px;
 		}
 		#guild_emblem { 
@@ -56,13 +56,8 @@
 			width: 56px; height: 55px; z-index: 4; background:url('games/eq2/profiles/images/achbkg.png');
 		}
 	");
-
-	
 	
 if ($this->config->get('uc_showachieve') == 'yes') {
-//$showach = $this->config->get('uc_showachieve');
-
-
 # Amory Stuff
 		$this->game->new_object('eq2_soe', 'soe', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
 		if(!is_object($this->game->obj['soe'])) return "";
@@ -76,8 +71,8 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$avcount = 0; $avtotal = 19;
 		$classiccount = 0; $classictotal = 10; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
 		$koscount = 0; $kostotal = 8; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
-		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 6; $tsocount = 0; $tsototal = 6;
-		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33;
+		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 7; $tsocount = 0; $tsototal = 6;
+		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 27;
 		if (isset($gdata)) {
 		foreach($achieves as $values){
 			$arrTmpGAchievs[$values['completedtimestamp']] = $values;
@@ -101,6 +96,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "The Shadow Odyssey") {($expans = "tso");($tsocount = $tsocount + 1);}
 		if ($expan == "Destiny of Velious") {($expans = "dov");($dovcount = $dovcount + 1);}
 		if ($expan == "Chains of Eternity") {($expans = "coe");($coecount = $coecount + 1);}
+		if ($expan == "Tears of Veeshan") {($expans = "tov");($tovcount = $tovcount + 1);}
 		if ($expan == "Avatars") {($expans = "av");($avcount = $avcount + 1);}
 		$clcomplete = ($classiccount != 0) ? intval(($classiccount / $classictotal) * 100) : 0;
 		$sscomplete = ($sscount != 0) ? intval(($sscount / $sstotal) * 100) : 0;
@@ -113,6 +109,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$tsocomplete = ($tsocount != 0) ? intval(($tsocount / $tsototal) * 100) : 0;
 		$dovcomplete = ($dovcount != 0) ? intval(($dovcount / $dovtotal) * 100) : 0;
 		$coecomplete = ($coecount != 0) ? intval(($coecount / $coetotal) * 100) : 0;
+		$tovcomplete = ($tovcount != 0) ? intval(($tovcount / $tovtotal) * 100) : 0;
 		$avcomplete = ($avcount != 0) ? intval(($avcount / $avtotal) * 100) : 0;
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
@@ -142,6 +139,8 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 				'BAR'	=> $this->jquery->ProgressBar('dovbar', $dovcomplete, $dovcount .' / ' . $dovtotal.' ('.$dovcomplete.'%)'),));
 		$this->tpl->assign_block_vars('coebar', array(		
 				'BAR'	=> $this->jquery->ProgressBar('coebar', $coecomplete, $coecount .' / ' . $coetotal.' ('.$coecomplete.'%)'),));
+		$this->tpl->assign_block_vars('tovbar', array(		
+				'BAR'	=> $this->jquery->ProgressBar('tovbar', $tovcomplete, $tovcount .' / ' . $tovtotal.' ('.$tovcomplete.'%)'),));		
 		$this->tpl->assign_block_vars('avbar', array(		
 				'BAR'	=> $this->jquery->ProgressBar('avbar', $avcomplete, $avcount .' / ' . $avtotal.' ('.$avcomplete.'%)'),));		
 		$this->jquery->Tab_header('eq2_roster');
@@ -165,6 +164,7 @@ $this->tpl->assign_vars(array(
 		'SF'			=> '<img src="games/eq2/profiles/images/expansions/sf.png"/>',
 		'DOV'			=> '<img src="games/eq2/profiles/images/expansions/dov.png"/>',
 		'COE'			=> '<img src="games/eq2/profiles/images/expansions/coe.png"/>',
+		'TOV'			=> '<img src="games/eq2/profiles/images/expansions/tov.png"/>',
 		'AV'			=> '<img src="games/eq2/profiles/images/expansions/avatars.png"/>',
 		'REALM'			=> $this->config->get('uc_servername'),
 		'GUILD'			=> $this->config->get('guildtag'),
@@ -177,7 +177,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 211;
+ 			$total = 238;
 			$complete = ($achievecount != 0) ? intval(($achievecount / $total) * 100) : 0;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',

@@ -314,6 +314,12 @@
 									'4258537544','1549656268','2706878589','1186627693','1661336669'); $mastertot = 36;
 				$erspells = array('325090821','525825229'); $ericon1 = 664; $erbakg1 = 317; $ericon2 = 327; $erbakg2 = 317;
 				break;
+				case 'Channeler':
+				$masterlist = array('1967992241','2381793860','3518171711','1592172885','3432082492','2544306066','1992001547',
+									'2883155794','3954314227','4191715420','1507366243','4250142795','747707187','1056673948',
+									'3451741558','3755470553'); $mastertot = 12;
+				$erspells = array('320684470','1302094268'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
+				break;
 				case 'Coercer':
 				$masterlist = array('948198458','3443185326','1998517305','2467104654','3768290845','3224247923','373906512',
 									'1055998171','3317897376','710873371','354375561','4040163155','1041605889','3723063385',
@@ -515,13 +521,14 @@
 		$erico1 = 0; $erico2 = 0; $erbak1 = 0; $erbak2 = 0;
 		$emark = 'bad';
 		if (isset($erlist[0])) { $emark = 'good'; $erico1 = $ericon1; $erico2 = $ericon2; $erbak1 = $erbakg1; $erbak2 = $erbakg2; }
-		$debuff = count(array_intersect($debuffspells, $arrTmpSpells));
-		$debuffmatch = (array_intersect($debuffspells, $arrTmpSpells));
-		if ($debuff >= 1 ) { ($debuffcheck = 'X2 Debuff Completed'); $dmark = 'good'; }
-		if ($debuff == 0 ) { ($debuffcheck = 'X2 Debuff NOT Completed'); $dmark = 'bad'; }
-		$debuffmatch = array_shift($debuffmatch);
-		if ($debuffmatch == '674390489') { ($debufficon = '918'); }	if ($debuffmatch == '1616154856') { ($debufficon = '928'); }
-		if ($debuffmatch == '2917802350') { ($debufficon = '857'); } if ($debuffmatch == '612359111') { ($debufficon = '913'); }
+		 //ToFS X2 Debuff removed - Outdated content
+		//$debuff = count(array_intersect($debuffspells, $arrTmpSpells));
+		//$debuffmatch = (array_intersect($debuffspells, $arrTmpSpells));
+		//if ($debuff >= 1 ) { ($debuffcheck = 'X2 Debuff Completed'); $dmark = 'good'; }
+		//if ($debuff == 0 ) { ($debuffcheck = 'X2 Debuff NOT Completed'); $dmark = 'bad'; }
+		//$debuffmatch = array_shift($debuffmatch);
+		//if ($debuffmatch == '674390489') { ($debufficon = '918'); }	if ($debuffmatch == '1616154856') { ($debufficon = '928'); }
+		//if ($debuffmatch == '2917802350') { ($debufficon = '857'); } if ($debuffmatch == '612359111') { ($debufficon = '913'); }
 		 //Check if they have Singular Focus
 		$singular = count(array_intersect($singularfocus, $arrTmpSpells));
 		$singularmatch = (array_intersect($singularfocus, $arrTmpSpells));
@@ -541,7 +548,7 @@
 				'DEBUFF' => $debuffcheck,
 				'EICONID1'  => $erico1,
 				'EICONID2'  => $erico2,
-				'DICONID'   => $debufficon,
+				//'DICONID'   => $debufficon, //ToFS X2 Debuff Icon Removed - Outdated Content
 				'DEITY'     => $deity,
 				'DPIC'      => $dpic,
 				'SING'      => $singularcheck,

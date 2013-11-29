@@ -16,15 +16,15 @@
 	<div id="achievements">
 			<!-- BEGIN guildachievs -->
 			<div id="bar_guildachievs">
-			<center><h1>{GL_total_completed}</h1></center>
+			<center><h1>{guildachievs.TOTAL}</h1></center>
 			<center>{guildachievs.BAR}</center>
-			</div>
-			<br/>
+			</div>	
 			<!-- END guildachievs -->
 			<div class="clear"></div>
 		<div id="expansions">
 		<ul>
 		    <li><a href='#avatar'><span>{GL_avatar}</span></a></li>
+			<li><a href='#tears'><span>{GL_tears}</span></a></li>
 			<li><a href='#chains'><span>{GL_chains}</span></a></li>
 			<li><a href='#velious'><span>{GL_velious}</span></a></li>
 			<li><a href='#sentinel'><span>{GL_sentinel}</span></a></li>
@@ -56,6 +56,27 @@
 			</td>
 			</tr>
 			<!-- END av_achievements -->
+			</table>
+			</div>
+			<div id="tears">
+			<br><center>{TOV}</center>
+			<center>
+			<!-- BEGIN tovbar -->
+			<div id="bar_guildachieves">{tovbar.BAR}</div>
+			<!-- END tovbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN tov_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{tov_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{tov_achievements.ANAME}<br /><i>{tov_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{tov_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END tov_achievements -->
 			</table>
 			</div>
 			<div id="chains">

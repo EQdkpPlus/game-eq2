@@ -38,7 +38,7 @@ if(!class_exists('eq2')) {
 		protected $lang_file	= array();
 		protected $path			= '';
 		public $lang			= false;
-		public $version			= '2.2.3';
+		public $version			= '2.2.4';
 		
 		public $importers 		= array(
 			'char_import'		=> 'charimporter.php',						// filename of the character import
@@ -72,16 +72,16 @@ if(!class_exists('eq2')) {
 				$this->filters[$lang] = array_merge($this->filters[$lang], array(
 					array('name' => '-----------', 'value' => false),
 					array('name' => $this->glang('very_light', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
-					array('name' => $this->glang('light', true, $lang), 'value' => 'class:4,9,13,22'),
+					array('name' => $this->glang('light', true, $lang), 'value' => 'class:26,4,9,13,22'),
 					array('name' => $this->glang('medium', true, $lang), 'value' => 'class:1,3,7,8,14,17,21,25'),
 					array('name' => $this->glang('heavy', true, $lang), 'value' => 'class:2,10,12,16,18,20'),
 					array('name' => '-----------', 'value' => false),
-					array('name' => $this->glang('healer', true, $lang), 'value' => 'class:7,9,12,14,20,22'),
+					array('name' => $this->glang('healer', true, $lang), 'value' => 'class:26,7,9,12,14,20,22'),
 					array('name' => $this->glang('fighter', true, $lang), 'value' => 'class:2,4,10,13,16,18'),
 					array('name' => $this->glang('mage', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
 					array('name' => $this->glang('scout', true, $lang), 'value' => 'class:1,25,3,8,17,19,21'),
 					array('name' => '-----------', 'value' => false),
-					array('name' => $this->glang('healermage', true, $lang), 'value' => 'class:7,9,12,14,20,22,5,6,11,15,23,24'),
+					array('name' => $this->glang('healermage', true, $lang), 'value' => 'class:26,7,9,12,14,20,22,5,6,11,15,23,24'),
 					array('name' => $this->glang('fighterscout', true, $lang), 'value' => 'class:2,4,10,13,16,18,1,25,3,8,17,19,21'),
 					
 				));
@@ -123,6 +123,7 @@ if(!class_exists('eq2')) {
 				23 => '#0000E1',
 				24 => '#0000E1',
 				25 => '#E1E100',
+				26 => '#00E100',
 			);
             
             //lets do some tweak on the templates dependent on the game

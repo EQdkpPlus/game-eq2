@@ -32,10 +32,10 @@ class eq2_soe {
 	protected $convert		= array(
 		'classes' => array(
 			40 => 1,//Assassin
-			42 => 25,//Beastlord
 			4 => 2,//Berserker
 			34 => 3,//Brigand
 			7 => 4,//Bruiser
+			44 => 26,//Channeler
 			27 => 5,//Coercer
 			29 => 6,//Conjuror
 			20 => 7,//Defiler
@@ -56,28 +56,29 @@ class eq2_soe {
 			16 => 22,//Warden
 			24 => 23,//Warlock
 			23 => 24,//Wizard
+			42 => 25,//Beastlord
 		),
 		'races' => array(
-			17 => 18, //Arasai
-			0 => 4, //Barbarian
-			1 => 7, //Dark Elf
-			2 => 5, //Dwarf
-			3 => 14, //Erudite
-			16 => 19, //Fae
-			4 => 13, //Froglok
-			19 => 20, //Freeblood
-			5 => 2, //Gnome
-			7 => 17, //Halfling
-			6 => 9, //Half Elf
-			8 => 6, //High Elf
-			9 => 3, //Human
-			10 => 15, //Iksar
-			11 => 10, //Kerran
-			12 => 12, //Ogre
-			13 => 16, //Ratonga
 			18 => 1, //Sarnak
-			14 => 11, //Troll
+			5 => 2, //Gnome
+			9 => 3, //Human
+			0 => 4, //Barbarian
+			2 => 5, //Dwarf
+			8 => 6, //High Elf
+			1 => 7, //Dark Elf
 			15 => 8, //Wood Elf
+			6 => 9, //Half Elf
+			11 => 10, //Kerran
+			14 => 11, //Troll
+			12 => 12, //Ogre
+			4 => 13, //Froglok
+			3 => 14, //Erudite
+			10 => 15, //Iksar
+			13 => 16, //Ratonga
+			7 => 17, //Halfling
+			17 => 18, //Arasai
+			16 => 19, //Fae
+			19 => 20, //Freeblood
 		),
 	);
 	
@@ -152,17 +153,6 @@ class eq2_soe {
         $achieves    = json_decode($json, true);
         $errorchk    = $this->CheckIfError($achieves);
         return (!$errorchk) ? $achieves: $errorchk;
-    }
-	
-	public function spells($spelldata, $force=false){
-        $url    = $this->apiurl.'spell/'.$spelldata;
-        if(!$json    = $this->get_CachedData('spell_'.$spelldata)){
-            $json    = $this->read_url($url);
-            $this->set_CachedData($json, 'spell_'.$spelldata);
-        }
-        $spelldata    = json_decode($json, true);
-        $errorchk    = $this->CheckIfError($spelldata);
-        return (!$errorchk) ? $spelldata: $errorchk;
     }
 	
 	public function getGuildID($guild, $realm, $force=false){
