@@ -26,6 +26,7 @@ $german_array = array(
 		2 => 'Berserker',
 		25 => 'Bestienfürst',
 		3 => 'Brigant',
+		26 => 'Bündler',
 		6 => 'Elementalist',
 		5 => 'Erzwinger',
 		9 => 'Furie',
