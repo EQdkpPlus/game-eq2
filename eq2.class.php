@@ -38,7 +38,7 @@ if(!class_exists('eq2')) {
 		protected $lang_file	= array();
 		protected $path			= '';
 		public $lang			= false;
-		public $version			= '2.2.4';
+		public $version			= '2.2.5';
 		
 		public $importers 		= array(
 			'char_import'		=> 'charimporter.php',						// filename of the character import
