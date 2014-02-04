@@ -24,8 +24,8 @@ if ( !defined('EQDKP_INC') ){
 
 class eq2_soe {
 
-	protected $apiurl		= 'http://data.soe.com/s:eqdkpplus/json/get/eq2/';
-	public $imgurl			= 'http://data.soe.com/s:eqdkpplus/img/eq2/';
+	protected $apiurl		= 'http://census.soe.com/s:eqdkpplus/json/get/eq2/';
+	public $imgurl			= 'http://census.soe.com/s:eqdkpplus/img/eq2/';
 	private $chariconUpdates = 0;
 	private $chardataUpdates = 0;
 	

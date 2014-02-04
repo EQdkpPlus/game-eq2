@@ -568,19 +568,19 @@
 			));
 		$this->tpl->add_css('
 			.spellbkg1{
-				background: url("http://data.soe.com/s:eqdkpplus/img/eq2/icons/'.$erbak1.'/spell") no-repeat;
+				background: url("http://census.soesoe.com/s:eqdkpplus/img/eq2/icons/'.$erbak1.'/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;
 			}
 			.spellbkg2{
-				background: url("http://data.soe.com/s:eqdkpplus/img/eq2/icons/'.$erbak2.'/spell") no-repeat;
+				background: url("http://census.soesoe.com/s:eqdkpplus/img/eq2/icons/'.$erbak2.'/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;
 			}
 			.singbkg{
-				background: url("http://data.soe.com/s:eqdkpplus/img/eq2/icons/317/spell") no-repeat;
+				background: url("http://census.soesoe.com/s:eqdkpplus/img/eq2/icons/317/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;

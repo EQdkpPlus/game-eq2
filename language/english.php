@@ -166,6 +166,8 @@ $english_array = array(
 		'avatar'                        => 'Avatars',
 		'healermage'                    => 'Healer & Mage',
 		'fighterscout'                  => 'Fighter & Scout',
+		'no_data'						=> 'No Data.',
+		'total_completed'				=> 'Total Completed',
 		'uc_showachieve'				=> 'Show Guild Achievements in Roster Page? (Can slow down loading time)'
 	),
 );

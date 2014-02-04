@@ -70,7 +70,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$arrTmpGAchievs = array();
 		$avcount = 0; $avtotal = 19;
 		$classiccount = 0; $classictotal = 10; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
-		$koscount = 0; $kostotal = 8; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
+		$koscount = 0; $kostotal = 11; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
 		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 7; $tsocount = 0; $tsototal = 6;
 		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 27;
 		if (isset($gdata)) {
@@ -78,13 +78,16 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 			$arrTmpGAchievs[$values['completedtimestamp']] = $values;
 		}
 		krsort($arrTmpGAchievs,1);
+		$gp = 0;
 		foreach ($arrTmpGAchievs as $achieve) { 
 		$achid = $achieve['id'];
 		$achtim = $achieve['completedtimestamp'];
 		$achdata = $this->game->obj['soe']->achieves($achid, false);
 		$ad = ($achdata[achievement_list][0]);
-		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://data.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item"/>';
+		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item"/>';
 		$expan = ($ad['subcategory']);
+		$ap = ($ad['points']);
+		$gp = ($gp + $ap);
 		if ($expan == "Shattered Lands") {($expans = "classic");($classiccount = $classiccount + 1);}
 		if ($expan == "Splitpaw Saga") {($expans = "ss");($sscount = $sscount + 1);}
 		if ($expan == "Desert of Flames") {($expans = "dof");($dofcount = $dofcount + 1);}
@@ -169,6 +172,7 @@ $this->tpl->assign_vars(array(
 		'REALM'			=> $this->config->get('uc_servername'),
 		'GUILD'			=> $this->config->get('guildtag'),
 		'LEVEL'			=> $level = $guilddata['guild_list'][0]['level'],
+		'POINTS'        => $gp,
 ));
 
 //Achievement Total
@@ -177,7 +181,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 238;
+ 			$total = 242;
 			$complete = ($achievecount != 0) ? intval(($achievecount / $total) * 100) : 0;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
