@@ -175,9 +175,9 @@ class guildImporter extends page_generic {
 		}else{
 			$dataarry = array(
 				'name'		=> $this->in->get('name',''),
-				'lvl'		=> $this->in->get('level', 0),
-				'classid'	=> $this->game->obj['soe']->ConvertID($this->in->get('class', 0), 'int', 'classes'),
-				'raceid'	=> $this->game->obj['soe']->ConvertID($this->in->get('race', 0), 'int', 'races'),
+				'level'		=> $this->in->get('level', 0),
+				'class'		=> $this->game->obj['soe']->ConvertID($this->in->get('class', 0), 'int', 'classes'),
+				'race'		=> $this->game->obj['soe']->ConvertID($this->in->get('race', 0), 'int', 'races'),
 				'picture'	=> $this->in->get('gamecharid', ''),
 			);
 			$charicon = $this->game->obj['soe']->characterIcon($this->in->get('gamecharid', ''), true);

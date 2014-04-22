@@ -137,9 +137,9 @@ if(!class_exists('eq2')) {
 			$this->importers = array(
 				'char_import'		=> 'charimporter.php',						// filename of the character import
 				'char_update'		=> 'charimporter.php',						// filename of the character update, member_id (POST) is passed
-				'char_mupdate'		=> 'charimporter.php?massupdate=true',		// filename of the "update all characters" aka mass update
+				'char_mupdate'		=> 'charimporter.php'.$this->SID.'&massupdate=true',		// filename of the "update all characters" aka mass update
 				'guild_import'		=> 'guildimporter.php',						// filename of the guild import
-				'import_reseturl'	=> 'charimporter.php?resetcache=true',		// filename of the reset cache
+				'import_reseturl'	=> 'charimporter.php'.$this->SID.'&resetcache=true',		// filename of the reset cache
 				'guild_imp_rsn'		=> true,
 				'import_data_cache'	=> true,									// Is the data cached and requires a reset call?
 			);
