@@ -156,8 +156,8 @@ class eq2_soe {
     }
 	
 	public function getGuildID($guild, $realm, $force=false){
-		$guild = rawurlencode($guild);
-		$realm = rawurlencode($realm);
+		$guild = rawurlencode(unsanitize($guild));
+		$realm = rawurlencode(unsanitize($realm));
 		$url	= $this->apiurl.'guild/?name='.$guild.'&world='.$realm;
 		if(!$json	= $this->get_CachedData('guildid_'.$guild.$realm, $force)){
 			$json	= $this->read_url($url);
@@ -177,8 +177,8 @@ class eq2_soe {
 	* @return bol
 	*/
 	public function character($user, $realm, $force=false){
-		$user	= rawurlencode($user);
-		$realm = rawurlencode($realm);
+		$user	= rawurlencode(unsanitize($user));
+		$realm = rawurlencode(unsanitize($realm));
 		$url	= $this->apiurl.'character/?name.first='.$user.'&locationdata.world='.$realm.'&c:resolve=factions(name),appearanceslots(displayname,iconid),equipmentslots(displayname,iconid),achievements(name),statistics';
 		$json	= $this->get_CachedData('chardata_'.$user.$realm, $force);
 		if(!$json && ($this->chardataUpdates < $this->_config['maxChardataUpdates'])){
