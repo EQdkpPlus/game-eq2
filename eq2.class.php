@@ -251,7 +251,7 @@ if(!class_exists('eq2')) {
 		* @param bool $install
 		* @return array
 		*/
-		public function get_OnChangeInfos($install=false){
+		public function install($install=false){
 		}
 	}
 }
