@@ -36,6 +36,7 @@
 			<li><a href='#desert'><span>{GL_desert}</span></a></li>
 			<li><a href='#splitpaw'><span>{GL_splitpaw}</span></a></li>		
 			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
+			<li><a href='#general'><span>{GL_general}</span></a></li>
 		</ul>
 			<div id="avatar">
 			<br><center>{AV}</center>
@@ -310,6 +311,31 @@
 			<!-- END classic_achievements -->
 			</table>
 			</div>
+			
+			<div id="general">
+			<br><center>{GENERAL}</center>
+			<center>
+			<!-- BEGIN genbar -->
+			<div id="bar_guildachieves">{genbar.BAR}</div>
+			<!-- END genbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN gen_achievements -->
+			<tr>
+			<td width="20"><div id='achicon'>{gen_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{gen_achievements.ANAME}<br /><i>{gen_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{gen_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END gen_achievements -->
+			</table>
+			</div>
+			
+			
+			
 		</div>
 	</div>
 	<!-- ENDIF  -->
