@@ -15,7 +15,7 @@
  * 
  * $Id$
  */
-
+ 
 	// Add css code:
 	$this->tpl->add_css("
 		#guild_header_wrap {
@@ -24,7 +24,7 @@
 		#guild_header_banner{
 			width:100%;
 			height:106px;
-			background: url('games/eq2/profiles/images/achievebanner.jpg') no-repeat scroll 0px 0px transparent;
+			background: url('games/eq2/profiles/images/achievebanner.png') no-repeat scroll 0px 0px transparent;
 			margin-top:20px;
 		}
 		#guild_emblem { 
@@ -68,18 +68,19 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		infotooltip_js();
 		//Achievement Detail
 		$arrTmpGAchievs = array();
-		$avcount = 0; $avtotal = 19;
+		$gp = 0; $avcount = 0; $avtotal = 19; $gencount = 0; $gentotal = 2;
 		$classiccount = 0; $classictotal = 10; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
-		$koscount = 0; $kostotal = 11; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
+		$koscount = 0; $kostotal = 16; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
 		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 7; $tsocount = 0; $tsototal = 6;
-		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 27;
+		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 36;
 		if (isset($gdata)) {
-		foreach($achieves as $values){
-			$arrTmpGAchievs[$values['completedtimestamp']] = $values;
+		function cmp($a, $b)
+		{
+			if ($a['completedtimestamp'] == $b['completedtimestamp']) { return 0; }
+		return ($a['completedtimestamp'] > $b['completedtimestamp']) ? -1 : 1;
 		}
-		krsort($arrTmpGAchievs,1);
-		$gp = 0;
-		foreach ($arrTmpGAchievs as $achieve) { 
+		usort($achieves, "cmp");
+		foreach ($achieves as $achieve) { 
 		$achid = $achieve['id'];
 		$achtim = $achieve['completedtimestamp'];
 		$achdata = $this->game->obj['soe']->achieves($achid, false);
@@ -101,6 +102,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "Chains of Eternity") {($expans = "coe");($coecount = $coecount + 1);}
 		if ($expan == "Tears of Veeshan") {($expans = "tov");($tovcount = $tovcount + 1);}
 		if ($expan == "Avatars") {($expans = "av");($avcount = $avcount + 1);}
+		if ($expan == "Guild Hall") {($expans = "gen");($gencount = $gencount + 1);}
 		$clcomplete = ($classiccount != 0) ? intval(($classiccount / $classictotal) * 100) : 0;
 		$sscomplete = ($sscount != 0) ? intval(($sscount / $sstotal) * 100) : 0;
 		$dofcomplete = ($dofcount != 0) ? intval(($dofcount / $doftotal) * 100) : 0;
@@ -114,6 +116,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$coecomplete = ($coecount != 0) ? intval(($coecount / $coetotal) * 100) : 0;
 		$tovcomplete = ($tovcount != 0) ? intval(($tovcount / $tovtotal) * 100) : 0;
 		$avcomplete = ($avcount != 0) ? intval(($avcount / $avtotal) * 100) : 0;
+		$gencomplete = ($gencount != 0) ? intval(($gencount / $gentotal) * 100) : 0;
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
 				'ANAME' => substr($ad['name'], 7),
@@ -146,6 +149,8 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 				'BAR'	=> $this->jquery->ProgressBar('tovbar', $tovcomplete, $tovcount .' / ' . $tovtotal.' ('.$tovcomplete.'%)'),));		
 		$this->tpl->assign_block_vars('avbar', array(		
 				'BAR'	=> $this->jquery->ProgressBar('avbar', $avcomplete, $avcount .' / ' . $avtotal.' ('.$avcomplete.'%)'),));		
+		$this->tpl->assign_block_vars('genbar', array(		
+				'BAR'	=> $this->jquery->ProgressBar('genbar', $gencomplete, $gencount .' / ' . $gentotal.' ('.$gencomplete.'%)'),));
 		$this->jquery->Tab_header('eq2_roster');
 		$this->jquery->Tab_header('expansions');
 		$this->tpl->assign_vars(array(
@@ -156,23 +161,24 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 	}
 	}
 $this->tpl->assign_vars(array(
-		'CLASSIC'		=> '<img src="games/eq2/profiles/images/expansions/classic.png"/>',
-		'SS'			=> '<img src="games/eq2/profiles/images/expansions/ss.png"/>',
-		'DOF'			=> '<img src="games/eq2/profiles/images/expansions/dof.png"/>',
-		'KOS'			=> '<img src="games/eq2/profiles/images/expansions/kos.png"/>',
-		'FD'			=> '<img src="games/eq2/profiles/images/expansions/fd.png"/>',
-		'EOF'			=> '<img src="games/eq2/profiles/images/expansions/eof.png"/>',
-		'ROK'			=> '<img src="games/eq2/profiles/images/expansions/rok.png"/>',
-		'TSO'			=> '<img src="games/eq2/profiles/images/expansions/tso.png"/>',
-		'SF'			=> '<img src="games/eq2/profiles/images/expansions/sf.png"/>',
-		'DOV'			=> '<img src="games/eq2/profiles/images/expansions/dov.png"/>',
-		'COE'			=> '<img src="games/eq2/profiles/images/expansions/coe.png"/>',
-		'TOV'			=> '<img src="games/eq2/profiles/images/expansions/tov.png"/>',
-		'AV'			=> '<img src="games/eq2/profiles/images/expansions/avatars.png"/>',
-		'REALM'			=> $this->config->get('uc_servername'),
-		'GUILD'			=> $this->config->get('guildtag'),
-		'LEVEL'			=> $level = $guilddata['guild_list'][0]['level'],
-		'POINTS'        => $gp,
+		'CLASSIC'	=> '<img src="games/eq2/profiles/images/expansions/classic.png"/>',
+		'SS'		=> '<img src="games/eq2/profiles/images/expansions/ss.png"/>',
+		'DOF'		=> '<img src="games/eq2/profiles/images/expansions/dof.png"/>',
+		'KOS'		=> '<img src="games/eq2/profiles/images/expansions/kos.png"/>',
+		'FD'		=> '<img src="games/eq2/profiles/images/expansions/fd.png"/>',
+		'EOF'		=> '<img src="games/eq2/profiles/images/expansions/eof.png"/>',
+		'ROK'		=> '<img src="games/eq2/profiles/images/expansions/rok.png"/>',
+		'TSO'		=> '<img src="games/eq2/profiles/images/expansions/tso.png"/>',
+		'SF'		=> '<img src="games/eq2/profiles/images/expansions/sf.png"/>',
+		'DOV'		=> '<img src="games/eq2/profiles/images/expansions/dov.png"/>',
+		'COE'		=> '<img src="games/eq2/profiles/images/expansions/coe.png"/>',
+		'TOV'		=> '<img src="games/eq2/profiles/images/expansions/tov.png"/>',
+		'AV'		=> '<img src="games/eq2/profiles/images/expansions/avatars.png"/>',
+		'GENERAL'	=> '<img src="games/eq2/profiles/images/expansions/general.png"/>',
+		'REALM'	 	=> $this->config->get('uc_servername'),
+		'GUILD'		=> $this->config->get('guildtag'),
+		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
+		'POINTS'    => $gp,
 ));
 
 //Achievement Total
@@ -181,7 +187,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 242;
+ 			$total = 258;
 			$complete = ($achievecount != 0) ? intval(($achievecount / $total) * 100) : 0;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
