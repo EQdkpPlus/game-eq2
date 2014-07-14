@@ -929,6 +929,24 @@ if(!class_exists('sony')) {
 			return $content;
 		}
 		
+		protected function ItemRecipe($item) 
+		{
+			$content = "";
+			$typeInfo = $item->{'typeinfo'};
+			if ($typeInfo->{'name'} == "recipescroll") {
+			$content .= "<br><div style='color: yellow;'>Recipes:</div><br>";
+			$recipes = $typeInfo->{'recipe_list'};
+			if ($recipes == NULL) { return $content; } else {
+			$content .= "<div style='font-weight: normal; color:white;'>";
+				foreach($recipes as $key) {
+					$display = $key->{'name'};
+					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
+				}
+			}
+			}
+			return $content;
+		}
+		
 		protected function GenerateItemStatsHTML($myItem) {
 			$content = $this->OuterDivNoHide($myItem);
 			$content .= $this->DisplayName($myItem);
@@ -949,10 +967,12 @@ if(!class_exists('sony')) {
 			$content .= $this->ItemSetBonus($myItem);
 			$content .= $this->GreenAdornMax($myItem);
 			$content .= $this->ItemPattern($myItem);
+			$content .= $this->ItemRecipe($myItem);
 			$content .= "</div>\n";
 			return $content;
 		}
 		
 	}
 }
+if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_sony', eq2_sony::$shortcuts);
 ?>
