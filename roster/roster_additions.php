@@ -69,7 +69,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		//Achievement Detail
 		$arrTmpGAchievs = array();
 		$gp = 0; $avcount = 0; $avtotal = 19; $gencount = 0; $gentotal = 2;
-		$classiccount = 0; $classictotal = 10; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
+		$classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
 		$koscount = 0; $kostotal = 16; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
 		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 7; $tsocount = 0; $tsototal = 6;
 		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 36;
@@ -187,7 +187,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 258;
+ 			$total = 262;
 			$complete = ($achievecount != 0) ? intval(($achievecount / $total) * 100) : 0;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
