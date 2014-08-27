@@ -4,15 +4,14 @@
  * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
  * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
  * -----------------------------------------------------------------------
- * Began:		2009
  * Date:		$Date$
  * -----------------------------------------------------------------------
  * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
+ * @copyright	2006-2014 EQdkp-Plus Developer Team
  * @link		http://eqdkp-plus.com
  * @package		eqdkp-plus
  * @version		$Rev$
- * 
+ *
  * $Id$
  */
 
@@ -22,16 +21,17 @@ if ( !defined('EQDKP_INC') ){
 
 if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
-		public $version			= '2.3.0';
-		protected $this_game	= 'eq2';
-		protected $types		= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
-		protected $classes		= array();
-		protected $races		= array();
-		protected $factions		= array();
-		protected $filters		= array();
-		public $langs			= array('english', 'german');
-		public $objects			= array('eq2_soe');
-		public $no_reg_obj		= array('eq2_soe');	
+		protected static $apiLevel	= 20;
+		public $version				= '2.3.0';
+		protected $this_game		= 'eq2';
+		protected $types			= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
+		protected $classes			= array();
+		protected $races			= array();
+		protected $factions			= array();
+		protected $filters			= array();
+		public $langs				= array('english', 'german');
+		public $objects				= array('eq2_soe');
+		public $no_reg_obj			= array('eq2_soe');	
 
 		protected $class_dependencies = array(
 			array(
@@ -90,14 +90,14 @@ if(!class_exists('eq2')) {
 				),
 			),
 		);
-		
+
 		public $default_roles = array(
 			1	=> array(26, 7, 9, 12, 14, 20, 22),
 			2	=> array(2, 4, 10, 13, 16, 18),
 			3	=> array(5, 6, 11, 15, 23, 24),
 			4	=> array(1, 25, 3, 8, 17, 19, 21)
 		);
-		
+
 		protected $class_colors = array(
 			0	=> '#E1E1E1',
 			1	=> '#E1E100',
@@ -143,7 +143,7 @@ if(!class_exists('eq2')) {
 				'guild_imp_rsn'		=> true,
 				'import_data_cache'	=> true,									// Is the data cached and requires a reset call?
 			);
-			
+
 			parent::__construct();
 			$this->pdh->register_read_module($this->this_game, $this->path . 'pdh/read/'.$this->this_game);
 		}
@@ -212,11 +212,6 @@ if(!class_exists('eq2')) {
 			return $settingsdata_admin;
 		}
 
-		/**
-		* Initialises filters
-		*
-		* @param array $langs
-		*/
 		protected function load_filters($langs){
 			if(!$this->classes) {
 				$this->load_type('classes', $langs);
@@ -245,14 +240,7 @@ if(!class_exists('eq2')) {
 			}
 		}
 
-		/**
-		* Returns Information to change the game
-		*
-		* @param bool $install
-		* @return array
-		*/
-		public function install($install=false){
-		}
+		public function install($install=false){}
 	}
 }
 ?>
