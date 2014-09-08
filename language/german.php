@@ -121,12 +121,12 @@ $german_array = array(
 		'uc_male'							=> 'Männlich',
 		'uc_female'							=> 'Weiblich',
 		'uc_guild'							=> 'Gilde',
-		'pk_tab_fs_eq2settings'				=> 'EQ2 Einstellungen',
+		'uc_race'							=> 'Rasse',
+		'uc_class'							=> 'Klasse',
 		'uc_import_guild'					=> 'Gilde importieren',
 		'uc_import_guild_help'				=> 'Importiere alle Mitglieder einer Gilde',
 		'uc_servername'						=> 'Servername',
 		'uc_lockserver'						=> 'Servername unveränderbar machen',
-		'uc_faction'						=> 'Fraktion',
 		'uc_update_all'						=> 'Alle Charactere aktualisieren',
 		'uc_importer_cache'					=> 'Leere Cache des Importers',
 		'uc_importer_cache_help'			=> 'Löscht alle gecachten Daten des Importers.',
@@ -188,6 +188,11 @@ $german_array = array(
 		'no_data'							=> 'Zu diesem Char konnten keine Informationen abgerufen werden. Bitte überprüfe ob der richtige Server in den Einstellungen eingestellt ist.',
 		'total_completed'					=> 'Abgeschlossen',
 		'uc_showachieve'					=> 'Erfolge anzeigen',
+
+		// Admin Settings
+		'core_sett_fs_gamesettings'		=> 'EverQuest II Einstellungen',
+		'uc_faction'					=> 'Fraktion',
+		'uc_faction_help'				=> 'Wähle die Standard-Fraktion',
 	),
 );
 ?>

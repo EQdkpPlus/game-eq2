@@ -171,42 +171,31 @@ if(!class_exists('eq2')) {
 
 		public function admin_settings() {
 			$settingsdata_admin = array(
-				'game' => array(
-					'eq2settings' => array(
-						'uc_faction'	=> array(
-							'lang'		=> 'uc_faction',
-							'fieldtype'	=> 'dropdown',
-							'size'		=> '1',
-							'options'	=> $this->game->get('factions'),
-							'default'	=> 'alliance'
-						),
-						'uc_servername' => array(
-							'lang'		=> 'uc_servername',
-							'fieldtype'	=> 'autocomplete',
-							'size'		=> '21',
-							'edecode'	=> true,
-							'options'	=> $this->game->get('realmlist'),
-						),
-						'uc_lockserver'	=> array(
-							'lang'		=> 'uc_lockserver',
-							'fieldtype'	=> 'checkbox',
-							'size'		=> false,
-							'options'	=> false,
-						),
-						'uc_critchance'	=> array(
-							'lang'		=> 'uc_critchance',
-							'fieldtype'	=> 'text',
-							'size'		=> '4',
-							'options'	=> false,
-						),
-						'uc_showachieve'	=> array(
-							'lang'		=> 'uc_showachieve',
-							'fieldtype'	=> 'dropdown',
-							'size'		=> '1',
-							'options'	=> array('yes' => 'Yes', 'no' => 'No'),
-							'default'   => 'yes',
-						)
-					)
+				'uc_servername' => array(
+					'lang'			=> 'uc_servername',
+					'type'			=> 'text',
+					'size'			=> '21',
+					'edecode'		=> true,
+					'autocomplete'	=> $this->game->get('realmlist'),
+				),
+				'uc_lockserver'	=> array(
+					'lang'			=> 'uc_lockserver',
+					'type'			=> 'radio',
+					'size'			=> false,
+					'options'		=> false,
+				),
+				'uc_critchance'	=> array(
+					'lang'			=> 'uc_critchance',
+					'type'			=> 'text',
+					'size'			=> '4',
+					'options'		=> false,
+				),
+				'uc_showachieve'	=> array(
+					'lang'			=> 'uc_showachieve',
+					'type'			=> 'dropdown',
+					'size'			=> '1',
+					'options'		=> array('yes' => 'Yes', 'no' => 'No'),
+					'default'		=> 'yes',
 				)
 			);
 			return $settingsdata_admin;

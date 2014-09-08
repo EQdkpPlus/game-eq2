@@ -121,12 +121,12 @@ $english_array = array(
 		'uc_male'						=> 'Male',
 		'uc_female'						=> 'Female',
 		'uc_guild'						=> 'Guild',
-		'pk_tab_fs_eq2settings'			=> 'EQ2 Settings',
+		'uc_race'						=> 'Race',
+		'uc_class'						=> 'Class',
 		'uc_import_guild'				=> 'Import Guild',
 		'uc_import_guild_help'			=> 'Import all characters of a guild',
 		'uc_servername'					=> 'Name of your realmserver',
 		'uc_lockserver'					=> 'Lock the realm name for users',
-		'uc_faction'					=> 'Faction',
 		'uc_update_all'					=> 'Update all characters',
 		'uc_importer_cache'				=> 'Reset importer cache',
 		'uc_importer_cache_help'		=> 'Delete all the cached data of the import class.',
@@ -186,7 +186,12 @@ $english_array = array(
 		'fighterscout'					=> 'Fighter & Scout',
 		'no_data'						=> 'No Data.',
 		'total_completed'				=> 'Total Completed',
-		'uc_showachieve'				=> 'Show Guild Achievements in Roster Page? (Can slow down loading time)'
+		'uc_showachieve'				=> 'Show Guild Achievements in Roster Page? (Can slow down loading time)',
+
+		// Admin Settings
+		'core_sett_fs_gamesettings'		=> 'EverQuest II Settings',
+		'uc_faction'					=> 'Faction',
+		'uc_faction_help'				=> 'Select the default faction',
 	),
 );
 ?>
