@@ -162,7 +162,7 @@ if(!class_exists('eq2')) {
 					'type'			=> 'text',
 					'category'		=> 'character',
 					'lang'			=> 'uc_guild',
-					'size'			=> 40,
+					'size'			=> 32,
 					'undeletable'	=> true
 				),
 			);
