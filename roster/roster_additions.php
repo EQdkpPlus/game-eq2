@@ -61,7 +61,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 # Amory Stuff
 		$this->game->new_object('eq2_soe', 'soe', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
 		if(!is_object($this->game->obj['soe'])) return "";
-		$guilddata = $this->game->obj['soe']->guildinfo($this->config->get('guildtag'), $this->config->get('uc_servername'), false);
+		$guilddata = $this->game->obj['soe']->guildinfo($this->config->get('guildtag'), $this->config->get('servername'), false);
 		$achieves = $guilddata['guild_list'][0]['achievement_list'];	
 		$gdata 	  = $guilddata['guild_list'][0];
 		if ($guilddata && !isset($chardata['status'])){
@@ -175,7 +175,7 @@ $this->tpl->assign_vars(array(
 		'TOV'		=> '<img src="games/eq2/profiles/images/expansions/tov.png"/>',
 		'AV'		=> '<img src="games/eq2/profiles/images/expansions/avatars.png"/>',
 		'GENERAL'	=> '<img src="games/eq2/profiles/images/expansions/general.png"/>',
-		'REALM'	 	=> $this->config->get('uc_servername'),
+		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
 		'POINTS'    => $gp,

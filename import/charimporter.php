@@ -148,7 +148,7 @@ class charImporter extends page_generic {
 	}
 
 	public function ajax_massupdate(){
-		$chardata	= $this->game->obj['soe']->character($this->in->get('charname', ''), $this->config->get('uc_servername'), true);
+		$chardata	= $this->game->obj['soe']->character($this->in->get('charname', ''), $this->config->get('servername'), true);
 
 		if(!isset($chardata['status'])){
 			$errormsg	= '';
@@ -200,13 +200,13 @@ class charImporter extends page_generic {
 		
 		// Server Name
 		$hmtlout .= '<dl>
-				<dt><label>'.$this->game->glang('uc_servername').'</label></dt>
+				<dt><label>'.$this->game->glang('servername').'</label></dt>
 				<dd>';
 		if($this->config->get('uc_lockserver') == 1){
-			$hmtlout .= ' @'.stripslashes($this->config->get('uc_servername')).'<br/>';
-			$hmtlout .= $this->html->widget(array('fieldtype'=>'hidden','name'=>'servername','value'=>stripslashes($this->config->get('uc_servername'))));
+			$hmtlout .= ' @'.stripslashes($this->config->get('servername')).'<br/>';
+			$hmtlout .= $this->html->widget(array('fieldtype'=>'hidden','name'=>'servername','value'=>stripslashes($this->config->get('servername'))));
 		}else{
-			$hmtlout .= $this->html->widget(array('fieldtype'=>'text','name'=>'servername','value'=>(($this->config->get('uc_servername')) ? stripslashes($this->config->get('uc_servername')) : ''), 'size'=>'25'));
+			$hmtlout .= $this->html->widget(array('fieldtype'=>'text','name'=>'servername','value'=>(($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''), 'size'=>'25'));
 		}
 		$hmtlout .= '</dd>
 			</dl>';
@@ -222,7 +222,7 @@ class charImporter extends page_generic {
 			// We'll update an existing one...
 			$isindatabase	= $this->in->get('member_id', 0);
 			$isMemberName	= $this->pdh->get('member', 'name', array($isindatabase));
-			$isServerName	= $this->config->get('uc_servername');
+			$isServerName	= $this->config->get('servername');
 			$is_mine		= ($this->pdh->get('member', 'userid', array($isindatabase)) == $this->user->data['user_id']) ? true : false;
 		}else{
 			// Check for existing member name
@@ -319,7 +319,7 @@ class charImporter extends page_generic {
 	}
 
 	public function display(){
-		$stepnumber		= ($this->config->get('uc_servername') && $this->config->get('uc_server_loc') && $this->in->get('member_id',0) > 0 && $this->in->get('step',0) == 0) ? 1 : $this->in->get('step',0);
+		$stepnumber		= ($this->config->get('servername') && $this->config->get('uc_server_loc') && $this->in->get('member_id',0) > 0 && $this->in->get('step',0) == 0) ? 1 : $this->in->get('step',0);
 		$urladdition	 = ($this->in->get('member_id',0)) ? '&amp;member_id='.$this->in->get('member_id',0) : '';
 		$funcname		 = 'perform_step'.$stepnumber;
 		$this->tpl->assign_vars(array(

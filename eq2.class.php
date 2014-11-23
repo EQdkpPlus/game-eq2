@@ -171,8 +171,8 @@ if(!class_exists('eq2')) {
 
 		public function admin_settings() {
 			$settingsdata_admin = array(
-				'uc_servername' => array(
-					'lang'			=> 'uc_servername',
+				'servername' => array(
+					'lang'			=> 'servername',
 					'type'			=> 'text',
 					'size'			=> '21',
 					'edecode'		=> true,

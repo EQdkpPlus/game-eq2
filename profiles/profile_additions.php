@@ -17,7 +17,7 @@
  */
 	
 	$this->game->new_object('eq2_soe', 'soe', array());
-	$chardata = $this->game->obj['soe']->character($member['name'],$this->config->get('uc_servername'));
+	$chardata = $this->game->obj['soe']->character($member['name'],$this->config->get('servername'));
 	$mincrit = $this->config->get('uc_critchance');
 	$name = ($member['name']);
 	$classname = $chardata['character_list'][0]['type']['class'];
