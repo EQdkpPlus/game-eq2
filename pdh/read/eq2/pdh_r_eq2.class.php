@@ -73,7 +73,7 @@ if (!class_exists('pdh_r_eq2')) {
 			if ($charicon == '') {
 				$charicon = $this->root_path.'images/no_pic.png';
 			}
-			return '<img src="'.$charicon.'" alt="Char-Icon" height="48" />';
+			return '<img src="'.$charicon.'" alt="Char-Icon" height="48" class="gameicon" />';
 		}
 	} //end class
 } //end if class not exists
