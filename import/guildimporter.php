@@ -21,11 +21,6 @@ $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
 
 class guildImporter extends page_generic {
-	public static function __shortcuts() {
-		$shortcuts = array('user', 'tpl', 'in', 'pdh', 'game', 'core', 'html', 'config');
-		return array_merge(parent::$shortcuts, $shortcuts);
-	}
-
 	public function __construct() {
 		$handler = array();
 		parent::__construct(false, $handler, array());
@@ -43,11 +38,11 @@ class guildImporter extends page_generic {
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
 				<dt><label>'.$this->game->glang('uc_guild_name').'</label></dt>
-				<dd>'.$this->html->widget(array('fieldtype'=>'text','name'=>'guildname','value'=> $this->config->get('guildtag'), 'size'=>'40')).'</dd>
+				<dd>'.new htext('guildname', array('value' => $this->config->get('guildtag'), 'size' => '40')).'</dd>
 			</dl>
 			<dl>
 				<dt><label>'.$this->game->glang('uc_delete_chars_onimport').'</label></dt>
-				<dd>'.$this->html->widget(array('fieldtype'=>'boolean','name'=>'delete_old_chars')).'</dd>
+				<dd>'.new hradio('delete_old_chars').'</dd>
 			</dl>
 			</fieldset>
 			<fieldset class="settings mediumsettings">
@@ -55,11 +50,11 @@ class guildImporter extends page_generic {
 
 				<dl>
 					<dt><label>'.$this->game->glang('uc_class_filter').'</label></dt>
-					<dd>'.$this->html->widget(array('fieldtype'=>'dropdown','name'=>'filter_class','value'=> '', 'options'=>$classfilter)).'</dd>
+					<dd>'.new hdropdown('filter_class', array('options' => $classfilter)).'</dd>
 				</dl>
 				<dl>
 					<dt><label>'.$this->game->glang('uc_level_filter').'</label></dt>
-					<dd>'.$this->html->widget(array('fieldtype'=>'text','name'=>'filter_level','value'=> 0, 'size'=>'5')).'</dd>
+					<dd>'.new htext('filter_level', array('value' => 0, 'size' => '5')).'</dd>
 				</dl>
 			</fieldset>';
 		$hmtlout .= '<br/><input type="submit" name="submiti" value="'.$this->game->glang('uc_import_forw').'" class="mainoption bi_ok" />';
