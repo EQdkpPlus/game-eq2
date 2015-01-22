@@ -85,7 +85,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$achtim = $achieve['completedtimestamp'];
 		$achdata = $this->game->obj['soe']->achieves($achid, false);
 		$ad = ($achdata[achievement_list][0]);
-		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item"/>';
+		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item" class="gameicon"/>';
 		$expan = ($ad['subcategory']);
 		$ap = ($ad['points']);
 		$gp = ($gp + $ap);
@@ -161,20 +161,20 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 	}
 	}
 $this->tpl->assign_vars(array(
-		'CLASSIC'	=> '<img src="games/eq2/profiles/images/expansions/classic.png"/>',
-		'SS'		=> '<img src="games/eq2/profiles/images/expansions/ss.png"/>',
-		'DOF'		=> '<img src="games/eq2/profiles/images/expansions/dof.png"/>',
-		'KOS'		=> '<img src="games/eq2/profiles/images/expansions/kos.png"/>',
-		'FD'		=> '<img src="games/eq2/profiles/images/expansions/fd.png"/>',
-		'EOF'		=> '<img src="games/eq2/profiles/images/expansions/eof.png"/>',
-		'ROK'		=> '<img src="games/eq2/profiles/images/expansions/rok.png"/>',
-		'TSO'		=> '<img src="games/eq2/profiles/images/expansions/tso.png"/>',
-		'SF'		=> '<img src="games/eq2/profiles/images/expansions/sf.png"/>',
-		'DOV'		=> '<img src="games/eq2/profiles/images/expansions/dov.png"/>',
-		'COE'		=> '<img src="games/eq2/profiles/images/expansions/coe.png"/>',
-		'TOV'		=> '<img src="games/eq2/profiles/images/expansions/tov.png"/>',
-		'AV'		=> '<img src="games/eq2/profiles/images/expansions/avatars.png"/>',
-		'GENERAL'	=> '<img src="games/eq2/profiles/images/expansions/general.png"/>',
+		'CLASSIC'	=> '<img src="games/eq2/profiles/images/expansions/classic.png" class="gameicon"/>',
+		'SS'		=> '<img src="games/eq2/profiles/images/expansions/ss.png" class="gameicon"/>',
+		'DOF'		=> '<img src="games/eq2/profiles/images/expansions/dof.png" class="gameicon"/>',
+		'KOS'		=> '<img src="games/eq2/profiles/images/expansions/kos.png" class="gameicon"/>',
+		'FD'		=> '<img src="games/eq2/profiles/images/expansions/fd.png" class="gameicon"/>',
+		'EOF'		=> '<img src="games/eq2/profiles/images/expansions/eof.png" class="gameicon"/>',
+		'ROK'		=> '<img src="games/eq2/profiles/images/expansions/rok.png" class="gameicon"/>',
+		'TSO'		=> '<img src="games/eq2/profiles/images/expansions/tso.png" class="gameicon"/>',
+		'SF'		=> '<img src="games/eq2/profiles/images/expansions/sf.png" class="gameicon"/>',
+		'DOV'		=> '<img src="games/eq2/profiles/images/expansions/dov.png" class="gameicon"/>',
+		'COE'		=> '<img src="games/eq2/profiles/images/expansions/coe.png" class="gameicon"/>',
+		'TOV'		=> '<img src="games/eq2/profiles/images/expansions/tov.png" class="gameicon"/>',
+		'AV'		=> '<img src="games/eq2/profiles/images/expansions/avatars.png" class="gameicon"/>',
+		'GENERAL'	=> '<img src="games/eq2/profiles/images/expansions/general.png" class="gameicon"/>',
 		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],

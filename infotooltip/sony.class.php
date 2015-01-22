@@ -32,25 +32,15 @@ if(!class_exists('sony')) {
 				'eq2' => array('icon_loc' => 'http://census.soe.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
 			);
 			$this->settings = array(
-				'itt_icon_loc' => array(	'name' => 'itt_icon_loc',
-											'language' => 'pk_itt_icon_loc',
-											'fieldtype' => 'text',
-											'size' => false,
-											'options' => false,
+				'itt_icon_loc' => array(
+											'type' => 'text',
 											'default' => ((isset($g_settings[$this->config['game']]['icon_loc'])) ? $g_settings[$this->config['game']]['icon_loc'] : ''),
 				),
-				'itt_icon_ext' => array(	'name' => 'itt_icon_ext',
-											'language' => 'pk_itt_icon_ext',
-											'fieldtype' => 'text',
-											'size' => false,
-											'options' => false,
+				'itt_icon_ext' => array(	'type' => 'text',
 											'default' => ((isset($g_settings[$this->config['game']]['icon_ext'])) ? $g_settings[$this->config['game']]['icon_ext'] : ''),
 				),
-				'itt_default_icon' => array('name' => 'itt_default_icon',
-											'language' => 'pk_itt_default_icon',
-											'fieldtype' => 'text',
-											'size' => false,
-											'options' => false,
+				'itt_default_icon' => array(
+											'type' => 'text',
 											'default' => ((isset($g_settings[$this->config['game']]['default_icon'])) ? $g_settings[$this->config['game']]['default_icon'] : ''),
 				),
 			);

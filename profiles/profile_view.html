@@ -1,395 +1,386 @@
 <!-- IF ARMORY == 1 -->
-	<table width="100%" cellspacing="0" cellpadding="1" border="0">
-		<tr>
-			<th align="center"  colspan="2" class="nowrap"></th>
-		</tr>
-		<tr class="row1" >
-			<td>
-				<table width="100%" cellspacing="0" cellpadding="0" border="0">
-					<tbody>
-						<tr>
-							<td width="5%">
-								<img src="{CHAR_IMGURL}character/{CHARDATA:id}/paperdoll" alt="{CHARDATA:name:first}" height="420"/>
-								<div class="charstatus">
-									<div>
-										<div class="xpbubble">{CHARDATA:type:level}</div>
-										<div class="xpbar">
-										<div class="bar">
-										<span class="value" title=" XP points to your next Adventure level.">{DATA_LEVEL_XP}%</span>
-										<span class="index xpbar_adv" style="width: {DATA_LEVEL_XP}%"></span>
-										</div>
-										</div>
-									</div>
-									<div style="clear:both;">
-										<div class="xpbubble">{DATA_TRADESKILL_LEVEL}</div>
-										<div class="xpbar">
-										<div class="bar">
-										<span class="value" title=" XP points to your next Tradeskill level.">{DATA_TRADESKILL_XP}%</span>
-										<span class="index xpbar_ts" style="width: {DATA_TRADESKILL_XP}%"></span>
-										</div>
-										</div>
-									</div>
-								</div>
-							</td>
-							<td valign="top">
-								<h1>{CHARDATA:name:prefix} {CHARDATA:name:first} {CHARDATA:name:last} {CHARDATA:name:suffix}</h1>
-								<div id="char1_tabs">
-									<ul>
-									<li><a href='#char1_tabs-1'><span>Stats</span></a></li>
-									<li><a href='#char1_tabs-2'><span>Biography</span></a></li>
-									<li><a href='#char1_tabs-3'><span>Equipment</span></a></li>
-									<li><a href='#char1_tabs-4'><span>Skills</span></a></li>
-									<li><a href='#char1_tabs-5'><span>Achievements</span></a></li>
-									<li><a href='#char1_tabs-6'><span>Languages</span></a></li>
-									<li><a href='#char1_tabs-7'><span>Places</span></a></li>
-									<li><a href='#char1_tabs-8'><span>Factions</span></a></li>
-									<li><a href='#char1_tabs-9'><span>Raid Ready</span></a></li>
-									</ul>
-									
-									<div id="char1_tabs-1" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch hoverrows">
-											<tbody>
-												<tr>
-													<th colspan="2">General</th>
-												</tr>
-												<tr>
-													<td width="50%">Character ID:</td><td>{CHARDATA:id}</td>
-												</tr>
-												<tr>
-													<td>Adventure Class:</td><td>{DATA_CLASSNAME} ({CHARDATA:type:level})</td>
-												</tr>
-												<tr>
-													<td>First Tradeskill:</td><td>{DATA_TRADESKILL}</td>
-												</tr>
-												<tr>
-													<td>Secondary Tradeskills:</td><td>{DATA_SECOND_TRADESKILL}</td>
-												</tr>
-												<tr>
-													<td>Alternate Advancements:</td><td>{DATA_AA}</td>
-												</tr>
-												<tr>
-													<td>Race:</td><td>{DATA_RACENAME}</td>
-												</tr>
-												<tr>
-													<td>Deity:</td><td>{CHARDATA:type:deity}</td>
-												</tr>
-												<tr>
-													<td>Birthdate:</td><td>{DATA_BIRTHDATE}</td>
-												</tr>
-												<tr>
-													<td>Last Seen:</td><td>{DATA_LASTSEEN}</td>
-												</tr>
-												<tr>
-													<td>Played:</td><td>{DATA_PLAYEDTIME} days</td>
-												</tr>
-												<tr>
-													<td>Guild:</td><td>{CHARDATA:guild:name} (joined: {DATA_GUILDJOINED})</td>
-												</tr>
-												<tr>
-													<td>Health:</td><td>{CHARDATA:stats:health:max}</td>
-												</tr>
-												<tr>
-													<td>Power:</td><td>{CHARDATA:stats:power:max}</td>
-												</tr>
-												<tr>
-													<td>Runspeed:</td><td>{CHARDATA:stats:runspeed}%</td>
-												</tr>
-												<tr>
-													<td>Personal Status:</td><td>{CHARDATA:stats:personal_status_points}</td>
-												</tr>
-												<tr>
-													<th colspan="2">Attributes</th>
-												</tr>
-												<tr>
-													<td>Agility:</td><td>{CHARDATA:stats:agi:effective}</td>
-												</tr>
-												<tr>
-													<td>Intelligence:</td><td>{CHARDATA:stats:int:effective}</td>
-												</tr>
-												<tr>
-													<td>Stamina:</td><td>{CHARDATA:stats:sta:effective}</td>
-												</tr>
-												<tr>
-													<td>Stength:</td><td>{CHARDATA:stats:str:effective}</td>
-												</tr>
-												<tr>
-													<td>Wisdom:</td><td>{CHARDATA:stats:wis:effective}</td>
-												</tr>
-												<tr>
-													<th colspan="2">Statistics</th>
-												</tr>
-												<tr>
-													<td>Kills:</td><td>{CHARDATA:statistics:kills:value}</td>
-												</tr>
-												<tr>
-													<td>Deaths:</td><td>{CHARDATA:statistics:deaths:value}</td>
-												</tr>
-												<tr>
-													<td>Kills/Deaths Ratio:</td><td>{DATA_KILLDEATHRATIO}</td>
-												</tr>
-												<tr>
-													<td>Max Melee Hit:</td><td>{CHARDATA:statistics:max_melee_hit:value}</td>
-												</tr>
-												<tr>
-													<td>Max Magic Hit:</td><td>{CHARDATA:statistics:max_magic_hit:value}</td>
-												</tr>
-												<tr>
-													<td>Collections Completed:</td><td>{CHARDATA:collections:complete}</td>
-												</tr>
-												<tr>
-													<td>Items Crafted:</td><td>{CHARDATA:statistics:items_crafted:value}</td>
-												</tr>
-												<tr>
-													<td>Quests completed:</td><td>{CHARDATA:quests:complete}</td>
-												</tr>
-												<tr>
-													<td>Rare harvests:</td><td>{CHARDATA:statistics:rare_harvests:value}</td>
-												</tr>
-												<tr>
-													<th colspan="2">Defence</th>
-												</tr>
-												<!-- BEGIN defense_list -->
-												<tr>
-													<td>{defense_list.NAME}:</td><td>{defense_list.VALUE}</td>
-												</tr>
-												<!-- END defense_list -->
-												<tr>
-													<td>Avoidance:</td><td>{CHARDATA:stats:defense:avoidance}</td>
-												</tr>
-												<tr>
-													<td>Block:</td><td>{CHARDATA:stats:defense:block} ({DATA_BLOCKCHANCE}%)</td>
-												</tr>
-												<tr>
-													<td>Parry:</td><td>{CHARDATA:stats:defense:parry}</td>
-												</tr>
-												<tr>
-													<th colspan="2">Modifiers</th>
-												</tr>
-												<tr>
-													<td>Crit Chance:</td><td>{DATA_CRITCHANCE}%</td>
-												</tr>
-												<tr>
-													<td>Crit Bonus:</td><td>{DATA_CRITBONUS}%</td>
-												</tr>
-												<tr>
-													<td>Potency:</td><td>{DATA_POTENCY}%</td>
-												</tr>
-												<tr>
-													<td>Ability Modifier:</td><td>{DATA_ABILITY}</td>
-												</tr>
-												<tr>
-													<td>Hate Gain Modifier:</td><td>{DATA_HATEGAIN}</td>
-												</tr>
-												<tr>
-													<th colspan="2">Melee</th>
-												</tr>
-												<tr>
-													<td>DPS Modifier:</td><td>{DATA_DPS}</td>
-												</tr>
-												<tr>
-													<td>Strikethrough:</td><td>{DATA_STRIKE}%</td>
-												</tr>
-												<tr>
-													<td>Accuracy:</td><td>{DATA_ACCURACY}</td>
-												</tr>
-												<tr>
-													<td>AE Autoattack:</td><td>{DATA_AEAUTO}%</td>
-												</tr>
-												<tr>
-													<td>Attack Speed:</td><td>{DATA_ATTACKSPEED}</td>
-												</tr>
-												<tr>
-													<td>Double Attack:</td><td>{DATA_DOUBLEATTACK}%</td>
-												</tr>
-												<tr>
-													<th colspan="2">Spells</th>
-												</tr>
-												<tr>
-													<td>Double Attack:</td><td>{DATA_SP_DOUBLEATTACK}%</td>
-												</tr>
-												<tr>
-													<td>Weapon Auto Attack:</td><td>{DATA_SP_WAA}%</td>
-												</tr>
-												<tr>
-													<td>Weapon Attack Speed:</td><td>{DATA_SP_WAS}</td>
-												</tr>
-												<tr>
-													<td>Weapon Double Attack:</td><td>{DATA_SP_WDA}%</td>
-												</tr>
-												<tr>
-													<td>Weapon DPS:</td><td>{DATA_SP_WDPS}</td>
-												</tr>
-												<tr>
-													<td>Weapon Flurry:</td><td>{DATA_SP_WF}%</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									
-									<div id="char1_tabs-2" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch hoverrows">
-											<tbody>
-												<tr>
-													<td>{CHARDATA:bio}</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-3" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch">
-											<tbody>
-												<tr>
-													<td width="50%" valign="top">
-														<table width="100%" class="colorswitch hoverrows">
-															<tbody>
-																<tr>
-																	<th colspan="3">Equipment</th>
-																</tr>
-																<!-- BEGIN equipment_list -->
-																<tr>
-																	<td width="30%" style="height:48px;">{equipment_list.NAME}</td><td width="20"><!-- IF equipment_list.ICONID != 0 --><img src="{CHAR_IMGURL}icons/{equipment_list.ICONID}/item" /><!-- ENDIF --></td><td>{equipment_list.VALUE}</td>
-																</tr>
-																<!-- END equipment_list -->
-															</tbody>
-														</table>
-													</td><td width="50%" valign="top">
-														<table width="100%" class="colorswitch hoverrows">
-															<tbody>
-																<tr>
-																	<th colspan="3">Appearance</th>
-																</tr>
-																<!-- BEGIN appearance_list -->
-																<tr>
-																	<td width="30%" style="height:48px;">{appearance_list.NAME}</td><td width="20"><!-- IF appearance_list.ICONID != 0 --><img src="{CHAR_IMGURL}icons/{appearance_list.ICONID}/item" /><!-- ENDIF --></td><td>{appearance_list.VALUE}</td>
-																</tr>
-																<!-- END appearance_list -->
-															</tbody>
-														</table>
-													
-													
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-4" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch">
-											<tbody>
-												<!-- BEGIN skill_list -->
-												<tr>
-													<td width="20%">{skill_list.NAME}:</td><td>{skill_list.BAR}</td>
-												</tr>
-												<!-- END skill_list -->
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-5" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch">
-											<tbody>
-												<!-- BEGIN achievements_list -->
-												<tr>
-													<td width="50%">{achievements_list.NAME}:</td><td>{achievements_list.VALUE}</td>
-												</tr>
-												<!-- END achievements_list -->
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-6" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch">
-											<tbody>
-												<!-- BEGIN lang_list -->
-												<tr>
-													<td>{lang_list.NAME}</td>
-												</tr>
-												<!-- END lang_list -->
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-7" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch">
-											<tbody>
-												<tr><th colspan="2">Houses:</th><tr>
-												<!-- BEGIN places_list -->
-												<tr>
-													<td width="50%">{places_list.NAME}</td><td>{places_list.VALUE}</td>
-												</tr>
-												<!-- END places_list -->
-												<!-- IF S_DUNGEONS -->
-													<tr><th colspan="2">Dungeons:</th><tr>
-													<!-- BEGIN dungeon_list -->
-													<tr>
-														<td width="50%">{dungeon_list.NAME}</td><td>{dungeon_list.VALUE}</td>
-													</tr>
-													<!-- END dungeon_list -->
-												<!-- ENDIF -->
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-8" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch hoverrows">
-											<tbody>
-												<!-- BEGIN faction_list -->
-												<tr>
-													<td width="50%">{faction_list.NAME}:</td><td class="{faction_list.CLASS}">{faction_list.VALUE}</td>
-												</tr>
-												<!-- END faction_list -->
-											</tbody>
-										</table>
-									</div>
-									<div id="char1_tabs-9" style="height: 420px; overflow: auto;">
-										<table width="100%" class="colorswitch hoverrows">
-											<tbody>
-												<!-- BEGIN raid_ready -->
-												<tr>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.CMARK}.png" />&nbsp;Crit Chance:</td><td width ="50%">Minimum Requirement = {raid_ready.MINCRIT}%</td>
-													<td width="25%"><b>{DATA_CRITCHANCE}%</b></td>
-												</tr>
-												<tr>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.MMARK}.png" />&nbsp;Fully Mastered?</td><td width="50%">Total % of Mastered Spells & CA's</td><td width="25%"><b>{raid_ready.MASTER}%</b></td>
-												</tr>
-												<tr><div>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.EMARK}.png" />&nbsp;Myth Buff:</td><td width="50%">{raid_ready.ER}</td>
-													<td width="25%"><!-- IF raid_ready.EICONID1 != 0 --><div class="spellbkg1"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID1}/spell" /></div><!-- ENDIF -->
-													                <!-- IF raid_ready.EICONID2 != 0 --><div class="spellbkg2"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID2}/spell" /></div><!-- ENDIF --></td>
-												</div></tr>
-												<!-- removed
-												<tr>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.DMARK}.png" />&nbsp;X2 Debuff:</td><td width="50%">{raid_ready.DEBUFF}</td>
-													<td width="25%"><!-- IF raid_ready.DICONID != 0 --> <!-- removed  <img src="{CHAR_IMGURL}icons/{raid_ready.DICONID}/spell" /><!-- ENDIF --> <!--removed     </td>
-												</tr> 
-												-->
-												<tr>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.GMARK}.png" />&nbsp;Deity:</td><td width="50%">{raid_ready.DEITY}</td>
-													<td width="25%"><!-- IF raid_ready.DPIC --><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/deity/{raid_ready.DPIC}.png" /><!-- ENDIF --></td>
-												</tr>
-												<tr>
-													<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.SMARK}.png" />&nbsp;Singular Focus:</td><td width="50%">{raid_ready.SING}</td>
-													<td width="25%"><!-- IF raid_ready.SICO !=0 --><div class="singbkg"><img src="{CHAR_IMGURL}icons/{raid_ready.SICO}/spell" /></div><!-- ENDIF --></td>
-												</tr>
-												<tr>
-													<td width="25%">Equipped Food</td><td width="50%">{raid_ready.FDVALUE}</td><td width="25%"><!-- IF raid_ready.FDICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.FDICONID}/item" /><!-- ENDIF --></td>
-												</tr>
-												<tr>
-													<td width="25%">Equipped Drink</td><td width="50%">{raid_ready.DRVALUE}</td><td width="25%"><!-- IF raid_ready.DRICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.DRICONID}/item" /><!-- ENDIF --></td>
-												</tr>
-												<!-- END raid_ready -->
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</td>
-		</tr>	
-	</table>
-	<br />
+<div class="grid">
+	<div class="onerow">
+		<div class="col3">
+			<div>
+				<img src="{CHAR_IMGURL}character/{CHARDATA:id}/paperdoll" alt="{CHARDATA:name:first}" height="420"/>
+				<div class="charstatus">
+					<div>
+						<div class="xpbubble">{CHARDATA:type:level}</div>
+						<div class="xpbar">
+						<div class="bar">
+						<span class="value" title=" XP points to your next Adventure level.">{DATA_LEVEL_XP}%</span>
+						<span class="index xpbar_adv" style="width: {DATA_LEVEL_XP}%"></span>
+						</div>
+						</div>
+					</div>
+					<div style="clear:both;">
+						<div class="xpbubble">{DATA_TRADESKILL_LEVEL}</div>
+						<div class="xpbar">
+						<div class="bar">
+						<span class="value" title=" XP points to your next Tradeskill level.">{DATA_TRADESKILL_XP}%</span>
+						<span class="index xpbar_ts" style="width: {DATA_TRADESKILL_XP}%"></span>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		<div class="col9 last">
+		
+			<h1>{CHARDATA:name:prefix} {CHARDATA:name:first} {CHARDATA:name:last} {CHARDATA:name:suffix}</h1>
+			<div id="char1_tabs">
+				<ul>
+				<li><a href='#char1_tabs-1'><span>Stats</span></a></li>
+				<li><a href='#char1_tabs-2'><span>Biography</span></a></li>
+				<li><a href='#char1_tabs-3'><span>Equipment</span></a></li>
+				<li><a href='#char1_tabs-4'><span>Skills</span></a></li>
+				<li><a href='#char1_tabs-5'><span>Achievements</span></a></li>
+				<li><a href='#char1_tabs-6'><span>Languages</span></a></li>
+				<li><a href='#char1_tabs-7'><span>Places</span></a></li>
+				<li><a href='#char1_tabs-8'><span>Factions</span></a></li>
+				<li><a href='#char1_tabs-9'><span>Raid Ready</span></a></li>
+				</ul>
+				
+				<div id="char1_tabs-1" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch hoverrows">
+						<tbody>
+							<tr>
+								<th colspan="2">General</th>
+							</tr>
+							<tr>
+								<td width="50%">Character ID:</td><td>{CHARDATA:id}</td>
+							</tr>
+							<tr>
+								<td>Adventure Class:</td><td>{DATA_CLASSNAME} ({CHARDATA:type:level})</td>
+							</tr>
+							<tr>
+								<td>First Tradeskill:</td><td>{DATA_TRADESKILL}</td>
+							</tr>
+							<tr>
+								<td>Secondary Tradeskills:</td><td>{DATA_SECOND_TRADESKILL}</td>
+							</tr>
+							<tr>
+								<td>Alternate Advancements:</td><td>{DATA_AA}</td>
+							</tr>
+							<tr>
+								<td>Race:</td><td>{DATA_RACENAME}</td>
+							</tr>
+							<tr>
+								<td>Deity:</td><td>{CHARDATA:type:deity}</td>
+							</tr>
+							<tr>
+								<td>Birthdate:</td><td>{DATA_BIRTHDATE}</td>
+							</tr>
+							<tr>
+								<td>Last Seen:</td><td>{DATA_LASTSEEN}</td>
+							</tr>
+							<tr>
+								<td>Played:</td><td>{DATA_PLAYEDTIME} days</td>
+							</tr>
+							<tr>
+								<td>Guild:</td><td>{CHARDATA:guild:name} (joined: {DATA_GUILDJOINED})</td>
+							</tr>
+							<tr>
+								<td>Health:</td><td>{CHARDATA:stats:health:max}</td>
+							</tr>
+							<tr>
+								<td>Power:</td><td>{CHARDATA:stats:power:max}</td>
+							</tr>
+							<tr>
+								<td>Runspeed:</td><td>{CHARDATA:stats:runspeed}%</td>
+							</tr>
+							<tr>
+								<td>Personal Status:</td><td>{CHARDATA:stats:personal_status_points}</td>
+							</tr>
+							<tr>
+								<th colspan="2">Attributes</th>
+							</tr>
+							<tr>
+								<td>Agility:</td><td>{CHARDATA:stats:agi:effective}</td>
+							</tr>
+							<tr>
+								<td>Intelligence:</td><td>{CHARDATA:stats:int:effective}</td>
+							</tr>
+							<tr>
+								<td>Stamina:</td><td>{CHARDATA:stats:sta:effective}</td>
+							</tr>
+							<tr>
+								<td>Stength:</td><td>{CHARDATA:stats:str:effective}</td>
+							</tr>
+							<tr>
+								<td>Wisdom:</td><td>{CHARDATA:stats:wis:effective}</td>
+							</tr>
+							<tr>
+								<th colspan="2">Statistics</th>
+							</tr>
+							<tr>
+								<td>Kills:</td><td>{CHARDATA:statistics:kills:value}</td>
+							</tr>
+							<tr>
+								<td>Deaths:</td><td>{CHARDATA:statistics:deaths:value}</td>
+							</tr>
+							<tr>
+								<td>Kills/Deaths Ratio:</td><td>{DATA_KILLDEATHRATIO}</td>
+							</tr>
+							<tr>
+								<td>Max Melee Hit:</td><td>{CHARDATA:statistics:max_melee_hit:value}</td>
+							</tr>
+							<tr>
+								<td>Max Magic Hit:</td><td>{CHARDATA:statistics:max_magic_hit:value}</td>
+							</tr>
+							<tr>
+								<td>Collections Completed:</td><td>{CHARDATA:collections:complete}</td>
+							</tr>
+							<tr>
+								<td>Items Crafted:</td><td>{CHARDATA:statistics:items_crafted:value}</td>
+							</tr>
+							<tr>
+								<td>Quests completed:</td><td>{CHARDATA:quests:complete}</td>
+							</tr>
+							<tr>
+								<td>Rare harvests:</td><td>{CHARDATA:statistics:rare_harvests:value}</td>
+							</tr>
+							<tr>
+								<th colspan="2">Defence</th>
+							</tr>
+							<!-- BEGIN defense_list -->
+							<tr>
+								<td>{defense_list.NAME}:</td><td>{defense_list.VALUE}</td>
+							</tr>
+							<!-- END defense_list -->
+							<tr>
+								<td>Avoidance:</td><td>{CHARDATA:stats:defense:avoidance}</td>
+							</tr>
+							<tr>
+								<td>Block:</td><td>{CHARDATA:stats:defense:block} ({DATA_BLOCKCHANCE}%)</td>
+							</tr>
+							<tr>
+								<td>Parry:</td><td>{CHARDATA:stats:defense:parry}</td>
+							</tr>
+							<tr>
+								<th colspan="2">Modifiers</th>
+							</tr>
+							<tr>
+								<td>Crit Chance:</td><td>{DATA_CRITCHANCE}%</td>
+							</tr>
+							<tr>
+								<td>Crit Bonus:</td><td>{DATA_CRITBONUS}%</td>
+							</tr>
+							<tr>
+								<td>Potency:</td><td>{DATA_POTENCY}%</td>
+							</tr>
+							<tr>
+								<td>Ability Modifier:</td><td>{DATA_ABILITY}</td>
+							</tr>
+							<tr>
+								<td>Hate Gain Modifier:</td><td>{DATA_HATEGAIN}</td>
+							</tr>
+							<tr>
+								<th colspan="2">Melee</th>
+							</tr>
+							<tr>
+								<td>DPS Modifier:</td><td>{DATA_DPS}</td>
+							</tr>
+							<tr>
+								<td>Strikethrough:</td><td>{DATA_STRIKE}%</td>
+							</tr>
+							<tr>
+								<td>Accuracy:</td><td>{DATA_ACCURACY}</td>
+							</tr>
+							<tr>
+								<td>AE Autoattack:</td><td>{DATA_AEAUTO}%</td>
+							</tr>
+							<tr>
+								<td>Attack Speed:</td><td>{DATA_ATTACKSPEED}</td>
+							</tr>
+							<tr>
+								<td>Double Attack:</td><td>{DATA_DOUBLEATTACK}%</td>
+							</tr>
+							<tr>
+								<th colspan="2">Spells</th>
+							</tr>
+							<tr>
+								<td>Double Attack:</td><td>{DATA_SP_DOUBLEATTACK}%</td>
+							</tr>
+							<tr>
+								<td>Weapon Auto Attack:</td><td>{DATA_SP_WAA}%</td>
+							</tr>
+							<tr>
+								<td>Weapon Attack Speed:</td><td>{DATA_SP_WAS}</td>
+							</tr>
+							<tr>
+								<td>Weapon Double Attack:</td><td>{DATA_SP_WDA}%</td>
+							</tr>
+							<tr>
+								<td>Weapon DPS:</td><td>{DATA_SP_WDPS}</td>
+							</tr>
+							<tr>
+								<td>Weapon Flurry:</td><td>{DATA_SP_WF}%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div id="char1_tabs-2" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch hoverrows">
+						<tbody>
+							<tr>
+								<td>{CHARDATA:bio}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-3" style="height: 420px; overflow: auto;">
+					<div class="grid">
+						<div class="onerow">
+							<div class="col6">
+									<table class="table fullwidth colorswitch hoverrows">
+										<tbody>
+											<tr>
+												<th colspan="3">Equipment</th>
+											</tr>
+											<!-- BEGIN equipment_list -->
+											<tr>
+												<td width="30%" style="height:48px;">{equipment_list.NAME}</td><td width="20"><!-- IF equipment_list.ICONID != 0 --><img src="{CHAR_IMGURL}icons/{equipment_list.ICONID}/item" class="gameicon" /><!-- ENDIF --></td><td>{equipment_list.VALUE}</td>
+											</tr>
+											<!-- END equipment_list -->
+										</tbody>
+									</table>
+							</div>
+							<div class="col6 last">
+									<table class="table fullwidth colorswitch hoverrows">
+										<tbody>
+											<tr>
+												<th colspan="3">Appearance</th>
+											</tr>
+											<!-- BEGIN appearance_list -->
+											<tr>
+												<td width="30%" style="height:48px;">{appearance_list.NAME}</td><td width="20"><!-- IF appearance_list.ICONID != 0 --><img src="{CHAR_IMGURL}icons/{appearance_list.ICONID}/item" class="gameicon" /><!-- ENDIF --></td><td>{appearance_list.VALUE}</td>
+											</tr>
+											<!-- END appearance_list -->
+										</tbody>
+									</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="char1_tabs-4" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch">
+						<tbody>
+							<!-- BEGIN skill_list -->
+							<tr>
+								<td width="20%">{skill_list.NAME}:</td><td>{skill_list.BAR}</td>
+							</tr>
+							<!-- END skill_list -->
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-5" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch">
+						<tbody>
+							<!-- BEGIN achievements_list -->
+							<tr>
+								<td width="50%">{achievements_list.NAME}:</td><td>{achievements_list.VALUE}</td>
+							</tr>
+							<!-- END achievements_list -->
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-6" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch">
+						<tbody>
+							<!-- BEGIN lang_list -->
+							<tr>
+								<td>{lang_list.NAME}</td>
+							</tr>
+							<!-- END lang_list -->
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-7" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch">
+						<tbody>
+							<tr><th colspan="2">Houses:</th><tr>
+							<!-- BEGIN places_list -->
+							<tr>
+								<td width="50%">{places_list.NAME}</td><td>{places_list.VALUE}</td>
+							</tr>
+							<!-- END places_list -->
+							<!-- IF S_DUNGEONS -->
+								<tr><th colspan="2">Dungeons:</th><tr>
+								<!-- BEGIN dungeon_list -->
+								<tr>
+									<td width="50%">{dungeon_list.NAME}</td><td>{dungeon_list.VALUE}</td>
+								</tr>
+								<!-- END dungeon_list -->
+							<!-- ENDIF -->
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-8" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch hoverrows">
+						<tbody>
+							<!-- BEGIN faction_list -->
+							<tr>
+								<td width="50%">{faction_list.NAME}:</td><td class="{faction_list.CLASS}">{faction_list.VALUE}</td>
+							</tr>
+							<!-- END faction_list -->
+						</tbody>
+					</table>
+				</div>
+				<div id="char1_tabs-9" style="height: 420px; overflow: auto;">
+					<table class="table fullwidth colorswitch hoverrows">
+						<tbody>
+							<!-- BEGIN raid_ready -->
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.CMARK}.png" class="gameicon"/>&nbsp;Crit Chance:</td><td width ="50%">Minimum Requirement = {raid_ready.MINCRIT}%</td>
+								<td width="25%"><b>{DATA_CRITCHANCE}%</b></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.MMARK}.png" class="gameicon"/>&nbsp;Fully Mastered?</td><td width="50%">Total % of Mastered Spells & CA's</td><td width="25%"><b>{raid_ready.MASTER}%</b></td>
+							</tr>
+							<tr><div>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.EMARK}.png" class="gameicon"/>&nbsp;Myth Buff:</td><td width="50%">{raid_ready.ER}</td>
+								<td width="25%"><!-- IF raid_ready.EICONID1 != 0 --><div class="spellbkg1"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID1}/spell" class="gameicon"/></div><!-- ENDIF -->
+												<!-- IF raid_ready.EICONID2 != 0 --><div class="spellbkg2"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID2}/spell" class="gameicon"/></div><!-- ENDIF --></td>
+							</div></tr>
+							<!-- removed
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.DMARK}.png" class="gameicon"/>&nbsp;X2 Debuff:</td><td width="50%">{raid_ready.DEBUFF}</td>
+								<td width="25%"><!-- IF raid_ready.DICONID != 0 --> <!-- removed  <img src="{CHAR_IMGURL}icons/{raid_ready.DICONID}/spell" class="gameicon"/><!-- ENDIF --> <!--removed     </td>
+							</tr> 
+							-->
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.GMARK}.png" class="gameicon"/>&nbsp;Deity:</td><td width="50%">{raid_ready.DEITY}</td>
+								<td width="25%"><!-- IF raid_ready.DPIC --><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/deity/{raid_ready.DPIC}.png" class="gameicon"/><!-- ENDIF --></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.SMARK}.png" class="gameicon"/>&nbsp;Singular Focus:</td><td width="50%">{raid_ready.SING}</td>
+								<td width="25%"><!-- IF raid_ready.SICO !=0 --><div class="singbkg"><img src="{CHAR_IMGURL}icons/{raid_ready.SICO}/spell" class="gameicon"/></div><!-- ENDIF --></td>
+							</tr>
+							<tr>
+								<td width="25%">Equipped Food</td><td width="50%">{raid_ready.FDVALUE}</td><td width="25%"><!-- IF raid_ready.FDICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.FDICONID}/item" class="gameicon"/><!-- ENDIF --></td>
+							</tr>
+							<tr>
+								<td width="25%">Equipped Drink</td><td width="50%">{raid_ready.DRVALUE}</td><td width="25%"><!-- IF raid_ready.DRICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.DRICONID}/item" /><!-- ENDIF --></td>
+							</tr>
+							<!-- END raid_ready -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+		
+		</div>
+	</div>
+</div>
 
-	<br />
+<br />
 <!-- ELSE -->
-<div class="bluebox roundbox">
-	<div class="icon_info">{GL_no_data}</div>
+<div class="infobox infobox-large infobox-blue clearfix">
+	<i class="fa fa-info-circle fa-4x pull-left"></i> {GL_no_data}
 </div>
 <br />
 <div class="profile_header">
@@ -412,20 +403,23 @@
 
 <!-- ENDIF -->
 
-<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless colorswitch">
-	<tr>
-		<th align="center" colspan="9">{L_DKP_NAME}</th>
-	</tr>
+<div class="tableHeader">
+	<h2>{L_DKP_NAME}</h2>
+</div>
+<input type="checkbox" onchange="window.location='{SID}&with_twinks='+ ((this.checked) ? 0 : 1)" name="with_twinks" value="1" <!-- IF not S_WITH_TWINK_DKP -->checked="checked"<!-- ENDIF -->/> {L_points_for_this_char}
+<br /><br />
+<table class="table fullwidth hptt colorswitch scrollable-x borderless">
 	{MEMBER_POINTS}
 </table>
 <br />
-
 <div id='profile_information'>
 	<ul>
 		<!-- IF CUSTOM_FIELDS --><li><a href='#fragment-2-0'><span>{L_tab_customfields}</span></a></li><!-- ENDIF -->
 		<li><a href='#fragment-2-1'><span>{L_tab_raids}</span></a></li>
 		<li><a href='#fragment-2-2'><span>{L_tab_items}</span></a></li>
+		<!-- IF not S_POINTS_DISABLED -->
 		<li><a href='#fragment-2-3'><span>{L_tab_adjustments}</span></a></li>
+		<!-- ENDIF -->
 		<li><a href='#fragment-2-4'><span>{L_tab_attendance}</span></a></li>
 	</ul>
 
@@ -445,65 +439,49 @@
 
 	<!-- RAIDS TABLE -->
 	<div id="fragment-2-1">
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
-		<tr>
-			<th align="center" colspan="5">{L_raid_attendance_history}</th>
-		</tr>
-		<tr>
-			<td align="center" class="menu">{RAID_PAGINATION}</td>
-		</tr>
-		</table>
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="colorswitch">
+		<div class="tableHeader">
+			<h2>{L_raid_attendance_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
 		{RAID_OUT}
 		</table>
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
-		<tr>
-			<td align="center" class="menu">{RAID_PAGINATION}</td>
-		</tr>
-		</table>
+		<div class="center pagination_wrapper">
+			{RAID_PAGINATION}
+		</div>
 	</div>
 
 	<!-- ITEMS TABLE -->
 	<div id="fragment-2-2">
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
-		<tr>
-			<th align="center" colspan="5">{L_item_purchase_history}</th>
-		</tr>
-		<tr>
-			<td align="center" class="menu">{ITEM_PAGINATION}</td>
-		</tr>
-		</table>
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="colorswitch">
+		<div class="tableHeader">
+			<h2>{L_item_purchase_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
 		{ITEM_OUT}
 		</table>
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="borderless">
-		<tr>
-			<td align="center" class="menu">{ITEM_PAGINATION}</td>
-			</tr>
-		</table>
+		<div class="center pagination_wrapper">
+			{ITEM_PAGINATION}
+		</div>
 	</div>
-
+	
+	<!-- IF not S_POINTS_DISABLED -->
 	<!-- ADJUSTMENTS TABLE-->
 	<div id="fragment-2-3">
-		<table width="100%" border="0" cellspacing="1" cellpadding="2">
-			<tr>
-				<th align="center" colspan="4">{L_individual_adjustment_history}</th>
-			</tr>
-			<tr>
-				<td align="center" class="menu">{ADJUSTMENT_PAGINATION}</td>
-			</tr>
-		</table>
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="colorswitch">
+		<div class="tableHeader">
+			<h2>{L_individual_adjustment_history}</h2>
+		</div>
+		<table class="table fullwidth hptt colorswitch scrollable-x">
 		{ADJUSTMENT_OUT}
 		</table>
+		<div class="center pagination_wrapper">
+			{ADJUSTMENT_PAGINATION}
+		</div>
 	</div>
+	<!-- ENDIF -->
 
 	<!-- ATTENDANCE -->
 	<div id="fragment-2-4">
-		<table width="100%" border="0" cellspacing="1" cellpadding="2" class="colorswitch">
+		<table class="table fullwidth hptt colorswitch scrollable-x">
 		{EVENT_ATT_OUT}
 		</table>
 	</div>
 </div>
-<br />
-{COMMENT}
