@@ -45,6 +45,10 @@ class guildImporter extends page_generic {
 				<dt><label>'.$this->game->glang('servername').'</label></dt>
 				<dd>'.new htext('servername', array('value'=> $this->config->get('servername'), 'size'=>'40', 'autocomplete' => $this->game->get('realmlist'))).'</dd>
 			</dl>
+			<dl>
+				<dt><label>'.$this->game->glang('uc_delete_chars_onimport').'</label></dt>
+				<dd>'.new hradio('delete_old_chars').'</dd>
+			</dl>
 			</fieldset>
 			<fieldset class="settings mediumsettings">
 				<legend>'.$this->game->glang('uc_filter_name').'</legend>
