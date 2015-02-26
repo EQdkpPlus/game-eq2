@@ -162,7 +162,6 @@ $german_array = array(
 		'uc_imp_failed'						=> 'Beim Import der Daten trat ein Fehler auf. Bitte versuche es erneut.',
 		"uc_updat_armory" 					=> "Von SOE aktualisieren",
 		'uc_charname'						=> 'Charaktername',
-		'servername'						=> 'Server\'s name',
 		'uc_charfound'						=> "Der Charakter  <b>%1\$s</b> wurde gefunden.",
 		'uc_charfound2'						=> "Das letzte Update dieses Charakters war am <b>%1\$s</b>.",
 		'uc_charfound3'						=> 'ACHTUNG: Beim Import werden bisher gespeicherte Daten überschrieben!',

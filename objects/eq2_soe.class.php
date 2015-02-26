@@ -199,7 +199,9 @@ class eq2_soe {
 	public function characterIcon($charid, $forceUpdateAll = false){
 		$cached_img	= str_replace('/', '_', 'image_character_'.$charid.'.png');
 		$img_charicon	= $this->get_CachedData($cached_img, false, true);
+		
 		if(!$img_charicon && ($forceUpdateAll || ($this->chariconUpdates < $this->_config['maxChariconUpdates']))){
+
 			$this->set_CachedData($this->read_url($this->imgurl.'character/'.$charid.'/headshot'), $cached_img, true);
 			$img_charicon	= $this->get_CachedData($cached_img, false, true);			
 			$this->chariconUpdates++;
@@ -262,7 +264,7 @@ class eq2_soe {
 		if($this->_config['caching']){
 			$cachinglink = $this->binaryORdata($filename, $binary);
 			if(is_object($this->pfh)){
-				$this->pfh->putContent($this->pfh->FolderPath('eq2', 'cache', false).$cachinglink, $json);
+				$this->pfh->putContent($this->pfh->FolderPath('eq2', 'cache').$cachinglink, $json);
 			}else{
 				file_put_contents('data/'.$cachinglink, $json);
 			}

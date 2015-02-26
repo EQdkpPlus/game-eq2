@@ -21,11 +21,6 @@ $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
 
 class charImporter extends page_generic {
-	public static function __shortcuts() {
-		$shortcuts = array('user', 'tpl', 'in', 'pdh', 'game', 'core', 'html', 'time', 'config');
-		return array_merge(parent::$shortcuts, $shortcuts);
-	}
-
 	public function __construct() {
 		$handler = array(
 			'massupdate'		=> array('process' => 'perform_massupdate'),
@@ -148,7 +143,9 @@ class charImporter extends page_generic {
 	}
 
 	public function ajax_massupdate(){
-		$chardata	= $this->game->obj['soe']->character($this->in->get('charname', ''), $this->config->get('servername'), true);
+		$char_server	= $this->pdh->get('member', 'profile_field', array($this->in->get('charid', 0), 'servername'));
+		$servername		= ($char_server != '') ? $char_server : $this->config->get('servername');
+		$chardata	= $this->game->obj['soe']->character($this->in->get('charname', ''), $servername, true);
 
 		if(!isset($chardata['status'])){
 			$errormsg	= '';
@@ -164,7 +161,7 @@ class charImporter extends page_generic {
 				'picture'			=> $cdata['id'],
 			);
 			$charicon	= $this->game->obj['soe']->characterIcon($cdata['id']);
-			if ($charicon == "") $charicon	= $this->root_path.'images/no_pic.png';
+			if ($charicon == "") $charicon	= $this->server_path.'images/global/avatar-default.svg';
 			
 			// insert into database
 			$info		= $this->pdh->put('member', 'addorupdate_member', array($this->in->get('charid', 0), $arrUpdateData, $this->in->get('overtakeuser')));
@@ -174,7 +171,7 @@ class charImporter extends page_generic {
 			$successmsg	= 'error';
 			$errormsg	= $chardata['reason'];
 			$charname	= $this->in->get('charname', '');
-			$charicon	= $this->root_path.'images/no_pic.png';
+			$charicon	= $this->server_path.'images/global/avatar-default.svg';
 		}
 
 		die(json_encode(array(
@@ -195,7 +192,7 @@ class charImporter extends page_generic {
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
 				<dt><label>'.$this->game->glang('uc_charname').'</label></dt>
-				<dd>'.$this->html->widget(array('fieldtype'=>'text','name'=>'charname','value'=>(($tmpmemname) ? $tmpmemname : ''), 'size'=>'25')).'</dd>
+				<dd>'.new htext('charname', array('value' => (($tmpmemname) ? $tmpmemname : ''), 'size' => '25')).'</dd>
 			</dl>';
 		
 		// Server Name
@@ -204,15 +201,15 @@ class charImporter extends page_generic {
 				<dd>';
 		if($this->config->get('uc_lockserver') == 1){
 			$hmtlout .= ' @'.stripslashes($this->config->get('servername')).'<br/>';
-			$hmtlout .= $this->html->widget(array('fieldtype'=>'hidden','name'=>'servername','value'=>stripslashes($this->config->get('servername'))));
+			$hmtlout .= new hhidden('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : '')));
 		}else{
-			$hmtlout .= $this->html->widget(array('fieldtype'=>'text','name'=>'servername','value'=>(($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''), 'size'=>'25'));
+			$hmtlout .= new htext('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''), 'size' => '25', 'autocomplete' => $this->game->get('realmlist')));
 		}
 		$hmtlout .= '</dd>
 			</dl>';
 		
 		$hmtlout .= '</fieldset>';
-		$hmtlout .= '<br/><input type="submit" name="submiti" value="'.$this->game->glang('uc_import_forw').'" class="mainoption" />';
+		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
 		return $hmtlout;
 	}
 
@@ -226,7 +223,7 @@ class charImporter extends page_generic {
 			$is_mine		= ($this->pdh->get('member', 'userid', array($isindatabase)) == $this->user->data['user_id']) ? true : false;
 		}else{
 			// Check for existing member name
-			$isindatabase	= $this->pdh->get('member', 'id', array($this->in->get('charname')));
+			$isindatabase	= $this->pdh->get('member', 'id', array($this->in->get('charname'), array('servername' => $this->in->get('servername'))));
 			$hasuserid		= ($isindatabase > 0) ? $this->pdh->get('member', 'userid', array($isindatabase)) : 0;
 			$isMemberName	= $this->in->get('charname');
 			$isServerName	= $this->in->get('servername');
@@ -243,23 +240,24 @@ class charImporter extends page_generic {
 			$cdata = $chardata['character_list'][0];
 
 			// Basics
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'member_id','value'=>$isindatabase));
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'member_name','value'=>$isMemberName));
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'member_level','value'=>$cdata['type']['level']));
+			$hmtlout	.= new hhidden('member_id', array('value'=>$isindatabase));
+			$hmtlout	.= new hhidden('member_name', array('value'=>$isMemberName));
+			$hmtlout	.= new hhidden('member_level', array('value'=>$cdata['type']['level']));
 			
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'member_race_id','value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'member_class_id','value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'guild','value'=>$cdata['guild']['name']));
-			$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'picture','value'=>$cdata['id']));
+			$hmtlout	.= new hhidden('member_race_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
+			$hmtlout	.= new hhidden('member_class_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
+			$hmtlout	.= new hhidden('guild', array('value'=>$cdata['guild']['name']));
+			$hmtlout	.= new hhidden('picture', array('value'=>$cdata['id']));
+			$hmtlout	.= new hhidden('servername', array('value' => $cdata['locationdata']['world']));
 			
 			
 			// viewable Output
 			if(!isset($chardata['status'])){
 				$charicon = $this->game->obj['soe']->characterIcon($cdata['id']);
-				if ($charicon == "") $charicon = $this->root_path.'images/no_pic.png';
+				if ($charicon == "") $charicon = $this->server_path.'images/global/avatar-default.svg';
 				$hmtlout	.= '
-				<div class="errorbox roundbox">
-					<div class="icon_false">'.$this->game->glang('uc_charfound3').'</div>
+				<div class="infobox infobox-large infobox-red clearfix">
+					<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> '.$this->game->glang('uc_charfound3').'</div>
 				</div>
 
 				<fieldset class="settings mediumsettings">
@@ -272,24 +270,26 @@ class charImporter extends page_generic {
 					<dl>';
 				if(!$isindatabase){
 					if($this->user->check_auth('u_member_conn', false)){
-						$hmtlout	.= $this->html->widget(array('fieldtype'=>'checkbox','name'=>'overtakeuser','selected'=>'1')).' '.$this->user->lang('overtake_char');
+						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.new hradio('overtakeuser', array('value' => 1)).'</dd>';
 					}else{
-						$hmtlout	.= $this->html->widget(array('fieldtype'=>'checkbox','name'=>'overtakeuser','selected'=>'1', 'disabled'=>true));
-						$hmtlout	.= $this->html->widget(array('fieldtype'=>'hidden','name'=>'overtakeuser','value'=>'1'));
+						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.new hradio('overtakeuser', array('value' => 1, 'disabled' => true)).'</dd>';
+						$hmtlout	.= new hhidden('overtakeuser', array('value' => '1'));
 					}
 				}
 				$hmtlout	.= '
 					</dl>
 					</fieldset>';
-				$hmtlout		.= '<center><input type="submit" name="submiti" value="'.$this->game->glang('uc_prof_import').'" class="mainoption" /></center>';
+				$hmtlout		.= '<center>
+										<button type="submit" name="submiti"><i class="fa fa-refresh"></i> '.$this->game->glang('uc_prof_import').'</button>
+									</center>';
 			}else{
 				$hmtlout		.= '<div class="errorbox roundbox">
-										<div class="icon_false"><b>WARNING: </b> '.$chardata['reason'].'</div>
+										<i class="fa fa-exclamation-triangle fa-4x pull-left"></i><b>WARNING: </b> '.$chardata['reason'].'</div>
 									</div>';
 			}
 		}else{
 			$hmtlout	.= '<div class="errorbox roundbox">
-								<div class="icon_false">'.$this->game->glang('uc_notyourchar').'</div>
+								<i class="fa fa-exclamation-triangle fa-4x pull-left"></i>'.$this->game->glang('uc_notyourchar').'</div>
 							</div>';
 		}
 		return $hmtlout;
@@ -303,16 +303,17 @@ class charImporter extends page_generic {
 			'class'				=> $this->in->get('member_class_id', 0),
 			'guild'				=> $this->in->get('guild',''),
 			'picture'			=> $this->in->get('picture',''),
+			'servername'		=> $this->in->get('servername', ''),
 		);
 		$info		= $this->pdh->put('member', 'addorupdate_member', array($this->in->get('member_id', 0), $data, $this->in->get('overtakeuser')));
 		$this->pdh->process_hook_queue();
 		if($info){
-			$hmtlout	= '<div class="greenbox roundbox">
-								<div class="icon_ok">'.$this->game->glang('uc_armory_updated').'</div>
+			$hmtlout	= '<div class="infobox infobox-large infobox-green clearfix">
+								<i class="fa fa-check fa-4x pull-left"></i> '.$this->game->glang('uc_armory_updated').'
 							</div>';
 		}else{
-			$hmtlout	= '<div class="errorbox roundbox">
-								<div class="icon_false">'.$this->game->glang('uc_armory_updfailed').'</div>
+			$hmtlout	= '<div class="infobox infobox-large infobox-red clearfix">
+								<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> '.$this->game->glang('uc_armory_updfailed').'
 							</div>';
 		}
 		return $hmtlout;
@@ -335,6 +336,6 @@ class charImporter extends page_generic {
 		));
 	}
 }
-if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_charImporter', charImporter::__shortcuts());
+
 registry::register('charImporter');
 ?>

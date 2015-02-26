@@ -63,7 +63,9 @@ if (!class_exists('pdh_r_eq2')) {
 		public function get_charicon($member_id){
 			$picture_id = $this->pdh->get('member', 'picture', array($member_id));
 			if ($picture_id){
-				return $this->game->obj['soe']->characterIcon($picture_id);
+				$charicon = $this->game->obj['soe']->characterIcon($picture_id);
+				$charicon = str_replace($this->root_path, $this->server_path, $charicon);
+				return $charicon;
 			}
 			return '';
 		}
@@ -71,7 +73,7 @@ if (!class_exists('pdh_r_eq2')) {
 		public function get_html_charicon($member_id){
 			$charicon = $this->get_charicon($member_id);
 			if ($charicon == '') {
-				$charicon = $this->root_path.'images/no_pic.png';
+				$charicon = $this->server_path.'images/global/avatar-default.svg';
 			}
 			return '<img src="'.$charicon.'" alt="Char-Icon" height="48" class="gameicon" />';
 		}

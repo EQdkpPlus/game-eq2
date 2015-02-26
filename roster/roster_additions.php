@@ -198,11 +198,8 @@ $this->tpl->assign_vars(array(
 }
 		
 //ROSTER PAGE
-$hptt_page_settings = $this->pdh->get_page_settings('roster', 'hptt_roster');
-$hptt_page_settings['table_sort_col'] += 1;
-$table_presets = $hptt_page_settings['table_presets'];
-array_unshift($table_presets, array('name' => 'eq2_charicon', 'sort' => false, 'th_add' => 'width="52"', 'td_add' => ''));
-$hptt_page_settings['table_presets'] = $table_presets;
+$this->hptt_page_settings = $this->pdh->get_page_settings('roster', 'hptt_roster');
+
 if ($this->config->get('roster_classorrole') == 'role'){
 	$members = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
 	$arrRoleMembers = array();
@@ -214,30 +211,35 @@ if ($this->config->get('roster_classorrole') == 'role'){
 			$arrRoleMembers[$defaultroleid][] = $memberid;
 		}
 	}
+	
 	foreach ($this->pdh->aget('roles', 'name', 0, array($this->pdh->get('roles', 'id_list', array()))) as $key => $value){
 		if ($key == 0) continue;
-		$hptt = $this->get_hptt($hptt_page_settings, $arrRoleMembers[$key], $arrRoleMembers[$key], array('%link_url%' => 'viewcharacter.php', '%link_url_suffix%' => '', '%with_twink%' => !intval($this->config->get('pk_show_twinks'))), 'role_'.$key);
+
+		$hptt = $this->get_hptt($hptt_page_settings, $arrRoleMembers[$key], $arrRoleMembers[$key], array('%link_url%' => $this->routing->simpleBuild('character'), '%link_url_suffix%' => '', '%with_twink%' => $skip_twinks, '%use_controller%' => true), 'role_'.$key);
+		
 		$this->tpl->assign_block_vars('class_row', array(
 			'CLASS_NAME'	=> $value,
-			'CLASS_ICONS'	=> $this->game->decorate('roles', array($key)),
+			'CLASS_ICONS'	=> $this->game->decorate('roles', $key),
 			'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
 		));
 	}
+	
+	
 } else {
-	$members = $this->pdh->aget('member', 'classid', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
-	$arrClassMembers = array();
-	foreach ($members as $memberid => $classid){
-		$arrClassMembers[$classid][] = $memberid;
-	}
-	foreach ($this->game->get('classes') as $key => $value){
-		if ($key == 0) continue;
-		$hptt = $this->get_hptt($hptt_page_settings, $arrClassMembers[$key], $arrClassMembers[$key], array('%link_url%' => 'viewcharacter.php', '%link_url_suffix%' => '', '%with_twink%' => !intval($this->config->get('pk_show_twinks'))), 'class_'.$key);
-		$this->tpl->assign_block_vars('class_row', array(
-			'CLASS_NAME'	=> $value,
-			'CLASS_ID'		=> $key ,
-			'CLASS_ICONS'	=> $this->game->decorate('classes', array($key, true)),
-			'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
-		));
-	}
+		$arrMembers = $this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks));
+		
+		$rosterClasses = $this->game->get_roster_classes();
+		
+		$arrRosterMembers = array();
+		foreach($arrMembers as $memberid){
+			$string = "";
+			foreach($rosterClasses['todisplay'] as $key => $val){
+				$string .= $this->pdh->get('member', 'profile_field', array($memberid, $this->game->get_name_for_type($val)))."_";
+			}
+				
+			$arrRosterMembers[$string][] = $memberid;
+		}
+		
+		$this->build_class_block($rosterClasses['data'], $rosterClasses['todisplay'], $arrRosterMembers);
 }
 ?>

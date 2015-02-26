@@ -149,6 +149,7 @@ if(!class_exists('eq2')) {
 		}
 
 		public function profilefields(){
+			$this->load_type('realmlist', array($this->lang));
 			$xml_fields = array(
 				'gender'	=> array(
 					'type'			=> 'dropdown',
@@ -164,6 +165,25 @@ if(!class_exists('eq2')) {
 					'lang'			=> 'uc_guild',
 					'size'			=> 32,
 					'undeletable'	=> true
+				),
+				'servername'	=> array(
+						'category'		=> 'character',
+						'lang'			=> 'servername',
+						'type'			=> 'text',
+						'size'			=> '21',
+						'edecode'		=> true,
+						'autocomplete'	=> $this->realmlist[$this->lang],
+						'undeletable'	=> true,
+						'sort'			=> 2
+				),
+				'level'	=> array(
+						'type'			=> 'spinner',
+						'category'		=> 'character',
+						'lang'			=> 'uc_level',
+						'max'			=> 100,
+						'min'			=> 1,
+						'undeletable'	=> true,
+						'sort'			=> 4
 				),
 			);
 			return $xml_fields;
