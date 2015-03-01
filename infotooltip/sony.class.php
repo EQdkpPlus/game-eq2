@@ -18,8 +18,8 @@
 
 if(!class_exists('sony')) {
 	class sony extends itt_parser {
-		public static $shortcuts = array('puf' => 'urlfetcher', 'pfh' => array('file_handler', array('infotooltips')));
-		public $supported_games = array('eq2');
+		public static $shortcuts = array('puf' => 'urlfetcher');
+		
 		public $av_langs = array();
 		public $settings = array();
 		public $itemlist = array();
@@ -87,7 +87,7 @@ if(!class_exists('sony')) {
 				$myItem = $itemdata->{'item_list'}[0];
 				if ($myItem){
 					$content = $this->GenerateItemStatsHTML($myItem);
-					$template_html = trim(file_get_contents($this->root_path.'infotooltip/includes/parser/templates/eq2_sony_popup.tpl'));
+					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_sony_popup.tpl'));
 					$template_html = str_replace('{ITEM_HTML}', $content, $template_html);
 					$item['html'] = $template_html;
 					$item['lang'] = $lang;
