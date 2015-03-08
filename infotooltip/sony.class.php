@@ -1,24 +1,20 @@
 <?php
-/*	Project:	EQdkp-Plus
- *	Package:	Everquest2 game package
- *	Link:		http://eqdkp-plus.eu
- *
- *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
- *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU Affero General Public License as published
- *	by the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU Affero General Public License for more details.
- *
- *	You should have received a copy of the GNU Affero General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ /*
+ * Project:		EQdkp-Plus
+ * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:		2010
+ * Date:		$Date$
+ * -----------------------------------------------------------------------
+ * @author		$Author$
+ * @copyright	2006-2011 EQdkp-Plus Developer Team
+ * @link		http://eqdkp-plus.com
+ * @package		eqdkp-plus
+ * @version		$Rev$
+ * 
+ * $Id$
  */
-
 if(!class_exists('sony')) {
 	class sony extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
@@ -28,7 +24,6 @@ if(!class_exists('sony')) {
 		public $itemlist = array();
 		public $recipelist = array();
 		private $searched_langs = array();
-
 		public function __construct($init=false, $config=false, $root_path=false, $cache=false, $puf=false, $pdl=false){
 			parent::__construct($init, $config, $root_path, $cache, $puf, $pdl);
 			$g_settings = array(
@@ -52,14 +47,12 @@ if(!class_exists('sony')) {
 			);
 			$this->av_langs = ((isset($g_lang[$this->config['game']])) ? $g_lang[$this->config['game']] : '');
 		}
-
 		public function __destruct(){
 			unset($this->itemlist);
 			unset($this->recipelist);
 			unset($this->searched_langs);
 			parent::__destruct();
 		}
-
 		private function getItemIDfromUrl($itemname, $lang, $searchagain=0){
 			$searchagain++;
 			$itemInfo = urlencode($itemname);
@@ -74,11 +67,9 @@ if(!class_exists('sony')) {
 			}
 			return $item_id;
 		}
-
 		protected function searchItemID($itemname, $lang){
 			return $this->getItemIDfromUrl($itemname, $lang);
 		}
-
 		protected function getItemData($item_id, $lang, $itemname='', $type='items'){
 			$item = array('id' => $item_id);
 			if(!$item_id) return null;
@@ -158,8 +149,9 @@ if(!class_exists('sony')) {
 		$content .= "<br>";
 		$growth = $item->{'growth_table'};
 		$agi = 0; $intel = 0; $sta = 0; $str = 0; $wis = 0;
-		$lcount = 0;
-		for ($i = 1; $i <= 50; $i++) {
+		$lcount = 0; $lev = 0;
+		for ($l = 1; $l <= 100; $l++) { if (isset($growth->{'level'.$l})) {$lev = $lev +1;} }
+		for ($i = 1; $i <= $lev; $i++) {
 		(${"l{$i}"} = $growth->{'level'.$i});
 		if ($growth->{'level'.$i} != "") {$lcount = $lcount +1;}
 		$agi = $agi + (${"l{$i}"}->{'agi'});
@@ -167,7 +159,7 @@ if(!class_exists('sony')) {
 		$sta = $sta + (${"l{$i}"}->{'sta'});
 		$str = $str + (${"l{$i}"}->{'str'});
 		$wis = $wis + (${"l{$i}"}->{'wis'});
-		}
+		} 
 		$content .= "<div class='itemd_name'><small>Adds the following to an item at Level ".$lcount.":</small></div>\n";
 		$content .= "<div class='ui-helper-clearfix'></div>";
 		$content .= "<div class='itemd_green'>";
@@ -179,10 +171,10 @@ if(!class_exists('sony')) {
 		$content .= "</div>\n";
 		$content .= "<div class='itemd_blue'>";
 		$attackspeed = 0; $dps = 0; $doubleattackchance = 0; $critbonus = 0; $spellweaponattackspeed = 0;
-		$spellweapondamagebonus = 0; $spelldoubleattackchance = 0;
+		$spellweapondamagebonus = 0; $spelldoubleattackchance = 0; 
 		$spellweapondps = 0; $spellweapondoubleattackchance = 0; $weapondamagebonus = 0; $basemodifier = 0; $maxhpperc = 0;
 		$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0;
-		for ($j = 1; $j <= 50; $j++) {
+		for ($j = 1; $j <= $lev; $j++) {
 		(${"m{$j}"} = $growth->{'level'.$j});
 		if (!empty(${"m{$j}"}->{'attackspeed'})) {
 		$attackspeed = $attackspeed + (${"m{$j}"}->{'attackspeed'});
@@ -239,30 +231,10 @@ if(!class_exists('sony')) {
 		$all = $all + (${"m{$j}"}->{'all'});
 		}
 		}
-		/*
-		if ($attackspeed != 0) { $content .= "  +" . $attackspeed . "% Attack Speed<br>"; }
-		if ($dps != 0) { $content .= "  +" . $dps . " Damage Per Second<br>"; }
-		if ($doubleattackchance != 0) { $content .= "  +" . $doubleattackchance . "% Multi Attack Chance<br>"; }
-		if ($critbonus != 0) { $content .= "  +" . $critbonus . "% Crit Bonus<br>"; }
-		if ($spellweaponattackspeed != 0) { $content .= "  +" . $spellweaponattackspeed . "% Spell Weapon Attack Speed<br>"; }
-		if ($spellweapondps != 0) {	$content .= "  +" . $spellweapondps . " Spell Weapon Damage Per Second<br>"; }
-		if ($spellweapondoubleattackchance != 0) { $content .= "  +" . $spellweapondoubleattackchance . "% Spell Weapon Multi Attack Chance<br>"; }
-		if ($spellweapondamagebonus != 0) { $content .= "  +" . $spellweapondamagebonus . " Spell Weapon Damage Bonus<br>"; }
-		if ($spelldoubleattackchance != 0) { $content .= "  +" . $spelldoubleattackchance . "% Doublecast Chance<br>"; }
-		if ($weapondamagebonus != 0) { $content .= "  +" . $weapondamagebonus . " Weapon Damage Bonus<br>"; }
-		if ($basemodifier != 0) { $content .= "  +" . $basemodifier . "% Potency<br>"; }
-		if ($maxhpperc != 0) { $content .= "  +" . $maxhpperc . "% Max Health<br>"; }
-		if ($armormitigationincrease != 0) { $content .= "  +" . $armormitigationincrease . "% Mitigation Increase<br>"; }
-		if ($strikethrough != 0) { $content .= "  +" . $strikethrough . "% Strikethrough<br>"; }
-		if ($spellcastpct != 0) { $content .= "  +" . $spellcastpct . "% Ability Casting Speed<br>"; }
-		if ($spelltimereusespellonly != 0) { $content .= "  +" . $spelltimereusespellonly . "% Spell Reuse Speed<br>"; }
-		if ($all !=0) { $content .= "  +" . $all . " Ability Modifier<br>"; }
-		if ($hategainmod !=0) { $content .= "  +" . $hategainmod . "% Hate Gain<br>"; }
-		*/
-		if ($weapondamagebonus != 0) { $content .= $weapondamagebonus . " Weapon Damage Bonus<br>"; }
-		if ($spellweapondamagebonus != 0) { $content .= $spellweapondamagebonus . " Spell Weapon Damage Bonus<br>"; }
 		if ($basemodifier != 0) { $content .= $basemodifier . "% Potency<br>"; }
 		if ($critbonus != 0) { $content .= $critbonus . "% Crit Bonus<br>"; }
+		if ($weapondamagebonus != 0) { $content .= $weapondamagebonus . " Weapon Damage Bonus<br>"; }
+		if ($spellweapondamagebonus != 0) { $content .= $spellweapondamagebonus . " Spell Weapon Damage Bonus<br>"; }
 		if ($spelldoubleattackchance != 0) { $content .= $spelldoubleattackchance . "% Doublecast Chance<br>"; }
 		if ($attackspeed != 0) { $content .= $attackspeed . "% Attack Speed<br>"; }
 		if ($dps != 0) { $content .= $dps . " Damage Per Second<br>"; }
@@ -270,13 +242,13 @@ if(!class_exists('sony')) {
 		if ($spellweaponattackspeed != 0) { $content .= $spellweaponattackspeed . "% Spell Weapon Attack Speed<br>"; }
 		if ($spellweapondps != 0) {	$content .= $spellweapondps . " Spell Weapon Damage Per Second<br>"; }
 		if ($spellweapondoubleattackchance != 0) { $content .= $spellweapondoubleattackchance . "% Spell Weapon Multi Attack Chance<br>"; }
-		if ($maxhpperc != 0) { $content .= $maxhpperc . "% Max Health<br>"; }
+		if ($maxhpperc != 0) { $content .= floatval($maxhpperc) . "% Max Health<br>"; }
 		if ($armormitigationincrease != 0) { $content .= $armormitigationincrease . "% Mitigation Increase<br>"; }
 		if ($strikethrough != 0) { $content .= $strikethrough . "% Strikethrough<br>"; }
 		if ($spellcastpct != 0) { $content .= $spellcastpct . "% Ability Casting Speed<br>"; }
 		if ($spelltimereusespellonly != 0) { $content .= $spelltimereusespellonly . "% Spell Reuse Speed<br>"; }
-		if ($all !=0) { $content .= $all . " Ability Modifier<br>"; }
 		if ($hategainmod !=0) { $content .= $hategainmod . "% Hate Gain<br>"; }
+		if ($all !=0) { $content .= "+". $all . " Ability Modifier<br>"; }
 		return $content;
 		}
 		else { return ""; }
@@ -625,10 +597,46 @@ if(!class_exists('sony')) {
 			$content .= "</div>";
 			$content .= "<div class='ui-helper-clearfix'></div>";
 			$content .= "<div style='width: 80px; float: left; color: white;'>Damage</div>";
-			$minBaseDamage = $typeInfo->{'minbasedamage'};
+			# Weapon Damage Type
+			$damageid = $typeInfo->{'damageid'};
+			switch ($damageid) {
+				case 0:
+					$damagtype = '';
+					break;
+				case 1:
+					$damagtype = '';
+					break;
+				case 2:
+					$damagtype = '';
+					break;
+				case 3:
+					$damagtype = 'Heat';
+					break;
+				case 4:
+					$damagetype = 'Cold';
+					break;
+				case 5:
+					$damagetype = 'Magic';
+					break;
+				case 6:
+					$damagetype = 'Mental';
+					break;
+				case 7:
+					$damagetype = 'Divine';
+					break;
+				case 8:
+					$damagetype = 'Disease';
+					break;
+				case 9:
+					$damagetype = 'Poison';
+					break;
+			}
+			//$minBaseDamage = $typeInfo->{'minbasedamage'};
+			$minMasteryDamage = $typeInfo->{'minmasterydamage'};
 			$maxMasteryDamage = $typeInfo->{'maxmasterydamage'};
-			$content .= "<div style='width: 80px; float: left; color: white;'>";
-			$content .= $minBaseDamage . " - " . $maxMasteryDamage;
+			$content .= "<div style='width: 120px; float: left; color: white;'>";
+			//$content .= $minBaseDamage . " - " . $maxMasteryDamage . " " . $damagetype;
+			$content .= $minMasteryDamage . " - " . $maxMasteryDamage . " " . $damagetype;
 			$content .= "</div>";
 			# Weapon Rating
 			$content .= "<div style='width: 100px; float: left; color: white;'>";
