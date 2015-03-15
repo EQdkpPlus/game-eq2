@@ -143,7 +143,7 @@
 								<td>Rare harvests:</td><td>{CHARDATA:statistics:rare_harvests:value}</td>
 							</tr>
 							<tr>
-								<th colspan="2">Defence</th>
+								<th colspan="2">Defense</th>
 							</tr>
 							<!-- BEGIN defense_list -->
 							<tr>
@@ -335,23 +335,13 @@
 						<tbody>
 							<!-- BEGIN raid_ready -->
 							<tr>
-								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.CMARK}.png" class="gameicon"/>&nbsp;Crit Chance:</td><td width ="50%">Minimum Requirement = {raid_ready.MINCRIT}%</td>
-								<td width="25%"><b>{DATA_CRITCHANCE}%</b></td>
-							</tr>
-							<tr>
-								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.MMARK}.png" class="gameicon"/>&nbsp;Fully Mastered?</td><td width="50%">Total % of Mastered Spells & CA's</td><td width="25%"><b>{raid_ready.MASTER}%</b></td>
+								<td width="25%">&nbsp;Crit Chance:</td><td width ="50%"></td><td width="25%">{DATA_CRITCHANCE}%</td>
 							</tr>
 							<tr><div>
 								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.EMARK}.png" class="gameicon"/>&nbsp;Myth Buff:</td><td width="50%">{raid_ready.ER}</td>
 								<td width="25%"><!-- IF raid_ready.EICONID1 != 0 --><div class="spellbkg1"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID1}/spell" class="gameicon"/></div><!-- ENDIF -->
 												<!-- IF raid_ready.EICONID2 != 0 --><div class="spellbkg2"><img src="{CHAR_IMGURL}icons/{raid_ready.EICONID2}/spell" class="gameicon"/></div><!-- ENDIF --></td>
 							</div></tr>
-							<!-- removed
-							<tr>
-								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.DMARK}.png" class="gameicon"/>&nbsp;X2 Debuff:</td><td width="50%">{raid_ready.DEBUFF}</td>
-								<td width="25%"><!-- IF raid_ready.DICONID != 0 --> <!-- removed  <img src="{CHAR_IMGURL}icons/{raid_ready.DICONID}/spell" class="gameicon"/><!-- ENDIF --> <!--removed     </td>
-							</tr> 
-							-->
 							<tr>
 								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.GMARK}.png" class="gameicon"/>&nbsp;Deity:</td><td width="50%">{raid_ready.DEITY}</td>
 								<td width="25%"><!-- IF raid_ready.DPIC --><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/deity/{raid_ready.DPIC}.png" class="gameicon"/><!-- ENDIF --></td>
@@ -359,6 +349,24 @@
 							<tr>
 								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.SMARK}.png" class="gameicon"/>&nbsp;Singular Focus:</td><td width="50%">{raid_ready.SING}</td>
 								<td width="25%"><!-- IF raid_ready.SICO !=0 --><div class="singbkg"><img src="{CHAR_IMGURL}icons/{raid_ready.SICO}/spell" class="gameicon"/></div><!-- ENDIF --></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.AAMARK}.png" />&nbsp;Alternate Advancement</td><td width="50%">Total # AA Points</td><td width="25%"><b>{raid_ready.AAPNTS}</b></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.PTMARK}.png" />&nbsp;Prestige</td><td width="50%">Total # Prestige Points</td><td width="25%"><b>{raid_ready.PTPNTS}</b></td>
+							</tr>	
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.ARMARK}.png" />&nbsp;Arcane Resists:</td><td width ="50%">Minimum Requirement = {raid_ready.MINRESIST}</td>
+								<td width="25%"><b>{raid_ready.ARESIST}</b></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.NRMARK}.png" />&nbsp;Noxious Resists:</td><td width ="50%">Minimum Requirement = {raid_ready.MINRESIST}</td>
+								<td width="25%"><b>{raid_ready.NRESIST}</b></td>
+							</tr>
+							<tr>
+								<td width="25%"><img src="{EQDKP_ROOT_PATH}games/eq2/profiles/images/{raid_ready.ERMARK}.png" />&nbsp;Elemental Resists:</td><td width ="50%">Minimum Requirement = {raid_ready.MINRESIST}</td>
+								<td width="25%"><b>{raid_ready.ERESIST}</b></td>
 							</tr>
 							<tr>
 								<td width="25%">Equipped Food</td><td width="50%">{raid_ready.FDVALUE}</td><td width="25%"><!-- IF raid_ready.FDICONID != 0 --><img src="{CHAR_IMGURL}icons/{raid_ready.FDICONID}/item" class="gameicon"/><!-- ENDIF --></td>

@@ -1,21 +1,22 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2011
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
  *
- * Based on the new battlenet API, see documentation: http://blizzard.github.com/api-wow-docs/
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 if ( !defined('EQDKP_INC') ){
@@ -32,6 +33,7 @@ class eq2_soe {
 	protected $convert		= array(
 		'classes' => array(
 			40 => 1,//Assassin
+			42 => 25,//Beastlord
 			4 => 2,//Berserker
 			34 => 3,//Brigand
 			7 => 4,//Bruiser
@@ -56,29 +58,29 @@ class eq2_soe {
 			16 => 22,//Warden
 			24 => 23,//Warlock
 			23 => 24,//Wizard
-			42 => 25,//Beastlord
 		),
 		'races' => array(
-			18 => 1, //Sarnak
-			5 => 2, //Gnome
-			9 => 3, //Human
-			0 => 4, //Barbarian
-			2 => 5, //Dwarf
-			8 => 6, //High Elf
-			1 => 7, //Dark Elf
-			15 => 8, //Wood Elf
-			6 => 9, //Half Elf
-			11 => 10, //Kerran
-			14 => 11, //Troll
-			12 => 12, //Ogre
-			4 => 13, //Froglok
-			3 => 14, //Erudite
-			10 => 15, //Iksar
-			13 => 16, //Ratonga
-			7 => 17, //Halfling
+			20 => 21, // Aerakyn
 			17 => 18, //Arasai
+			0 => 4, //Barbarian
+			1 => 7, //Dark Elf
+			2 => 5, //Dwarf
+			3 => 14, //Erudite
 			16 => 19, //Fae
 			19 => 20, //Freeblood
+			4 => 13, //Froglok
+			5 => 2, //Gnome
+			6 => 9, //Half Elf
+			7 => 17, //Halfling			
+			9 => 3, //Human
+			8 => 6, //High Elf
+			10 => 15, //Iksar
+			11 => 10, //Kerran
+			12 => 12, //Ogre
+			13 => 16, //Ratonga			
+			18 => 1, //Sarnak
+			14 => 11, //Troll						
+			15 => 8, //Wood Elf
 		),
 	);
 	
@@ -98,9 +100,7 @@ class eq2_soe {
 	* @param $locale		The Language of the data
 	* @return bool
 	*/
-	public function __construct(){
-		
-	}
+	public function __construct(){}
 	
 	public function __get($name) {
 		if(class_exists('registry')) {
@@ -199,7 +199,9 @@ class eq2_soe {
 	public function characterIcon($charid, $forceUpdateAll = false){
 		$cached_img	= str_replace('/', '_', 'image_character_'.$charid.'.png');
 		$img_charicon	= $this->get_CachedData($cached_img, false, true);
+		
 		if(!$img_charicon && ($forceUpdateAll || ($this->chariconUpdates < $this->_config['maxChariconUpdates']))){
+
 			$this->set_CachedData($this->read_url($this->imgurl.'character/'.$charid.'/headshot'), $cached_img, true);
 			$img_charicon	= $this->get_CachedData($cached_img, false, true);			
 			$this->chariconUpdates++;
@@ -214,7 +216,6 @@ class eq2_soe {
 		return $img_charicon;
 	}
 	
-
 	/**
 	* Check if the JSON is an error result
 	* 
@@ -262,7 +263,7 @@ class eq2_soe {
 		if($this->_config['caching']){
 			$cachinglink = $this->binaryORdata($filename, $binary);
 			if(is_object($this->pfh)){
-				$this->pfh->putContent($this->pfh->FolderPath('eq2', 'cache', false).$cachinglink, $json);
+				$this->pfh->putContent($this->pfh->FolderPath('eq2', 'cache').$cachinglink, $json);
 			}else{
 				file_put_contents('data/'.$cachinglink, $json);
 			}

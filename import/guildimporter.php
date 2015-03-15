@@ -1,19 +1,22 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2011
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
 define('EQDKP_INC', true);
@@ -21,6 +24,7 @@ $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
 
 class guildImporter extends page_generic {
+
 	public function __construct() {
 		$handler = array();
 		parent::__construct(false, $handler, array());
@@ -41,8 +45,8 @@ class guildImporter extends page_generic {
 				<dd>'.new htext('guildname', array('value' => $this->config->get('guildtag'), 'size' => '40')).'</dd>
 			</dl>
 			<dl>
-				<dt><label>'.$this->game->glang('uc_delete_chars_onimport').'</label></dt>
-				<dd>'.new hradio('delete_old_chars').'</dd>
+				<dt><label>'.$this->game->glang('servername').'</label></dt>
+				<dd>'.new htext('servername', array('value'=> $this->config->get('servername'), 'size'=>'40', 'autocomplete' => $this->game->get('realmlist'))).'</dd>
 			</dl>
 			</fieldset>
 			<fieldset class="settings mediumsettings">
@@ -57,13 +61,13 @@ class guildImporter extends page_generic {
 					<dd>'.new htext('filter_level', array('value' => 0, 'size' => '5')).'</dd>
 				</dl>
 			</fieldset>';
-		$hmtlout .= '<br/><input type="submit" name="submiti" value="'.$this->game->glang('uc_import_forw').'" class="mainoption bi_ok" />';
+		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
 		return $hmtlout;
 	}
 
 	public function perform_step1(){
 		if($this->in->get('guildname', '') == ''){
-			return '<div class="errorbox roundbox"><div class="icon_ok" id="error_message_txt">'.$this->game->glang('uc_imp_noguildname').'</div></div>';
+			return '<div class="infobox infobox-large infobox-red clearfix"><i class="fa fa-exclamation-triangle fa-4x pull-left"></i> <span id="error_message_txt>'.$this->game->glang('uc_imp_noguildname').'</span></div>';
 		}
 		
 		//Suspend all Chars
@@ -74,7 +78,6 @@ class guildImporter extends page_generic {
 		// generate output
 		$guilddata	= $this->game->obj['soe']->guild($this->in->get('guildname', ''), $this->config->get('servername'), true);
 		$this->config->set('uc_guildid', $this->in->get('guildname', ''));
-		//d($guilddata);
 
 		if(!isset($guilddata['status'])){
 			$hmtlout = '<div id="guildimport_dataset">
@@ -110,6 +113,8 @@ class guildImporter extends page_generic {
 					'race'		=> (int)$guildchars['type']['raceid'],
 					'level'		=> (int)$guildchars['type']['level'],
 					'gamecharid'=> (string)$guildchars['id'],
+					//Take the config servername, until we get it for the chars
+					'servername'=> $this->config->get('servername'),
 				);
 			}
 
@@ -152,29 +157,29 @@ class guildImporter extends page_generic {
 	}
 
 	public function perform_step2(){
-		if(in_array($this->in->get('name', ''), $this->pdh->get('member', 'names', array()))){
+		$strServername = $this->in->get('servername', '');
+		$intMemberID = $this->pdh->get('member', 'id', array($strMembername, array('servername' => $strServername)));
+
+		if($intMemberID){
 			$successmsg = 'available';
-			$charid = $this->pdh->get('member', 'id', array($this->in->get('name', '')));
-			if ($charid) {
-				$gamecharid = $this->pdh->get('member', 'picture', array($charid));
-				$charicon = $this->game->obj['soe']->characterIcon($gamecharid, true);
-				
-				//Revoke Char
-				if ($this->in->get('del', '') == 'true'){
-					$this->pdh->put('member', 'revoke', array($charid));
-					$this->pdh->process_hook_queue();
-				}
-			} else {
-				$charicon = $this->root_path.'images/no_pic.png';
+			$gamecharid = $this->pdh->get('member', 'picture', array($charid));
+			$charicon = $this->game->obj['soe']->characterIcon($gamecharid, true);
+			
+			//Revoke Char
+			if ($this->in->get('del', '') == 'true'){
+				$this->pdh->put('member', 'revoke', array($charid));
+				$this->pdh->process_hook_queue();
 			}
-		}else{
+		} else {
 			$dataarry = array(
 				'name'		=> $this->in->get('name',''),
 				'level'		=> $this->in->get('level', 0),
 				'class'		=> $this->game->obj['soe']->ConvertID($this->in->get('class', 0), 'int', 'classes'),
 				'race'		=> $this->game->obj['soe']->ConvertID($this->in->get('race', 0), 'int', 'races'),
 				'picture'	=> $this->in->get('gamecharid', ''),
+				'servername'=> $strServername,
 			);
+
 			$charicon = $this->game->obj['soe']->characterIcon($this->in->get('gamecharid', ''), true);
 			$myStatus = $this->pdh->put('member', 'addorupdate_member', array(0, $dataarry));
 			$successmsg = ($myStatus) ? 'imported' : 'failed';
@@ -184,7 +189,7 @@ class guildImporter extends page_generic {
 		}
 
 		die(json_encode(array(
-			'image'		=> ($charicon == '') ? $this->root_path.'images/no_pic.png' : $charicon,
+			'image'		=> ($charicon == '') ? $this->server_path.'images/global/avatar-default.svg' : $charicon,
 			'name'		=> $this->in->get('name', ''),
 			'success'	=> $successmsg
 		)));
@@ -205,6 +210,6 @@ class guildImporter extends page_generic {
 		));
 	}
 }
-if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_guildImporter', guildImporter::__shortcuts());
+
 registry::register('guildImporter');
 ?>

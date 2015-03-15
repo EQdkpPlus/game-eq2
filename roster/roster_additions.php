@@ -1,19 +1,22 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2010
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
 	// Add css code:
@@ -24,7 +27,7 @@
 		#guild_header_banner{
 			width:100%;
 			height:106px;
-			background: url('games/eq2/profiles/images/achievebanner.png') no-repeat scroll 0px 0px transparent;
+			background: url('../../games/eq2/profiles/images/achievebanner.png') no-repeat scroll 0px 0px transparent;
 			margin-top:20px;
 		}
 		#guild_emblem { 
@@ -53,7 +56,7 @@
 			cursor: pointer;
 		}
 		#achicon { 
-			width: 56px; height: 55px; z-index: 4; background:url('games/eq2/profiles/images/achbkg.png');
+			width: 56px; height: 55px; z-index: 4; background:url('../../games/eq2/profiles/images/achbkg.png');
 		}
 	");
 	
@@ -68,11 +71,12 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		infotooltip_js();
 		//Achievement Detail
 		$arrTmpGAchievs = array();
-		$gp = 0; $avcount = 0; $avtotal = 19; $gencount = 0; $gentotal = 2;
-		$classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; $dofcount = 0; $doftotal = 10;
-		$koscount = 0; $kostotal = 16; $fdcount = 0; $fdtotal = 3; $eofcount = 0; $eoftotal = 5;
-		$rokcount = 0; $roktotal = 9; $sfcount = 0; $sftotal = 7; $tsocount = 0; $tsototal = 6;
-		$dovcount = 0; $dovtotal = 100; $coecount = 0; $coetotal = 33; $tovcount = 0; $tovtotal = 36;
+		$gp = 0; $gencount = 0; $gentotal = 2; 
+		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 19; $coecount = 0; $coetotal = 34;
+		$dofcount = 0; $doftotal = 10; $dovcount = 0; $dovtotal = 98; $eofcount = 0; $eoftotal = 5; 
+		$fdcount = 0; $fdtotal = 3; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
+		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
+		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6;
 		if (isset($gdata)) {
 		function cmp($a, $b)
 		{
@@ -101,56 +105,60 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "Destiny of Velious") {($expans = "dov");($dovcount = $dovcount + 1);}
 		if ($expan == "Chains of Eternity") {($expans = "coe");($coecount = $coecount + 1);}
 		if ($expan == "Tears of Veeshan") {($expans = "tov");($tovcount = $tovcount + 1);}
+		if ($expan == "Altar of Malice") {($expans = "aom");($aomcount = $aomcount + 1);}
 		if ($expan == "Avatars") {($expans = "av");($avcount = $avcount + 1);}
 		if ($expan == "Guild Hall") {($expans = "gen");($gencount = $gencount + 1);}
-		$clcomplete = ($classiccount != 0) ? intval(($classiccount / $classictotal) * 100) : 0;
-		$sscomplete = ($sscount != 0) ? intval(($sscount / $sstotal) * 100) : 0;
-		$dofcomplete = ($dofcount != 0) ? intval(($dofcount / $doftotal) * 100) : 0;
-		$koscomplete = ($koscount != 0) ? intval(($koscount / $kostotal) * 100) : 0;
-		$fdcomplete = ($fdcount != 0) ? intval(($fdcount / $fdtotal) * 100) : 0;
-		$eofcomplete = ($eofcount != 0) ? intval(($eofcount / $eoftotal) * 100) : 0;
-		$rokcomplete = ($rokcount != 0) ? intval(($rokcount / $roktotal) * 100) : 0;
-		$sfcomplete = ($sfcount != 0) ? intval(($sfcount / $sftotal) * 100) : 0;
-		$tsocomplete = ($tsocount != 0) ? intval(($tsocount / $tsototal) * 100) : 0;
-		$dovcomplete = ($dovcount != 0) ? intval(($dovcount / $dovtotal) * 100) : 0;
-		$coecomplete = ($coecount != 0) ? intval(($coecount / $coetotal) * 100) : 0;
-		$tovcomplete = ($tovcount != 0) ? intval(($tovcount / $tovtotal) * 100) : 0;
-		$avcomplete = ($avcount != 0) ? intval(($avcount / $avtotal) * 100) : 0;
-		$gencomplete = ($gencount != 0) ? intval(($gencount / $gentotal) * 100) : 0;
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
 				'ANAME' => substr($ad['name'], 7),
 				'ADESC' => $ad['desc'],
 				'ADATE' => ((int)$achieve['completedtimestamp'] == 0) ? '' : $this->time->user_date($achieve['completedtimestamp']),));
 		}
-		$this->tpl->assign_block_vars('classicbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('classicbar', $clcomplete, $classiccount .' / ' . $classictotal.' ('.$clcomplete.'%)'),));
-		$this->tpl->assign_block_vars('ssbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('ssbar', $sscomplete, $sscount .' / ' . $sstotal.' ('.$sscomplete.'%)'),));
-		$this->tpl->assign_block_vars('dofbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('dofbar', $dofcomplete, $dofcount .' / ' . $doftotal.' ('.$dofcomplete.'%)'),));
-		$this->tpl->assign_block_vars('kosbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('kosbar', $koscomplete, $koscount .' / ' . $kostotal.' ('.$koscomplete.'%)'),));
-		$this->tpl->assign_block_vars('fdbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('fdbar', $fdcomplete, $fdcount .' / ' . $fdtotal.' ('.$fdcomplete.'%)'),));
-		$this->tpl->assign_block_vars('eofbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('eofbar', $eofcomplete, $eofcount .' / ' . $eoftotal.' ('.$eofcomplete.'%)'),));
-		$this->tpl->assign_block_vars('rokbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('rokbar', $rokcomplete, $rokcount .' / ' . $roktotal.' ('.$rokcomplete.'%)'),));
-		$this->tpl->assign_block_vars('sfbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('sfbar', $sfcomplete, $sfcount .' / ' . $sftotal.' ('.$sfcomplete.'%)'),));
-		$this->tpl->assign_block_vars('tsobar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('tsobar', $tsocomplete, $tsocount .' / ' . $tsototal.' ('.$tsocomplete.'%)'),));
-		$this->tpl->assign_block_vars('dovbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('dovbar', $dovcomplete, $dovcount .' / ' . $dovtotal.' ('.$dovcomplete.'%)'),));
-		$this->tpl->assign_block_vars('coebar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('coebar', $coecomplete, $coecount .' / ' . $coetotal.' ('.$coecomplete.'%)'),));
-		$this->tpl->assign_block_vars('tovbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('tovbar', $tovcomplete, $tovcount .' / ' . $tovtotal.' ('.$tovcomplete.'%)'),));		
-		$this->tpl->assign_block_vars('avbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('avbar', $avcomplete, $avcount .' / ' . $avtotal.' ('.$avcomplete.'%)'),));		
-		$this->tpl->assign_block_vars('genbar', array(		
-				'BAR'	=> $this->jquery->ProgressBar('genbar', $gencomplete, $gencount .' / ' . $gentotal.' ('.$gencomplete.'%)'),));
+		$this->tpl->assign_block_vars('classicbar', array(
+		'BAR'	=> $this->jquery->progressbar('classicbar', 0, array('completed' => $classiccount, 'total' => $classictotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('ssbar', array(
+		'BAR'	=> $this->jquery->progressbar('ssbar', 0, array('completed' => $sscount, 'total' => $sstotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('dofbar', array(
+		'BAR'	=> $this->jquery->progressbar('dofbar', 0, array('completed' => $dofcount, 'total' => $doftotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('kosbar', array(
+		'BAR'	=> $this->jquery->progressbar('kosbar', 0, array('completed' => $koscount, 'total' => $kostotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('fdbar', array(
+		'BAR'	=> $this->jquery->progressbar('fdbar', 0, array('completed' => $fdcount, 'total' => $fdtotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('eofbar', array(
+		'BAR'	=> $this->jquery->progressbar('eofbar', 0, array('completed' => $eofcount, 'total' => $eoftotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('rokbar', array(
+		'BAR'	=> $this->jquery->progressbar('rokbar', 0, array('completed' => $rokcount, 'total' => $roktotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('sfbar', array(
+		'BAR'	=> $this->jquery->progressbar('sfbar', 0, array('completed' => $sfcount, 'total' => $sftotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('tsobar', array(
+		'BAR'	=> $this->jquery->progressbar('tsobar', 0, array('completed' => $tsocount, 'total' => $tsototal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('dovbar', array(
+		'BAR'	=> $this->jquery->progressbar('dovbar', 0, array('completed' => $dovcount, 'total' => $dovtotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('coebar', array(
+		'BAR'	=> $this->jquery->progressbar('coebar', 0, array('completed' => $coecount, 'total' => $coetotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('tovbar', array(
+		'BAR'	=> $this->jquery->progressbar('tovbar', 0, array('completed' => $tovcount, 'total' => $tovtotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('aombar', array(
+		'BAR'	=> $this->jquery->progressbar('aombar', 0, array('completed' => $aomcount, 'total' => $aomtotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('avbar', array(
+		'BAR'	=> $this->jquery->progressbar('avbar', 0, array('completed' => $avcount, 'total' => $avtotal,'text' => '%progress% (%percentage%)')),
+		));
+		$this->tpl->assign_block_vars('genbar', array(
+		'BAR'	=> $this->jquery->progressbar('genbar', 0, array('completed' => $gencount, 'total' => $gentotal,'text' => '%progress% (%percentage%)')),
+		));
 		$this->jquery->Tab_header('eq2_roster');
 		$this->jquery->Tab_header('expansions');
 		$this->tpl->assign_vars(array(
@@ -161,20 +169,21 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 	}
 	}
 $this->tpl->assign_vars(array(
-		'CLASSIC'	=> '<img src="games/eq2/profiles/images/expansions/classic.png" class="gameicon"/>',
-		'SS'		=> '<img src="games/eq2/profiles/images/expansions/ss.png" class="gameicon"/>',
-		'DOF'		=> '<img src="games/eq2/profiles/images/expansions/dof.png" class="gameicon"/>',
-		'KOS'		=> '<img src="games/eq2/profiles/images/expansions/kos.png" class="gameicon"/>',
-		'FD'		=> '<img src="games/eq2/profiles/images/expansions/fd.png" class="gameicon"/>',
-		'EOF'		=> '<img src="games/eq2/profiles/images/expansions/eof.png" class="gameicon"/>',
-		'ROK'		=> '<img src="games/eq2/profiles/images/expansions/rok.png" class="gameicon"/>',
-		'TSO'		=> '<img src="games/eq2/profiles/images/expansions/tso.png" class="gameicon"/>',
-		'SF'		=> '<img src="games/eq2/profiles/images/expansions/sf.png" class="gameicon"/>',
-		'DOV'		=> '<img src="games/eq2/profiles/images/expansions/dov.png" class="gameicon"/>',
-		'COE'		=> '<img src="games/eq2/profiles/images/expansions/coe.png" class="gameicon"/>',
-		'TOV'		=> '<img src="games/eq2/profiles/images/expansions/tov.png" class="gameicon"/>',
-		'AV'		=> '<img src="games/eq2/profiles/images/expansions/avatars.png" class="gameicon"/>',
-		'GENERAL'	=> '<img src="games/eq2/profiles/images/expansions/general.png" class="gameicon"/>',
+		'CLASSIC'	=> '<img src="../../games/eq2/profiles/images/expansions/classic.png" class="gameicon"/>',
+		'SS'		=> '<img src="../../games/eq2/profiles/images/expansions/ss.png" class="gameicon"/>',
+		'DOF'		=> '<img src="../../games/eq2/profiles/images/expansions/dof.png" class="gameicon"/>',
+		'KOS'		=> '<img src="../../games/eq2/profiles/images/expansions/kos.png" class="gameicon"/>',
+		'FD'		=> '<img src="../../games/eq2/profiles/images/expansions/fd.png" class="gameicon"/>',
+		'EOF'		=> '<img src="../../games/eq2/profiles/images/expansions/eof.png" class="gameicon"/>',
+		'ROK'		=> '<img src="../../games/eq2/profiles/images/expansions/rok.png" class="gameicon"/>',
+		'TSO'		=> '<img src="../../games/eq2/profiles/images/expansions/tso.png" class="gameicon"/>',
+		'SF'		=> '<img src="../../games/eq2/profiles/images/expansions/sf.png" class="gameicon"/>',
+		'DOV'		=> '<img src="../../games/eq2/profiles/images/expansions/dov.png" class="gameicon"/>',
+		'COE'		=> '<img src="../../games/eq2/profiles/images/expansions/coe.png" class="gameicon"/>',
+		'TOV'		=> '<img src="../../games/eq2/profiles/images/expansions/tov.png" class="gameicon"/>',
+		'AOM'		=> '<img src="../../games/eq2/profiles/images/expansions/aom.png"/>',
+		'AV'		=> '<img src="../../games/eq2/profiles/images/expansions/avatars.png" class="gameicon"/>',
+		'GENERAL'	=> '<img src="../../games/eq2/profiles/images/expansions/general.png" class="gameicon"/>',
 		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
@@ -187,24 +196,20 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 262;
-			$complete = ($achievecount != 0) ? intval(($achievecount / $total) * 100) : 0;
+ 			$total = 282;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
-				'BAR'	=> $this->jquery->ProgressBar('guildachievs', $complete, $achievecount .' / ' . $total.' ('.$complete.'%)'),
-		));
+				'BAR'	=> $this->jquery->progressbar('guildachievs_'.$id, 0, array('completed' => $achievecount, 'total' => $total,'text' => '%progress% (%percentage%)')),
+			));
 		}	
 
 }
 		
 //ROSTER PAGE
-$hptt_page_settings = $this->pdh->get_page_settings('roster', 'hptt_roster');
-$hptt_page_settings['table_sort_col'] += 1;
-$table_presets = $hptt_page_settings['table_presets'];
-array_unshift($table_presets, array('name' => 'eq2_charicon', 'sort' => false, 'th_add' => 'width="52"', 'td_add' => ''));
-$hptt_page_settings['table_presets'] = $table_presets;
+$this->hptt_page_settings = $this->pdh->get_page_settings('roster', 'hptt_roster');
+
 if ($this->config->get('roster_classorrole') == 'role'){
-	$members = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
+	$members = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks))));
 	$arrRoleMembers = array();
 	foreach ($members as $memberid => $defaultroleid){
 		if ((int)$defaultroleid == 0){
@@ -214,30 +219,54 @@ if ($this->config->get('roster_classorrole') == 'role'){
 			$arrRoleMembers[$defaultroleid][] = $memberid;
 		}
 	}
+	
 	foreach ($this->pdh->aget('roles', 'name', 0, array($this->pdh->get('roles', 'id_list', array()))) as $key => $value){
 		if ($key == 0) continue;
-		$hptt = $this->get_hptt($hptt_page_settings, $arrRoleMembers[$key], $arrRoleMembers[$key], array('%link_url%' => 'viewcharacter.php', '%link_url_suffix%' => '', '%with_twink%' => !intval($this->config->get('pk_show_twinks'))), 'role_'.$key);
+
+		$hptt = $this->get_hptt($this->hptt_page_settings, $arrRoleMembers[$key], $arrRoleMembers[$key], array('%link_url%' => $this->routing->simpleBuild('character'), '%link_url_suffix%' => '', '%with_twink%' => $this->skip_twinks, '%use_controller%' => true), 'role_'.$key);
+		
 		$this->tpl->assign_block_vars('class_row', array(
 			'CLASS_NAME'	=> $value,
-			'CLASS_ICONS'	=> $this->game->decorate('roles', array($key)),
+			'CLASS_ICONS'	=> $this->game->decorate('roles', $key),
+			'CLASS_LEVEL'	=> 2,
+			'ENDLEVEL'		=> true,
 			'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
 		));
 	}
+	
+	
+} elseif($this->config->get('roster_classorrole') == 'raidgroup') {
+	$arrMembers = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks))));
+	$arrRaidGroups = $this->pdh->get('raid_groups', 'id_list', array());
+	foreach($arrRaidGroups as $intRaidGroupID){
+		$arrGroupMembers = $this->pdh->get('raid_groups_members', 'member_list', array($intRaidGroupID));
+				
+		$hptt = $this->get_hptt($this->hptt_page_settings, $arrGroupMembers, $arrGroupMembers, array('%link_url%' => $this->routing->simpleBuild('character'), '%link_url_suffix%' => '', '%with_twink%' => $this->skip_twinks, '%use_controller%' => true), 'raidgroup_'.$intRaidGroupID);
+		
+		$this->tpl->assign_block_vars('class_row', array(
+				'CLASS_NAME'	=> $this->pdh->get('raid_groups', 'name', array($intRaidGroupID)),
+				'CLASS_ICONS'	=> '',
+				'CLASS_LEVEL'	=> 2,
+				'ENDLEVEL'		=> true,
+				'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
+		));
+	}
+
 } else {
-	$members = $this->pdh->aget('member', 'classid', 0, array($this->pdh->get('member', 'id_list', array($skip_inactive, $skip_hidden, true, $skip_twinks))));
-	$arrClassMembers = array();
-	foreach ($members as $memberid => $classid){
-		$arrClassMembers[$classid][] = $memberid;
+	$arrMembers = $this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks));
+	
+	$rosterClasses = $this->game->get_roster_classes();
+	
+	$arrRosterMembers = array();
+	foreach($arrMembers as $memberid){
+		$string = "";
+		foreach($rosterClasses['todisplay'] as $key => $val){
+			$string .= $this->pdh->get('member', 'profile_field', array($memberid, $this->game->get_name_for_type($val)))."_";
+		}
+	
+		$arrRosterMembers[$string][] = $memberid;
 	}
-	foreach ($this->game->get('classes') as $key => $value){
-		if ($key == 0) continue;
-		$hptt = $this->get_hptt($hptt_page_settings, $arrClassMembers[$key], $arrClassMembers[$key], array('%link_url%' => 'viewcharacter.php', '%link_url_suffix%' => '', '%with_twink%' => !intval($this->config->get('pk_show_twinks'))), 'class_'.$key);
-		$this->tpl->assign_block_vars('class_row', array(
-			'CLASS_NAME'	=> $value,
-			'CLASS_ID'		=> $key ,
-			'CLASS_ICONS'	=> $this->game->decorate('classes', array($key, true)),
-			'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
-		));
-	}
+	
+	$this->build_class_block($rosterClasses['data'], $rosterClasses['todisplay'], $arrRosterMembers);
 }
 ?>
