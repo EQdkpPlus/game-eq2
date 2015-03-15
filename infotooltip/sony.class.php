@@ -1,20 +1,24 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2010
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
 if(!class_exists('sony')) {
 	class sony extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
@@ -502,7 +506,6 @@ if(!class_exists('sony')) {
 			}
 			return $content;
 		}
-
 		protected function GetUsableByClasses($typeInfo)
 		{
 			$classList = "";
@@ -576,7 +579,6 @@ if(!class_exists('sony')) {
 			}
 			return $classList;
 		}
-
 		protected function ItemTypeWeapon($item)
 		{
 			$content = "";
@@ -664,7 +666,6 @@ if(!class_exists('sony')) {
 			$content .= "</div>";
 			return $content;
 		}
-
 		protected function ItemTypeArmor($item)
 		{
 			$typeInfo = $item->{'typeinfo'};
@@ -708,7 +709,6 @@ if(!class_exists('sony')) {
 			$content .= "</div>";
 			return $content;
 		}
-
 		protected function ItemTypeMount($item)
 		{
 			$content .= "<br>";
@@ -784,7 +784,6 @@ if(!class_exists('sony')) {
 			    return $this->ItemTypeFood($item);
 			}
 		}
-
 		protected function ItemEffects($item)
 		{
 			$content = "";
@@ -975,5 +974,5 @@ if(!class_exists('sony')) {
 		
 	}
 }
-if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_sony', eq2_sony::$shortcuts);
+
 ?>

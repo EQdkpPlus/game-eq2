@@ -70,27 +70,28 @@ if(!class_exists('eq2')) {
 				'parent'	=> array(
 					'race' => array(
 						0 	=> 'all',		// Unknown
-						1 	=> 'all',		// Sarnak
-						2 	=> 'all',		// Gnome
-						3 	=> 'all',		// Human
-						4 	=> 'all',		// Barbarian
-						5 	=> 'all',		// Dwarf
-						6 	=> 'all',		// High Elf
-						7 	=> 'all',		// Dark Elf
-						8 	=> 'all',		// Wood Elf
-						9 	=> 'all',		// Half Elf
-						10 	=> 'all',		// Kerran
-						11 	=> 'all',		// Troll
-						12 	=> 'all',		// Ogre
-						13 	=> 'all',		// Froglok
-						14 	=> 'all',		// Erudite
-						15 	=> 'all',		// Iksar
-						16 	=> 'all',		// Ratonga
-						17 	=> 'all',		// Halfling
+						21  => 'all',       // Aerakyn
 						18 	=> 'all',		// Arasai
+						4 	=> 'all',		// Barbarian
+						7 	=> 'all',		// Dark Elf
+						5 	=> 'all',		// Dwarf
+						14 	=> 'all',		// Erudite
 						19 	=> 'all',		// Fae
 						20 	=> 'all',		// Freeblood
-					),
+						13 	=> 'all',		// Froglok
+						2 	=> 'all',		// Gnome
+						9 	=> 'all',		// Half Elf
+						17 	=> 'all',		// Halfling
+						6 	=> 'all',		// High Elf
+						3 	=> 'all',		// Human
+						15 	=> 'all',		// Iksar
+						10 	=> 'all',		// Kerran
+						12 	=> 'all',		// Ogre
+						16 	=> 'all',		// Ratonga
+						1 	=> 'all',		// Sarnak
+						11 	=> 'all',		// Troll
+						8 	=> 'all',		// Wood Elf
+						),
 				),
 			),
 		);
@@ -108,17 +109,17 @@ if(!class_exists('eq2')) {
 			2	=> '#E10000',
 			3	=> '#E1E100',
 			4	=> '#E10000',
-			5	=> '#0000E1',
-			6	=> '#0000E1',
+			5	=> '#0065E1',
+			6	=> '#0065E1',
 			7	=> '#00E100',
 			8	=> '#E1E100',
 			9	=> '#00E100',
 			10	=> '#E10000',
-			11	=> '#0000E1',
+			11	=> '#0065E1',
 			12	=> '#00E100',
 			13	=> '#E10000',
 			14	=> '#00E100',
-			15	=> '#0000E1',
+			15	=> '#0065E1',
 			16	=> '#E10000',
 			17	=> '#E1E100',
 			18	=> '#E10000',
@@ -126,8 +127,8 @@ if(!class_exists('eq2')) {
 			20	=> '#00E100',
 			21	=> '#E1E100',
 			22	=> '#00E100',
-			23	=> '#0000E1',
-			24	=> '#0000E1',
+			23	=> '#0065E1',
+			24	=> '#0065E1',
 			25	=> '#E1E100',
 			26	=> '#00E100',
 		);
@@ -208,11 +209,11 @@ if(!class_exists('eq2')) {
 					'size'			=> false,
 					'options'		=> false,
 				),
-				'uc_critchance'	=> array(
-					'lang'			=> 'uc_critchance',
-					'type'			=> 'text',
-					'size'			=> '4',
-					'options'		=> false,
+				'uc_resists'	=> array(
+					'name'		=> 'uc_resists',
+					'type'		=> 'text',
+					'size'		=> '10',
+					'options'	=> false,
 				),
 				'uc_showachieve'	=> array(
 					'lang'			=> 'uc_showachieve',
@@ -236,18 +237,10 @@ if(!class_exists('eq2')) {
 				}
 				$this->filters[$lang] = array_merge($this->filters[$lang], array(
 					array('name' => '-----------', 'value' => false),
-					array('name' => $this->glang('very_light', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
-					array('name' => $this->glang('light', true, $lang), 'value' => 'class:26,4,9,13,22'),
-					array('name' => $this->glang('medium', true, $lang), 'value' => 'class:1,3,7,8,14,17,21,25'),
-					array('name' => $this->glang('heavy', true, $lang), 'value' => 'class:2,10,12,16,18,20'),
-					array('name' => '-----------', 'value' => false),
 					array('name' => $this->glang('healer', true, $lang), 'value' => 'class:26,7,9,12,14,20,22'),
 					array('name' => $this->glang('fighter', true, $lang), 'value' => 'class:2,4,10,13,16,18'),
 					array('name' => $this->glang('mage', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
 					array('name' => $this->glang('scout', true, $lang), 'value' => 'class:1,25,3,8,17,19,21'),
-					array('name' => '-----------', 'value' => false),
-					array('name' => $this->glang('healermage', true, $lang), 'value' => 'class:26,7,9,12,14,20,22,5,6,11,15,23,24'),
-					array('name' => $this->glang('fighterscout', true, $lang), 'value' => 'class:2,4,10,13,16,18,1,25,3,8,17,19,21'),
 					
 				));
 			}

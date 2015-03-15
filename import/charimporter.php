@@ -158,6 +158,8 @@ class charImporter extends page_generic {
 			$arrUpdateData = array(
 				'name'				=> $this->in->get('charname', ''),
 				'level'				=> $cdata['type']['level'],
+				'gender'			=> $this->in->get('gender', 'male'),
+				'gender'            => ucfirst($cdata['type']['gender']),
 				'race'				=> $this->game->obj['soe']->ConvertID($cdata['type']['raceid'], 'int', 'races'),
 				'class'				=> $this->game->obj['soe']->ConvertID($cdata['type']['classid'], 'int', 'classes'),
 				'guild'				=> $cdata['guild']['name'],
@@ -246,13 +248,12 @@ class charImporter extends page_generic {
 			$hmtlout	.= new hhidden('member_id', array('value'=>$isindatabase));
 			$hmtlout	.= new hhidden('member_name', array('value'=>$isMemberName));
 			$hmtlout	.= new hhidden('member_level', array('value'=>$cdata['type']['level']));
-			
+			$hmtlout	.= new hhidden('gender', array('value' => ucfirst($cdata['type']['gender'])));
 			$hmtlout	.= new hhidden('member_race_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
 			$hmtlout	.= new hhidden('member_class_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
 			$hmtlout	.= new hhidden('guild', array('value'=>$cdata['guild']['name']));
 			$hmtlout	.= new hhidden('picture', array('value'=>$cdata['id']));
 			$hmtlout	.= new hhidden('servername', array('value' => $cdata['locationdata']['world']));
-			
 			
 			// viewable Output
 			if(!isset($chardata['status'])){
@@ -302,6 +303,7 @@ class charImporter extends page_generic {
 		$data = array(
 			'name'				=> $this->in->get('member_name'),
 			'level'				=> $this->in->get('member_level', 0),
+			'gender'			=> $this->in->get('gender', 'male'),
 			'race'				=> $this->in->get('member_race_id', 0),
 			'class'				=> $this->in->get('member_class_id', 0),
 			'guild'				=> $this->in->get('guild',''),

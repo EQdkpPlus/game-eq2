@@ -33,6 +33,7 @@ class eq2_soe {
 	protected $convert		= array(
 		'classes' => array(
 			40 => 1,//Assassin
+			42 => 25,//Beastlord
 			4 => 2,//Berserker
 			34 => 3,//Brigand
 			7 => 4,//Bruiser
@@ -57,29 +58,29 @@ class eq2_soe {
 			16 => 22,//Warden
 			24 => 23,//Warlock
 			23 => 24,//Wizard
-			42 => 25,//Beastlord
 		),
 		'races' => array(
-			18 => 1, //Sarnak
-			5 => 2, //Gnome
-			9 => 3, //Human
-			0 => 4, //Barbarian
-			2 => 5, //Dwarf
-			8 => 6, //High Elf
-			1 => 7, //Dark Elf
-			15 => 8, //Wood Elf
-			6 => 9, //Half Elf
-			11 => 10, //Kerran
-			14 => 11, //Troll
-			12 => 12, //Ogre
-			4 => 13, //Froglok
-			3 => 14, //Erudite
-			10 => 15, //Iksar
-			13 => 16, //Ratonga
-			7 => 17, //Halfling
+			20 => 21, // Aerakyn
 			17 => 18, //Arasai
+			0 => 4, //Barbarian
+			1 => 7, //Dark Elf
+			2 => 5, //Dwarf
+			3 => 14, //Erudite
 			16 => 19, //Fae
 			19 => 20, //Freeblood
+			4 => 13, //Froglok
+			5 => 2, //Gnome
+			6 => 9, //Half Elf
+			7 => 17, //Halfling			
+			9 => 3, //Human
+			8 => 6, //High Elf
+			10 => 15, //Iksar
+			11 => 10, //Kerran
+			12 => 12, //Ogre
+			13 => 16, //Ratonga			
+			18 => 1, //Sarnak
+			14 => 11, //Troll						
+			15 => 8, //Wood Elf
 		),
 	);
 	
@@ -99,9 +100,7 @@ class eq2_soe {
 	* @param $locale		The Language of the data
 	* @return bool
 	*/
-	public function __construct(){
-		
-	}
+	public function __construct(){}
 	
 	public function __get($name) {
 		if(class_exists('registry')) {
@@ -217,7 +216,6 @@ class eq2_soe {
 		return $img_charicon;
 	}
 	
-
 	/**
 	* Check if the JSON is an error result
 	* 
