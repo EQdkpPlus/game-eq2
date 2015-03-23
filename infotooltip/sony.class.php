@@ -115,7 +115,7 @@ if(!class_exists('sony')) {
 				
 		protected function ItemDescription($item)
 		{
-		$description = $item->{'description'};
+		$description=htmlspecialchars_decode($item->{'description'});
 					if (substr($description, 0, 2) == '\#') { 
 						$desccolor   = substr($description,1,7);
 						$description = substr($description,8);
