@@ -72,7 +72,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		//Achievement Detail
 		$arrTmpGAchievs = array();
 		$gp = 0; $gencount = 0; $gentotal = 2; 
-		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 19; $coecount = 0; $coetotal = 34;
+		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 23; $coecount = 0; $coetotal = 34;
 		$dofcount = 0; $doftotal = 10; $dovcount = 0; $dovtotal = 98; $eofcount = 0; $eoftotal = 5; 
 		$fdcount = 0; $fdtotal = 3; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
