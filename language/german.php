@@ -54,7 +54,7 @@ $german_array = array(
 	),
 	'races' => array(
 		0	=> 'Unbekannt',
-		21  => 'Aerakyn'
+		21  => 'Aerakyn',
 		18	=> 'Arasai',
 		4	=> 'Barbar',
 		7	=> 'Dunkelelf',
