@@ -296,7 +296,7 @@
 				$erspells = array('325090821','525825229'); $ericon1 = 664; $erbakg1 = 317; $ericon2 = 327; $erbakg2 = 317;
 				break;
 				case 'Channeler':
-				$erspells = array('320684470','1302094268'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
+				$erspells = array('320684470','1302094268','3147558951','2901583121'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
 				break;
 				case 'Coercer':
 				$erspells = array('472410880','513612011'); $ericon1 = 15; $erbakg1 = 317; $ericon2 = 5; $erbakg2 = 316;
