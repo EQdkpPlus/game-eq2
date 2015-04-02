@@ -59,14 +59,14 @@ if (!class_exists('pdh_r_eq2')) {
 		* @returns boolean
 		*/
 		public function init(){
-			$this->game->new_object('eq2_soe', 'soe', array());
+			$this->game->new_object('eq2_daybreak', 'daybreak', array());
 			return true;
 		}
 
 		public function get_charicon($member_id){
 			$picture_id = $this->pdh->get('member', 'picture', array($member_id));
 			if ($picture_id){
-				$charicon = $this->game->obj['soe']->characterIcon($picture_id);
+				$charicon = $this->game->obj['daybreak']->characterIcon($picture_id);
 				$charicon = str_replace($this->root_path, $this->server_path, $charicon);
 				return $charicon;
 			}
