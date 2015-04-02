@@ -62,9 +62,9 @@
 	
 if ($this->config->get('uc_showachieve') == 'yes') {
 # Amory Stuff
-		$this->game->new_object('eq2_soe', 'soe', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
-		if(!is_object($this->game->obj['soe'])) return "";
-		$guilddata = $this->game->obj['soe']->guildinfo($this->config->get('guildtag'), $this->config->get('servername'), false);
+		$this->game->new_object('eq2_daybreak', 'daybreak', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
+		if(!is_object($this->game->obj['daybreak'])) return "";
+		$guilddata = $this->game->obj['daybreak']->guildinfo($this->config->get('guildtag'), $this->config->get('servername'), false);
 		$achieves = $guilddata['guild_list'][0]['achievement_list'];	
 		$gdata 	  = $guilddata['guild_list'][0];
 		if ($guilddata && !isset($chardata['status'])){
@@ -87,9 +87,9 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		foreach ($achieves as $achieve) { 
 		$achid = $achieve['id'];
 		$achtim = $achieve['completedtimestamp'];
-		$achdata = $this->game->obj['soe']->achieves($achid, false);
+		$achdata = $this->game->obj['daybreak']->achieves($achid, false);
 		$ad = ($achdata[achievement_list][0]);
-		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item" class="gameicon"/>';
+		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item" class="gameicon"/>';
 		$expan = ($ad['subcategory']);
 		$ap = ($ad['points']);
 		$gp = ($gp + $ap);
