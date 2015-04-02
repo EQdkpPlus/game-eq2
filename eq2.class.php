@@ -1,22 +1,18 @@
 <?php
-/*	Project:	EQdkp-Plus
- *	Package:	Everquest2 game package
- *	Link:		http://eqdkp-plus.eu
+ /*
+ * Project:		EQdkp-Plus
+ * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Date:		$Date$
+ * -----------------------------------------------------------------------
+ * @author		$Author$
+ * @copyright	2006-2014 EQdkp-Plus Developer Team
+ * @link		http://eqdkp-plus.com
+ * @package		eqdkp-plus
+ * @version		$Rev$
  *
- *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
- *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU Affero General Public License as published
- *	by the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU Affero General Public License for more details.
- *
- *	You should have received a copy of the GNU Affero General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * $Id$
  */
 
 if ( !defined('EQDKP_INC') ){
@@ -26,7 +22,7 @@ if ( !defined('EQDKP_INC') ){
 if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
 		protected static $apiLevel	= 20;
-		public $version				= '2.3.3';
+		public $version				= '2.3.4';
 		protected $this_game		= 'eq2';
 		protected $types			= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
 		protected $classes			= array();
@@ -34,8 +30,8 @@ if(!class_exists('eq2')) {
 		protected $factions			= array();
 		protected $filters			= array();
 		public $langs				= array('english', 'german');
-		public $objects				= array('eq2_soe');
-		public $no_reg_obj			= array('eq2_soe');	
+		public $objects				= array('eq2_daybreak');
+		public $no_reg_obj			= array('eq2_daybreak');	
 
 		protected $class_dependencies = array(
 			array(
