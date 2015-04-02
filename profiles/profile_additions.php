@@ -19,8 +19,8 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 	
-	$this->game->new_object('eq2_soe', 'soe', array());
-	$chardata = $this->game->obj['soe']->character($member['name'],$this->config->get('servername'));
+	$this->game->new_object('eq2_daybreak', 'daybreak', array());
+	$chardata = $this->game->obj['daybreak']->character($member['name'],$this->config->get('servername'));
 	$name = ($member['name']);
 	$minresists = $this->config->get('uc_resists');
 	$classname = $chardata['character_list'][0]['type']['class'];
@@ -118,7 +118,7 @@
 		}
 		$this->tpl->assign_vars(array(
 			'ARMORY' 		=> 1,
-			'CHAR_IMGURL'		=> $this->game->obj['soe']->imgurl,
+			'CHAR_IMGURL'		=> $this->game->obj['daybreak']->imgurl,
 			'DATA_TRADESKILL'	=> ucfirst($tradeskill_keys[0]).' ('.$cdata['tradeskills'][$tradeskill_keys[0]]['level'].')',
 			'DATA_TRADESKILL_LEVEL' => $cdata['tradeskills'][$tradeskill_keys[0]]['level'],
 			'DATA_LEVEL_XP'		=> ((int)$cdata['experience']['currentadventureexp'] == 0) ? 0 : intval(((float)$cdata['experience']['currentadventureexp'] / (float)$cdata['experience']['adventureexpfornextlevel'])*100),
@@ -296,6 +296,7 @@
 				$erspells = array('325090821','525825229'); $ericon1 = 664; $erbakg1 = 317; $ericon2 = 327; $erbakg2 = 317;
 				break;
 				case 'Channeler':
+				//$erspells = array('320684470','1302094268'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
 				$erspells = array('320684470','1302094268','3147558951','2901583121'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
 				break;
 				case 'Coercer':
@@ -428,19 +429,19 @@
 			));
 		$this->tpl->add_css('
 			.spellbkg1{
-				background: url("http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$erbak1.'/spell") no-repeat;
+				background: url("http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/'.$erbak1.'/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;
 			}
 			.spellbkg2{
-				background: url("http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$erbak2.'/spell") no-repeat;
+				background: url("http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/'.$erbak2.'/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;
 			}
 			.singbkg{
-				background: url("http://census.soe.com/s:eqdkpplus/img/eq2/icons/317/spell") no-repeat;
+				background: url("http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/317/spell") no-repeat;
 				float: left;
 				text-align: center;
 				width: 42px;
