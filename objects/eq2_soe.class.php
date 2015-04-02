@@ -23,10 +23,10 @@ if ( !defined('EQDKP_INC') ){
 	header('HTTP/1.0 404 Not Found');exit;
 }
 
-class eq2_soe {
+class eq2_daybreak {
 
-	protected $apiurl		= 'http://census.soe.com/s:eqdkpplus/json/get/eq2/';
-	public $imgurl			= 'http://census.soe.com/s:eqdkpplus/img/eq2/';
+	protected $apiurl		= 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/';
+	public $imgurl			= 'http://census.daybreakgames.com/s:eqdkpplus/img/eq2/';
 	private $chariconUpdates = 0;
 	private $chardataUpdates = 0;
 	
