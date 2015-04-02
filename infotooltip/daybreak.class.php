@@ -1,26 +1,22 @@
 <?php
-/*	Project:	EQdkp-Plus
- *	Package:	Everquest2 game package
- *	Link:		http://eqdkp-plus.eu
- *
- *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
- *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU Affero General Public License as published
- *	by the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU Affero General Public License for more details.
- *
- *	You should have received a copy of the GNU Affero General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ /*
+ * Project:		EQdkp-Plus
+ * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
+ * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * -----------------------------------------------------------------------
+ * Began:		2010
+ * Date:		$Date$
+ * -----------------------------------------------------------------------
+ * @author		$Author$
+ * @copyright	2006-2011 EQdkp-Plus Developer Team
+ * @link		http://eqdkp-plus.com
+ * @package		eqdkp-plus
+ * @version		$Rev$
+ * 
+ * $Id$
  */
- 
-if(!class_exists('sony')) {
-	class sony extends itt_parser {
+if(!class_exists('daybreak')) {
+	class daybreak extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
 		
 		public $av_langs = array();
@@ -31,7 +27,7 @@ if(!class_exists('sony')) {
 		public function __construct($init=false, $config=false, $root_path=false, $cache=false, $puf=false, $pdl=false){
 			parent::__construct($init, $config, $root_path, $cache, $puf, $pdl);
 			$g_settings = array(
-				'eq2' => array('icon_loc' => 'http://census.soe.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
+				'eq2' => array('icon_loc' => 'http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
 			);
 			$this->settings = array(
 				'itt_icon_loc' => array(
@@ -60,7 +56,7 @@ if(!class_exists('sony')) {
 		private function getItemIDfromUrl($itemname, $lang, $searchagain=0){
 			$searchagain++;
 			$itemInfo = urlencode($itemname);
-			$link = 'http://census.soe.com/s:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
+			$link = 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
 			$data = $this->puf->fetch($link);
 			$this->searched_langs[] = $lang;
 			$itemData = json_decode($data);
@@ -77,7 +73,7 @@ if(!class_exists('sony')) {
 		protected function getItemData($item_id, $lang, $itemname='', $type='items'){
 			$item = array('id' => $item_id);
 			if(!$item_id) return null;
-			$url = 'http://census.soe.com/s:eqdkpplus/json/get/eq2/item/' . $item['id'];
+			$url = 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/' . $item['id'];
 			$item['link'] = $url;
 			$data = $this->puf->fetch($item['link']);
 			$itemdata = json_decode($data);
@@ -85,7 +81,7 @@ if(!class_exists('sony')) {
 				$myItem = $itemdata->{'item_list'}[0];
 				if ($myItem){
 					$content = $this->GenerateItemStatsHTML($myItem);
-					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_sony_popup.tpl'));
+					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_daybreak_popup.tpl'));
 					$template_html = str_replace('{ITEM_HTML}', $content, $template_html);
 					$item['html'] = $template_html;
 					$item['lang'] = $lang;
@@ -115,6 +111,7 @@ if(!class_exists('sony')) {
 				
 		protected function ItemDescription($item)
 		{
+		//$description = $item->{'description'};
 		$description=htmlspecialchars_decode($item->{'description'});
 					if (substr($description, 0, 2) == '\#') { 
 						$desccolor   = substr($description,1,7);
@@ -314,7 +311,7 @@ if(!class_exists('sony')) {
 		protected function ItemIcon($item) 
 		{
 			$iconId = $item->{'iconid'};
-			return "<div class='itemd_icon'><img src='http://census.soe.com/s:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
+			return "<div class='itemd_icon'><img src='http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
 		}
 		
 		protected function ItemTier($item) 
@@ -974,5 +971,5 @@ if(!class_exists('sony')) {
 		
 	}
 }
-
+if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_daybreak', eq2_daybreak::$shortcuts);
 ?>
