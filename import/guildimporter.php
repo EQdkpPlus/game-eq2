@@ -29,7 +29,7 @@ class guildImporter extends page_generic {
 		$handler = array();
 		parent::__construct(false, $handler, array());
 		$this->user->check_auth('a_members_man');
-		$this->game->new_object('eq2_soe', 'soe', array());
+		$this->game->new_object('eq2_daybreak', 'daybreak', array());
 		$this->process();
 	}
 
@@ -76,7 +76,7 @@ class guildImporter extends page_generic {
 		}
 
 		// generate output
-		$guilddata	= $this->game->obj['soe']->guild($this->in->get('guildname', ''), $this->config->get('servername'), true);
+		$guilddata	= $this->game->obj['daybreak']->guild($this->in->get('guildname', ''), $this->config->get('servername'), true);
 		$this->config->set('uc_guildid', $this->in->get('guildname', ''));
 
 		if(!isset($guilddata['status'])){
@@ -97,7 +97,7 @@ class guildImporter extends page_generic {
 			$jsondata = array();
 			foreach($guilddata['character_list'] as $guildchars){
 				// filter: class
-				if($this->in->get('filter_class', 0) > 0 && $this->game->obj['soe']->ConvertID((int)$guildchars['type']['classid'], 'int', 'classes') != $this->in->get('filter_class', 0)){
+				if($this->in->get('filter_class', 0) > 0 && $this->game->obj['daybreak']->ConvertID((int)$guildchars['type']['classid'], 'int', 'classes') != $this->in->get('filter_class', 0)){
 					continue;
 				}
 
@@ -163,7 +163,7 @@ class guildImporter extends page_generic {
 		if($intMemberID){
 			$successmsg = 'available';
 			$gamecharid = $this->pdh->get('member', 'picture', array($charid));
-			$charicon = $this->game->obj['soe']->characterIcon($gamecharid, true);
+			$charicon = $this->game->obj['daybreak']->characterIcon($gamecharid, true);
 			
 			//Revoke Char
 			if ($this->in->get('del', '') == 'true'){
@@ -174,13 +174,13 @@ class guildImporter extends page_generic {
 			$dataarry = array(
 				'name'		=> $this->in->get('name',''),
 				'level'		=> $this->in->get('level', 0),
-				'class'		=> $this->game->obj['soe']->ConvertID($this->in->get('class', 0), 'int', 'classes'),
-				'race'		=> $this->game->obj['soe']->ConvertID($this->in->get('race', 0), 'int', 'races'),
+				'class'		=> $this->game->obj['daybreak']->ConvertID($this->in->get('class', 0), 'int', 'classes'),
+				'race'		=> $this->game->obj['daybreak']->ConvertID($this->in->get('race', 0), 'int', 'races'),
 				'picture'	=> $this->in->get('gamecharid', ''),
 				'servername'=> $strServername,
 			);
 
-			$charicon = $this->game->obj['soe']->characterIcon($this->in->get('gamecharid', ''), true);
+			$charicon = $this->game->obj['daybreak']->characterIcon($this->in->get('gamecharid', ''), true);
 			$myStatus = $this->pdh->put('member', 'addorupdate_member', array(0, $dataarry));
 			$successmsg = ($myStatus) ? 'imported' : 'failed';
 
