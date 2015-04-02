@@ -34,13 +34,13 @@ class charImporter extends page_generic {
 		parent::__construct(false, $handler, array());
 		$this->user->check_auth('u_member_man');
 		$this->user->check_auth('u_member_add');
-		$this->game->new_object('eq2_soe', 'soe', array());
+		$this->game->new_object('eq2_daybreak', 'daybreak', array());
 		$this->process();
 	}
 
 	public function perform_resetcache(){
 		// delete the cache folder
-		$this->game->obj['soe']-> DeleteCache();
+		$this->game->obj['daybreak']-> DeleteCache();
 
 		// Output the success message
 		$hmtlout = '<div id="guildimport_dataset">
@@ -148,7 +148,7 @@ class charImporter extends page_generic {
 	public function ajax_massupdate(){
 		$char_server	= $this->pdh->get('member', 'profile_field', array($this->in->get('charid', 0), 'servername'));
 		$servername		= ($char_server != '') ? $char_server : $this->config->get('servername');
-		$chardata	= $this->game->obj['soe']->character($this->in->get('charname', ''), $servername, true);
+		$chardata	= $this->game->obj['daybreak']->character($this->in->get('charname', ''), $servername, true);
 
 		if(!isset($chardata['status'])){
 			$errormsg	= '';
@@ -160,12 +160,12 @@ class charImporter extends page_generic {
 				'level'				=> $cdata['type']['level'],
 				'gender'			=> $this->in->get('gender', 'male'),
 				'gender'            => ucfirst($cdata['type']['gender']),
-				'race'				=> $this->game->obj['soe']->ConvertID($cdata['type']['raceid'], 'int', 'races'),
-				'class'				=> $this->game->obj['soe']->ConvertID($cdata['type']['classid'], 'int', 'classes'),
+				'race'				=> $this->game->obj['daybreak']->ConvertID($cdata['type']['raceid'], 'int', 'races'),
+				'class'				=> $this->game->obj['daybreak']->ConvertID($cdata['type']['classid'], 'int', 'classes'),
 				'guild'				=> $cdata['guild']['name'],
 				'picture'			=> $cdata['id'],
 			);
-			$charicon	= $this->game->obj['soe']->characterIcon($cdata['id']);
+			$charicon	= $this->game->obj['daybreak']->characterIcon($cdata['id']);
 			if ($charicon == "") $charicon	= $this->server_path.'images/global/avatar-default.svg';
 			
 			// insert into database
@@ -241,7 +241,7 @@ class charImporter extends page_generic {
 
 		if($is_mine){
 			// Load the Armory Data
-			$chardata	= $this->game->obj['soe']->character($isMemberName, $isServerName, true);
+			$chardata	= $this->game->obj['daybreak']->character($isMemberName, $isServerName, true);
 			$cdata = $chardata['character_list'][0];
 
 			// Basics
@@ -249,15 +249,16 @@ class charImporter extends page_generic {
 			$hmtlout	.= new hhidden('member_name', array('value'=>$isMemberName));
 			$hmtlout	.= new hhidden('member_level', array('value'=>$cdata['type']['level']));
 			$hmtlout	.= new hhidden('gender', array('value' => ucfirst($cdata['type']['gender'])));
-			$hmtlout	.= new hhidden('member_race_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
-			$hmtlout	.= new hhidden('member_class_id', array('value'=>$this->game->obj['soe']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
+			$hmtlout	.= new hhidden('member_race_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
+			$hmtlout	.= new hhidden('member_class_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
 			$hmtlout	.= new hhidden('guild', array('value'=>$cdata['guild']['name']));
 			$hmtlout	.= new hhidden('picture', array('value'=>$cdata['id']));
 			$hmtlout	.= new hhidden('servername', array('value' => $cdata['locationdata']['world']));
 			
+			
 			// viewable Output
 			if(!isset($chardata['status'])){
-				$charicon = $this->game->obj['soe']->characterIcon($cdata['id']);
+				$charicon = $this->game->obj['daybreak']->characterIcon($cdata['id']);
 				if ($charicon == "") $charicon = $this->server_path.'images/global/avatar-default.svg';
 				$hmtlout	.= '
 				<div class="infobox infobox-large infobox-red clearfix">
