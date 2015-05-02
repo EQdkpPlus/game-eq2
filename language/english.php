@@ -189,6 +189,7 @@ $english_array = array(
 		'malice'                        => 'Altar of Malice',
 		'general'                       => 'General',
 		'avatar'						=> 'Avatars',
+		'rum'							=> 'F.S. Distillery',
 		'healermage'					=> 'Healer & Mage',
 		'fighterscout'					=> 'Fighter & Scout',
 		'no_data'						=> 'No Data.',
