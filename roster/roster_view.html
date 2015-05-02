@@ -23,6 +23,7 @@
 			<div class="clear"></div>
 		<div id="expansions">
 		<ul>
+			<li><a href='#rum'><span>{GL_rum}</span></a></li>
 		    <li><a href='#malice'><span>{GL_malice}</span></a></li>
 			<li><a href='#avatar'><span>{GL_avatar}</span></a></li>
 			<li><a href='#tears'><span>{GL_tears}</span></a></li>
@@ -39,6 +40,27 @@
 			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
 			<li><a href='#general'><span>{GL_general}</span></a></li>
 		</ul>
+			<div id="rum">
+			<br><center>{RUM}</center>
+			<center>
+			<!-- BEGIN rumbar -->
+			<div id="bar_guildachieves">{rumbar.BAR}</div>
+			<!-- END rumbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN rum_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{rum_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{rum_achievements.ANAME}<br /><i>{rum_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{rum_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END rum_achievements -->
+			</table>
+			</div>
 			<div id="malice">
 			<br><center>{AOM}</center>
 			<center>
