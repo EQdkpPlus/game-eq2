@@ -189,6 +189,7 @@ $german_array = array(
 		'malice'                  	        => 'Altar der Bosheit',
 		'general'                           => 'General',
 		'avatar'							=> 'Avatars',
+		'rum'							=> 'F.S. Distillery',
 		'healermage'						=> 'Healer & Mage',
 		'fighterscout'						=> 'Fighter & Scout',
 		'uc_level'                          => 'Level',
