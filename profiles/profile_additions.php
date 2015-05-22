@@ -124,7 +124,8 @@
 			'DATA_LEVEL_XP'		=> ((int)$cdata['experience']['currentadventureexp'] == 0) ? 0 : intval(((float)$cdata['experience']['currentadventureexp'] / (float)$cdata['experience']['adventureexpfornextlevel'])*100),
 			'DATA_TRADESKILL_XP'=> ((int)$cdata['experience']['currenttradeskillexp'] == 0) ? 0 : intval(((float)$cdata['experience']['currenttradeskillexp'] / (float)$cdata['experience']['tradeskillexpfornextlevel'])*100),
 			'DATA_SECOND_TRADESKILL' => $second_tradeskill,
-			'DATA_AA'	=> ((int)$cdata['alternateadvancements']['availablepoints']),'DATA_RACENAME'     => $racename,
+			'DATA_AA'	=> ((int)$cdata['alternateadvancements']['availablepoints']),
+			'DATA_RACENAME'     => $racename,
 			'DATA_BIRTHDATE'	=> $this->time->user_date($cdata['type']['birthdate_utc']),
 			'DATA_LASTSEEN'		=> $this->time->user_date($cdata['last_update']),
 			'DATA_PLAYEDTIME'	=> intval($cdata['playedtime']/60/60/24),
@@ -400,6 +401,9 @@
 		if (floor((float)$cdata['stats']['combat']['critchance']) >= $mincrit) { $cmark = 'good'; }
 		else { $cmark = 'bad'; }
 		$this->tpl->assign_block_vars('raid_ready', array(
+				'CAST_SPEED'	=> floor((float)$cdata['stats']['ability']['spelltimecastpct']),
+				'REUSE_SPEED'	=> floor((float)$cdata['stats']['ability']['spelltimereusepct']),
+				'RECOVERY_SPEED'=> floor((float)$cdata['stats']['ability']['spelltimerecoverypct']),
 				'ER'     => $ercheck,
 				'EICONID1'  => $erico1,
 				'EICONID2'  => $erico2,
