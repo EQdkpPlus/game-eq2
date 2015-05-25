@@ -122,7 +122,7 @@ if(!class_exists('daybreak')) {
 		if (is_string($description)) {
 		return "<div class='itemd_desc'>" . $description . "</div>\n";
 		} else { return ""; }
-	    }
+		}
 			
 		protected function GreenAdornMax($item)
 		{
@@ -663,6 +663,7 @@ if(!class_exists('daybreak')) {
 			$content .= "</div>";
 			return $content;
 		}
+		
 		protected function ItemTypeArmor($item)
 		{
 			$typeInfo = $item->{'typeinfo'};
@@ -925,7 +926,7 @@ if(!class_exists('daybreak')) {
 			}
 			return $content;
 		}
-		
+				
 		protected function ItemRecipe($item) 
 		{
 			$content = "";
@@ -937,6 +938,24 @@ if(!class_exists('daybreak')) {
 			$content .= "<div style='font-weight: normal; color:white;'>";
 				foreach($recipes as $key) {
 					$display = $key->{'name'};
+					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
+				}
+			}
+			}
+			return $content;
+		}
+		
+		protected function ItemContainer($item) 
+		{
+			$content = "";
+			$typeInfo = $item->{'typeinfo'};
+			if ($typeInfo->{'name'} == "itemcontainer") {
+			$content .= "<br><div style='color: yellow;'>Contains the following items:</div>";
+			$insidedabox = $typeInfo->{'item_list'};
+			if ($insidedabox == NULL) { return $content; } else {
+			$content .= "<div style='font-weight: normal; color:white;'>";
+				foreach($insidedabox as $key) {
+					$display = $key->{'displayname'};
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
@@ -965,10 +984,10 @@ if(!class_exists('daybreak')) {
 			$content .= $this->GreenAdornMax($myItem);
 			$content .= $this->ItemPattern($myItem);
 			$content .= $this->ItemRecipe($myItem);
+			$content .= $this->ItemContainer($myItem);
 			$content .= "</div>\n";
 			return $content;
 		}
-		
 	}
 }
 if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_daybreak', eq2_daybreak::$shortcuts);
