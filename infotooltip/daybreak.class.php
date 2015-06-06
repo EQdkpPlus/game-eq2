@@ -7,18 +7,18 @@
  * Began:		2010
  * Date:		$Date$
  * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
+ * @author		Darkmaeg
+ * @copyright   	2006-2011 EQdkp-Plus Developer Team
  * @link		http://eqdkp-plus.com
  * @package		eqdkp-plus
  * @version		$Rev$
  * 
  * $Id$
  */
+ 
 if(!class_exists('daybreak')) {
 	class daybreak extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
-		
 		public $av_langs = array();
 		public $settings = array();
 		public $itemlist = array();
@@ -47,12 +47,14 @@ if(!class_exists('daybreak')) {
 			);
 			$this->av_langs = ((isset($g_lang[$this->config['game']])) ? $g_lang[$this->config['game']] : '');
 		}
+	
 		public function __destruct(){
 			unset($this->itemlist);
 			unset($this->recipelist);
 			unset($this->searched_langs);
 			parent::__destruct();
 		}
+	
 		private function getItemIDfromUrl($itemname, $lang, $searchagain=0){
 			$searchagain++;
 			$itemInfo = urlencode($itemname);
@@ -67,9 +69,11 @@ if(!class_exists('daybreak')) {
 			}
 			return $item_id;
 		}
+	
 		protected function searchItemID($itemname, $lang){
 			return $this->getItemIDfromUrl($itemname, $lang);
 		}
+	
 		protected function getItemData($item_id, $lang, $itemname='', $type='items'){
 			$item = array('id' => $item_id);
 			if(!$item_id) return null;
@@ -466,6 +470,13 @@ if(!class_exists('daybreak')) {
 					$content .= sprintf ("%01.1f", $value->{'value'});
 					$content .= '% ' . $value->{'displayname'} . " <br/>";
 				}
+				if ($type == "normalizedmod") {
+					$count++;
+					if ($count == 1) {
+						$content .= "<div class='itemd_blue'>";
+					}
+					$content .= '+' . number_format ( $value->{'value'} ) . " Ability Modifier<br/>";
+				}
 			}
 			if ($count > 0) {
 				$content .= "</div>\n";
@@ -503,6 +514,7 @@ if(!class_exists('daybreak')) {
 			}
 			return $content;
 		}
+	
 		protected function GetUsableByClasses($typeInfo)
 		{
 			$classList = "";
@@ -576,6 +588,7 @@ if(!class_exists('daybreak')) {
 			}
 			return $classList;
 		}
+	
 		protected function ItemTypeWeapon($item)
 		{
 			$content = "";
@@ -663,7 +676,7 @@ if(!class_exists('daybreak')) {
 			$content .= "</div>";
 			return $content;
 		}
-		
+	
 		protected function ItemTypeArmor($item)
 		{
 			$typeInfo = $item->{'typeinfo'};
@@ -707,6 +720,7 @@ if(!class_exists('daybreak')) {
 			$content .= "</div>";
 			return $content;
 		}
+	
 		protected function ItemTypeMount($item)
 		{
 			$content .= "<br>";
@@ -782,6 +796,7 @@ if(!class_exists('daybreak')) {
 			    return $this->ItemTypeFood($item);
 			}
 		}
+	
 		protected function ItemEffects($item)
 		{
 			$content = "";
@@ -883,9 +898,7 @@ if(!class_exists('daybreak')) {
 	    for ($d = 1; $d <= 30; $d++) {
 		if (!empty($set->{'descriptiontag_'.$d})) { $content .= "&nbsp".($set->{'descriptiontag_'.$d})."<br>"; }		
 		}
-			
-			}
-		
+	}
         }
 		return $content;
 		}
@@ -950,7 +963,8 @@ if(!class_exists('daybreak')) {
 			$content = "";
 			$typeInfo = $item->{'typeinfo'};
 			if ($typeInfo->{'name'} == "itemcontainer") {
-			$content .= "<br><div style='color: yellow;'>Contains the following items:</div>";
+			$content .= "<br><div style='color: yellow;'>Contains the following items:</div><br>";
+			
 			$insidedabox = $typeInfo->{'item_list'};
 			if ($insidedabox == NULL) { return $content; } else {
 			$content .= "<div style='font-weight: normal; color:white;'>";
