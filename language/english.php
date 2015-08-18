@@ -87,16 +87,16 @@ $english_array = array(
 		3	=> 'Mages',
 		4	=> 'Scouts',
 	),
-	'realmlist' => array(
+'realmlist' => array(
 		'Valor', //EU Deutsch
 		'Splitpaw', //EU English
-		'Storms',	//EU Francais
-		'Sebilis', //China
+		'Storms', //EU Francais
+		'Sebilis', //Japan
 		'Test', //Public Test Server
 		'Beta', //Public Beta Server
 		//US English
 		'Butcherblock',
-		'Nagafen',
+		'Nagafen', //PvP
 		'Guk',
 		'Freeport',
 		'Everfrost',
@@ -106,8 +106,11 @@ $english_array = array(
 		'Permafrost',
 		'Crushbone',
 		//Russia
-		'Harla Dar',
+		'Harla Dar', //PvP
 		'Barren Sky',
+		//US Time Locked Servers
+		'Stormhold', //TLE
+		'Deathtoll', //TLE-PvP
 	),
 	'lang' => array(
 		'eq2'							=> 'EverQuest II',
