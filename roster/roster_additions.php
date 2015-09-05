@@ -62,9 +62,9 @@
 	
 if ($this->config->get('uc_showachieve') == 'yes') {
 # Amory Stuff
-		$this->game->new_object('eq2_soe', 'soe', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
-		if(!is_object($this->game->obj['soe'])) return "";
-		$guilddata = $this->game->obj['soe']->guildinfo($this->config->get('guildtag'), $this->config->get('servername'), false);
+		$this->game->new_object('eq2_daybreak', 'daybreak', array($this->config->get('uc_server_loc'), $this->config->get('uc_data_lang')));
+		if(!is_object($this->game->obj['daybreak'])) return "";
+		$guilddata = $this->game->obj['daybreak']->guildinfo($this->config->get('guildtag'), $this->config->get('servername'), false);
 		$achieves = $guilddata['guild_list'][0]['achievement_list'];	
 		$gdata 	  = $guilddata['guild_list'][0];
 		if ($guilddata && !isset($chardata['status'])){
@@ -72,11 +72,11 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		//Achievement Detail
 		$arrTmpGAchievs = array();
 		$gp = 0; $gencount = 0; $gentotal = 2; 
-		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 19; $coecount = 0; $coetotal = 34;
-		$dofcount = 0; $doftotal = 10; $dovcount = 0; $dovtotal = 98; $eofcount = 0; $eoftotal = 5; 
+		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 24; $coecount = 0; $coetotal = 34;
+		$dofcount = 0; $doftotal = 10; $dovcount = 0; $dovtotal = 98; $eofcount = 0; $eoftotal = 13; 
 		$fdcount = 0; $fdtotal = 3; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
-		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6;
+		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6; $rumcount = 0; $rumtotal = 10;
 		if (isset($gdata)) {
 		function cmp($a, $b)
 		{
@@ -87,9 +87,9 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		foreach ($achieves as $achieve) { 
 		$achid = $achieve['id'];
 		$achtim = $achieve['completedtimestamp'];
-		$achdata = $this->game->obj['soe']->achieves($achid, false);
+		$achdata = $this->game->obj['daybreak']->achieves($achid, false);
 		$ad = ($achdata[achievement_list][0]);
-		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.soe.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item" class="gameicon"/>';
+		$aic = '<img style="padding-left:8px;padding-top:6px;" src="http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/'.$ad['icon'].'/item" class="gameicon"/>';
 		$expan = ($ad['subcategory']);
 		$ap = ($ad['points']);
 		$gp = ($gp + $ap);
@@ -108,6 +108,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "Altar of Malice") {($expans = "aom");($aomcount = $aomcount + 1);}
 		if ($expan == "Avatars") {($expans = "av");($avcount = $avcount + 1);}
 		if ($expan == "Guild Hall") {($expans = "gen");($gencount = $gencount + 1);}
+		if ($expan == "F.S. Distillery") {($expans = "rum");($rumcount = $rumcount + 1);}
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
 				'ANAME' => substr($ad['name'], 7),
@@ -159,6 +160,9 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$this->tpl->assign_block_vars('genbar', array(
 		'BAR'	=> $this->jquery->progressbar('genbar', 0, array('completed' => $gencount, 'total' => $gentotal,'text' => '%progress% (%percentage%)')),
 		));
+		$this->tpl->assign_block_vars('rumbar', array(
+		'BAR'	=> $this->jquery->progressbar('rumbar', 0, array('completed' => $rumcount, 'total' => $rumtotal,'text' => '%progress% (%percentage%)')),
+		));
 		$this->jquery->Tab_header('eq2_roster');
 		$this->jquery->Tab_header('expansions');
 		$this->tpl->assign_vars(array(
@@ -184,6 +188,7 @@ $this->tpl->assign_vars(array(
 		'AOM'		=> '<img src="../../games/eq2/profiles/images/expansions/aom.png"/>',
 		'AV'		=> '<img src="../../games/eq2/profiles/images/expansions/avatars.png" class="gameicon"/>',
 		'GENERAL'	=> '<img src="../../games/eq2/profiles/images/expansions/general.png" class="gameicon"/>',
+		'RUM'    	=> '<img src="../../games/eq2/profiles/images/expansions/rum.png" class="gameicon"/>',
 		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
@@ -196,7 +201,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 282;
+ 			$total = 307;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
 				'BAR'	=> $this->jquery->progressbar('guildachievs_'.$id, 0, array('completed' => $achievecount, 'total' => $total,'text' => '%progress% (%percentage%)')),
