@@ -7,8 +7,8 @@
  * Began:		2010
  * Date:		$Date$
  * -----------------------------------------------------------------------
- * @author		Darkmaeg
- * @copyright		2006-2011 EQdkp-Plus Developer Team
+ * @author		$Author$
+ * @copyright	2006-2011 EQdkp-Plus Developer Team
  * @link		http://eqdkp-plus.com
  * @package		eqdkp-plus
  * @version		$Rev$
@@ -348,7 +348,18 @@ if(!class_exists('daybreak')) {
 				$tierColor = "#d99fe9";
 				$tierShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(200, 89, 230), 0px 0px 4px rgb(200, 89, 230);";
 			}
-			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName</div>";
+			$presColor = "#52d017";
+			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(40, 87, 19), 0px 0px 4px rgb(40, 87, 19);";	
+			$pr = "";
+			$rel = "";
+			$unique = $item->{'unique_equipment_group'};
+			$relic = $unique->{'text'};
+			$prestige = $unique->{'prestige'};
+			
+			if ($relic == "RELIC") { $rel = ", RELIC"; }
+			if ($prestige == "true") { $pr = "<div style='color: $presColor; $presShadow' class='itemd_tier'>PRESTIGE</div>"; }
+			
+			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName".$rel."</div>".$pr;
 		}
 		
 		protected function ItemFlags($item)
@@ -894,9 +905,8 @@ if(!class_exists('daybreak')) {
 		if (!empty($set->{'descriptiontag_'.$d})) { $content .= "&nbsp".($set->{'descriptiontag_'.$d})."<br>"; }		
 		}
 			
-			}
-		
-        }
+		}
+	}
 		return $content;
 		}
 		
@@ -916,7 +926,7 @@ if(!class_exists('daybreak')) {
 			if ($count > 0) {
 				$content .= "</div>\n";
 			}
-			return $content;
+		return $content;
 		}
 		
 		protected function ItemPattern($item) 
@@ -933,8 +943,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-			}
-			return $content;
+		}
+		return $content;
 		}
 				
 		protected function ItemRecipe($item) 
@@ -951,8 +961,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-			}
-			return $content;
+		}
+		return $content;
 		}
 		
 		protected function ItemContainer($item) 
@@ -970,8 +980,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-			}
-			return $content;
+		}
+		return $content;
 		}
 		
 		protected function GenerateItemStatsHTML($myItem) {
@@ -999,7 +1009,6 @@ if(!class_exists('daybreak')) {
 			$content .= "</div>\n";
 			return $content;
 		}
-		
 	}
 }
 if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_daybreak', eq2_daybreak::$shortcuts);
