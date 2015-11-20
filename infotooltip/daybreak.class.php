@@ -15,8 +15,9 @@
  * 
  * $Id$
  */
-if(!class_exists('sony')) {
-	class sony extends itt_parser {
+ 
+if(!class_exists('daybreak')) {
+	class daybreak extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
 		
 		public $av_langs = array();
@@ -27,7 +28,7 @@ if(!class_exists('sony')) {
 		public function __construct($init=false, $config=false, $root_path=false, $cache=false, $puf=false, $pdl=false){
 			parent::__construct($init, $config, $root_path, $cache, $puf, $pdl);
 			$g_settings = array(
-				'eq2' => array('icon_loc' => 'http://census.soe.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
+				'eq2' => array('icon_loc' => 'http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
 			);
 			$this->settings = array(
 				'itt_icon_loc' => array(
@@ -56,7 +57,7 @@ if(!class_exists('sony')) {
 		private function getItemIDfromUrl($itemname, $lang, $searchagain=0){
 			$searchagain++;
 			$itemInfo = urlencode($itemname);
-			$link = 'http://census.soe.com/s:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
+			$link = 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
 			$data = $this->puf->fetch($link);
 			$this->searched_langs[] = $lang;
 			$itemData = json_decode($data);
@@ -73,7 +74,7 @@ if(!class_exists('sony')) {
 		protected function getItemData($item_id, $lang, $itemname='', $type='items'){
 			$item = array('id' => $item_id);
 			if(!$item_id) return null;
-			$url = 'http://census.soe.com/s:eqdkpplus/json/get/eq2/item/' . $item['id'];
+			$url = 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/' . $item['id'];
 			$item['link'] = $url;
 			$data = $this->puf->fetch($item['link']);
 			$itemdata = json_decode($data);
@@ -81,7 +82,7 @@ if(!class_exists('sony')) {
 				$myItem = $itemdata->{'item_list'}[0];
 				if ($myItem){
 					$content = $this->GenerateItemStatsHTML($myItem);
-					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_sony_popup.tpl'));
+					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_daybreak_popup.tpl'));
 					$template_html = str_replace('{ITEM_HTML}', $content, $template_html);
 					$item['html'] = $template_html;
 					$item['lang'] = $lang;
@@ -111,7 +112,8 @@ if(!class_exists('sony')) {
 				
 		protected function ItemDescription($item)
 		{
-		$description = $item->{'description'};
+		//$description = $item->{'description'};
+		$description=htmlspecialchars_decode($item->{'description'});
 					if (substr($description, 0, 2) == '\#') { 
 						$desccolor   = substr($description,1,7);
 						$description = substr($description,8);
@@ -121,7 +123,7 @@ if(!class_exists('sony')) {
 		if (is_string($description)) {
 		return "<div class='itemd_desc'>" . $description . "</div>\n";
 		} else { return ""; }
-	    }
+		}
 			
 		protected function GreenAdornMax($item)
 		{
@@ -310,7 +312,7 @@ if(!class_exists('sony')) {
 		protected function ItemIcon($item) 
 		{
 			$iconId = $item->{'iconid'};
-			return "<div class='itemd_icon'><img src='http://census.soe.com/s:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
+			return "<div class='itemd_icon'><img src='http://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
 		}
 		
 		protected function ItemTier($item) 
@@ -346,7 +348,18 @@ if(!class_exists('sony')) {
 				$tierColor = "#d99fe9";
 				$tierShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(200, 89, 230), 0px 0px 4px rgb(200, 89, 230);";
 			}
-			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName</div>";
+			$presColor = "#52d017";
+			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(40, 87, 19), 0px 0px 4px rgb(40, 87, 19);";	
+			$pr = "";
+			$rel = "";
+			$unique = $item->{'unique_equipment_group'};
+			$relic = $unique->{'text'};
+			$prestige = $unique->{'prestige'};
+			
+			if ($relic == "RELIC") { $rel = ", RELIC"; }
+			if ($prestige == "true") { $pr = "<div style='color: $presColor; $presShadow' class='itemd_tier'>PRESTIGE</div>"; }
+			
+			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName".$rel."</div>".$pr;
 		}
 		
 		protected function ItemFlags($item)
@@ -465,10 +478,20 @@ if(!class_exists('sony')) {
 					$content .= sprintf ("%01.1f", $value->{'value'});
 					$content .= '% ' . $value->{'displayname'} . " <br/>";
 				}
+				if ($type == "normalizedmod") {
+					$count++;
+					if ($count == 1) {
+						$content .= "<div class='itemd_blue'>";
+					}
+					$content .= '+' . number_format ( $value->{'value'} ) . " Ability Modifier<br/>";
+				}
 			}
 			if ($count > 0) {
 				$content .= "</div>\n";
 			}
+			$typeInfo = $item->{'typeinfo'};
+			$typecolor = $typeInfo->{'color'};
+			if ($typecolor == 'green') { $content = ""; }
 			return $content;
 		}
 		
@@ -924,7 +947,7 @@ if(!class_exists('sony')) {
 			}
 			return $content;
 		}
-		
+				
 		protected function ItemRecipe($item) 
 		{
 			$content = "";
@@ -936,6 +959,25 @@ if(!class_exists('sony')) {
 			$content .= "<div style='font-weight: normal; color:white;'>";
 				foreach($recipes as $key) {
 					$display = $key->{'name'};
+					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
+				}
+			}
+			}
+			return $content;
+		}
+		
+		protected function ItemContainer($item) 
+		{
+			$content = "";
+			$typeInfo = $item->{'typeinfo'};
+			if ($typeInfo->{'name'} == "itemcontainer") {
+			$content .= "<br><div style='color: yellow;'>Contains the following items:</div><br>";
+			
+			$insidedabox = $typeInfo->{'item_list'};
+			if ($insidedabox == NULL) { return $content; } else {
+			$content .= "<div style='font-weight: normal; color:white;'>";
+				foreach($insidedabox as $key) {
+					$display = $key->{'displayname'};
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
@@ -964,11 +1006,11 @@ if(!class_exists('sony')) {
 			$content .= $this->GreenAdornMax($myItem);
 			$content .= $this->ItemPattern($myItem);
 			$content .= $this->ItemRecipe($myItem);
+			$content .= $this->ItemContainer($myItem);
 			$content .= "</div>\n";
 			return $content;
 		}
-		
 	}
 }
-if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_sony', eq2_sony::$shortcuts);
+if(version_compare(PHP_VERSION, '5.3.0', '<')) registry::add_const('short_eq2_daybreak', eq2_daybreak::$shortcuts);
 ?>
