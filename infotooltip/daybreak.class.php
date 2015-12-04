@@ -349,16 +349,17 @@ if(!class_exists('daybreak')) {
 				$tierShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(200, 89, 230), 0px 0px 4px rgb(200, 89, 230);";
 			}
 			$presColor = "#52d017";
-			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(40, 87, 19), 0px 0px 4px rgb(40, 87, 19);";	
+			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(213,105,0), 0px 0px 4px rgb(82, 208, 23)";
+			$ethColor = "#ffc993";
+			$ethShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(223, 83, 95), 0px 0px 4px rgb(223, 83, 95);";
 			$pr = "";
 			$rel = "";
 			$unique = $item->{'unique_equipment_group'};
 			$relic = $unique->{'text'};
 			$prestige = $unique->{'prestige'};
-			
 			if ($relic == "RELIC") { $rel = ", RELIC"; }
+			if ($relic == "ETHEREAL") { $rel = ", ETHEREAL"; }
 			if ($prestige == "true") { $pr = "<div style='color: $presColor; $presShadow' class='itemd_tier'>PRESTIGE</div>"; }
-			
 			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName".$rel."</div>".$pr;
 		}
 		
