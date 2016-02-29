@@ -282,83 +282,108 @@
 		//ER Setup
 		 switch ($classname) {
 				case 'Assassin':
-				$erspells = array('593450753'); $ericon1 = 383; $erbakg1 = 317;
+				$erspells = array('593450753','2578672959','2346313360'); 
+				$ericon1 = 383; $erbakg1 = 317;
 				break;	
 				case 'Beastlord':
-				$erspells = array('3062851873'); $ericon1 = 271; $erbakg1 = 317;
+				$erspells = array('3062851873','503961776','207835935'); 
+				$ericon1 = 271; $erbakg1 = 317;
 				break;
 				case 'Berserker':
-				$erspells = array('2357709831','908867871'); $ericon1 = 296; $erbakg1 = 317; $ericon2 = 681; $erbakg2 = 317;
+				$erspells = array('2357709831','908867871','604077462','913045049','2361393953','2661976206'); 
+				$ericon1 = 296; $erbakg1 = 317; $ericon2 = 681; $erbakg2 = 317;
 				break;
 				case 'Brigand':
-				$erspells = array('660714803'); $ericon1 = 337; $erbakg1 = 317;
+				$erspells = array('660714803','2643300109','2414281890'); 
+				$ericon1 = 337; $erbakg1 = 317;
 				break;
 				case 'Bruiser':
-				$erspells = array('325090821','525825229'); $ericon1 = 664; $erbakg1 = 317; $ericon2 = 327; $erbakg2 = 317;
+				$erspells = array('325090821','525825229','3083978076','2780516083','2844542011','3152465812'); 
+				$ericon1 = 664; $erbakg1 = 317; $ericon2 = 327; $erbakg2 = 317;
 				break;
 				case 'Channeler':
-				//$erspells = array('320684470','1302094268'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
-				$erspells = array('320684470','1302094268','3147558951','2901583121'); $ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
+				$erspells = array('320684470','1302094268','3147558951','2901583121','1905285704','3147558951','2851175304','2901583121'); 
+				$ericon1 = 220; $erbakg1 = 314; $ericon2 = 42; $erbakg2 = 317;
 				break;
 				case 'Coercer':
-				$erspells = array('472410880','513612011'); $ericon1 = 15; $erbakg1 = 317; $ericon2 = 5; $erbakg2 = 316;
+				$erspells = array('472410880','513612011','4294171718','579937055','2797883710','3031358097'); 
+				$ericon1 = 15; $erbakg1 = 317; $ericon2 = 5; $erbakg2 = 316;
 				break;
 				case 'Conjuror':
-				$erspells = array('1720755111'); $ericon1 = 234; $erbakg1 = 317;
+				$erspells = array('1720755111','3457552950','3699153305'); 
+				$ericon1 = 234; $erbakg1 = 317;
 				break;
 				case 'Defiler':
-				$erspells = array('2597294319','2168916173'); $ericon1 = 279; $erbakg1 = 312; $ericon1 = 913; $erbakg1 = 317;
+				$erspells = array('2597294319','2168916173','539208401','843653502','1001075443','700561756'); 
+				$ericon1 = 279; $erbakg1 = 312; $ericon1 = 913; $erbakg1 = 317;
 				break;
 				case 'Dirge':
-				$erspells = array('2976474773'); $ericon1 = 171; $erbakg1 = 317;
+				$erspells = array('2976474773','193289387','435148548'); 
+				$ericon1 = 171; $erbakg1 = 317;
 				break;
 				case 'Fury':
-				$erspells = array('2672801118','571579967'); $ericon1 = 550; $erbakg1 = 317; $ericon2 = 274; $erbakg2 = 316;
+				$erspells = array('2672801118','571579967','935920847','2566759425','631476064','2325163950'); 
+				$ericon1 = 550; $erbakg1 = 317; $ericon2 = 274; $erbakg2 = 316;
 				break;
 				case 'Guardian':
-				$erspells = array('306666685'); $ericon1 = 844; $erbakg1 = 317;
+				$erspells = array('306666685','3133271340','2829805187'); 
+				$ericon1 = 844; $erbakg1 = 317;
 				break;
 				case 'Illusionist':
-				$erspells = array('2719301397'); $ericon1 = 266; $erbakg1 = 317;
+				$erspells = array('2719301397','177442436','418972971'); 
+				$ericon1 = 266; $erbakg1 = 317;
 				break;
 				case 'Inquisitor':
-				$erspells = array('85761225','382126813'); $ericon1 = 623; $erbakg1 = 317; $ericon2 = 800; $erbakg2 = 317;
+				$erspells = array('85761225','382126813','2610474609','2314347998','3191896908','2888495331'); 
+				$ericon1 = 623; $erbakg1 = 317; $ericon2 = 800; $erbakg2 = 317;
 				break;
 				case 'Monk':
-				$erspells = array('1463331340'); $ericon1 = 755; $erbakg1 = 317;
+				$erspells = array('1463331340','3990130738','4290648989'); 
+				$ericon1 = 755; $erbakg1 = 317;
 				break;
 				case 'Mystic':
-				$erspells = array('2290136341','2657181028'); $ericon1 = 616; $erbakg1 = 317; $ericon1 = 175; $erbakg1 = 315;
+				$erspells = array('2290136341','2657181028','921169141','613246810','845975339','537265284'); 
+				$ericon1 = 616; $erbakg1 = 317; $ericon1 = 175; $erbakg1 = 315;
 				break; 
 				case 'Necromancer':
-				$erspells = array('3039617986'); $ericon1 = 234; $erbakg1 = 317;
+				$erspells = array('3039617986','264296956','497701459'); 
+				$ericon1 = 234; $erbakg1 = 317;
 				break; 
 				case 'Paladin':
-				$erspells = array('449915658','3279286219'); $ericon1 = 158; $erbakg1 = 317; $ericon2 = 266; $erbakg2 = 317;
+				$erspells = array('449915658','3279286219','2040124917','1811111514','2992085659','2688356660'); 
+				$ericon1 = 158; $erbakg1 = 317; $ericon2 = 266; $erbakg2 = 317;
 				break;
 				case 'Ranger':
-				$erspells = array('509781089'); $ericon1 = 685; $erbakg1 = 317;
+				$erspells = array('509781089','3068401136','2760810079'); 
+				$ericon1 = 685; $erbakg1 = 317;
 				break;
 				case 'Shadowknight':
-				$erspells = array('3182003177','792904718'); $ericon1 = 224; $erbakg1 = 315; $ericon2 = 614; $erbakg2 = 317;
+				$erspells = array('3182003177','792904718','355414648','122010071','2511273520','2277799327'); 
+				$ericon1 = 224; $erbakg1 = 315; $ericon2 = 614; $erbakg2 = 317;
 				break;
 				case 'Swashbuckler':
-				$erspells = array('1273618570'); $ericon1 = 377; $erbakg1 = 317;
+				$erspells = array('1273618570','4043692724','3815723291'); 
+				$ericon1 = 377; $erbakg1 = 317;
 				break;
 				case 'Templar':
-				$erspells = array('2758923289','2775781479'); $ericon1 = 664; $erbakg1 = 317; $ericon2 = 272; $erbakg2 = 316;
+				$erspells = array('2758923289','2775781479','234201590','513666599','530524761','217539976'); 
+				$ericon1 = 664; $erbakg1 = 317; $ericon2 = 272; $erbakg2 = 316;
 				break; 
 				case 'Troubador':
-				$erspells = array('698807671'); $ericon1 = 174; $erbakg1 = 317;
+				$erspells = array('698807671','2471153481','2166375654'); 
+				$ericon1 = 174; $erbakg1 = 317;
 				break;
 				case 'Warden':
-				$erspells = array('1636577504','3803106182'); $ericon1 = 609; $erbakg1 = 317; $ericon2 = 188; $erbakg2 = 316;
+				$erspells = array('1636577504','3803106182','1244166679','3372908913','3680504542','1480782264'); 
+				$ericon1 = 609; $erbakg1 = 317; $ericon2 = 188; $erbakg2 = 316;
 				break;
 				case 'Warlock':
-				$erspells = array('21416893','102736953'); $ericon1 = 239; $erbakg1 = 317; $ericon2 = 732; $erbakg2 = 317;
+				$erspells = array('21416893','102736953','3170082311','2929268136','3148542339','2847963692'); 
+				$ericon1 = 239; $erbakg1 = 317; $ericon2 = 732; $erbakg2 = 317;
 				break;
 				case 'Wizard':
-				$erspells = array('2840893721'); $ericon1 = 41; $erbakg1 = 317;
+				$erspells = array('2840893721','30550152','330867495'); 
+				$ericon1 = 41; $erbakg1 = 317;
 				break;
 				}		
 				
