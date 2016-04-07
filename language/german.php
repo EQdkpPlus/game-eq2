@@ -88,29 +88,19 @@ $german_array = array(
 		4 => 'Kundschafter',
 	),
 	'realmlist' => array(
-		'Valor', //EU Deutsch
-		'Splitpaw', //EU English
-		'Storms', //EU Francais
-		'Sebilis', //Japan
-		'Test', //Public Test Server
-		'Beta', //Public Beta Server
 		//US English
-		'Butcherblock',
-		'Nagafen', //PvP
-		'Guk',
-		'Freeport',
-		'Everfrost',
-		'Unrest',
-		'Oasis',
 		'Antonia Bayle',
-		'Permafrost',
-		'Crushbone',
-		//Russia
-		'Harla Dar', //PvP
-		'Barren Sky',
-		//US Time Locked Servers
-		'Stormhold', //TLE
-		'Deathtoll', //TLE-PvP
+		'Halls of Fate',
+		'Maj\'Dul',
+		'Skyfire',	
+		'Valor',    //EU Deutsch
+		'Splitpaw', //EU English
+		'Storms',   //EU Francais
+		//US Time Locked Server
+		'Stormhold',//TLE
+		'Test',     //Public Test Server
+		'Beta',     //Public Beta Server
+		'Drunder',  //Prison Server
 	),
 	'lang' => array(
 		'eq2'								=> 'EverQuest II',
