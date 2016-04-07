@@ -54,7 +54,7 @@ $english_array = array(
 	),
 	'races' => array(
 		0	=> 'Unknown',
-		21  => 'Aerakyn',
+		2	=> 'Aerakyn',
 		18	=> 'Arasai',
 		4	=> 'Barbarian',
 		7	=> 'Dark Elf',
