@@ -23,6 +23,8 @@
 			<div class="clear"></div>
 		<div id="expansions">
 		<ul>
+			<li><a href='#zek'><span>{GL_zek}</span></a></li>
+			<li><a href='#tot'><span>{GL_tot}</span></a></li>
 			<li><a href='#rum'><span>{GL_rum}</span></a></li>
 		    <li><a href='#malice'><span>{GL_malice}</span></a></li>
 			<li><a href='#avatar'><span>{GL_avatar}</span></a></li>
@@ -40,6 +42,48 @@
 			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
 			<li><a href='#general'><span>{GL_general}</span></a></li>
 		</ul>
+			<div id="zek">
+			<br><center>{ZEK}</center>
+			<center>
+			<!-- BEGIN zekbar -->
+			<div id="bar_guildachieves">{zekbar.BAR}</div>
+			<!-- END zekbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN zek_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{zek_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{zek_achievements.ANAME}<br /><i>{zek_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{zek_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END zek_achievements -->
+			</table>
+			</div>
+			<div id="tot">
+			<br><center>{TOT}</center>
+			<center>
+			<!-- BEGIN totbar -->
+			<div id="bar_guildachieves">{totbar.BAR}</div>
+			<!-- END totbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN tot_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{tot_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{tot_achievements.ANAME}<br /><i>{tot_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{tot_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END tot_achievements -->
+			</table>
+			</div>
 			<div id="rum">
 			<br><center>{RUM}</center>
 			<center>
