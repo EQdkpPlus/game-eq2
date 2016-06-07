@@ -19,7 +19,6 @@
 if(!class_exists('daybreak')) {
 	class daybreak extends itt_parser {
 		public static $shortcuts = array('puf' => 'urlfetcher');
-		
 		public $av_langs = array();
 		public $settings = array();
 		public $itemlist = array();
@@ -358,6 +357,7 @@ if(!class_exists('daybreak')) {
 			$relic = $unique->{'text'};
 			$prestige = $unique->{'prestige'};
 			if ($relic == "RELIC") { $rel = ", RELIC"; }
+			if ($relic == "GREATER RELIC") { $rel = ", GREATER RELIC"; }
 			if ($relic == "ETHEREAL") { $rel = ", ETHEREAL"; }
 			if ($prestige == "true") { $pr = "<div style='color: $presColor; $presShadow' class='itemd_tier'>PRESTIGE</div>"; }
 			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName".$rel."</div>".$pr;
@@ -381,6 +381,7 @@ if(!class_exists('daybreak')) {
 				if ($key == 'notrade') {($key = 'no-trade');}
 				if ($key == 'artiface') {($key = 'artifact');}
 				if ($key == 'attunable') {($key = 'attuneable');}
+				if ($key == 'prestige') {($key = '');}
 				if ($key == 'indestructible') {($key = '');($indes = 1);}
 					$content .= strtoupper($key)." &nbsp;\n";
 					$count++;
@@ -849,7 +850,7 @@ if(!class_exists('daybreak')) {
 					$agi = 0; $int = 0; $sta = 0; $str = 0; $wis = 0; 
 					$attackspeed = 0; $dps = 0; $doubleattackchance = 0; $critbonus = 0; $spellweaponattackspeed = 0; $flurry = 0; 
 					$spellweapondps = 0; $spellweapondoubleattackchance = 0; $weapondamagebonus = 0; $basemodifier = 0; $maxhpperc = 0;
-					$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0;
+					$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0; $health = 0;
 					$spelldoubleattackchance = 0; $mana = 0; $effect = 0;
 					if (!empty($set->{'agi'})) { $agi = ($set->{'agi'}); }
 					if (!empty($set->{'int'})) { $int = ($set->{'int'}); }
@@ -876,6 +877,7 @@ if(!class_exists('daybreak')) {
 					if (!empty($set->{'hategainmod'})) { $hategainmod = ($set->{'hategainmod'}); }
 					if (!empty($set->{'all'})) { $all = ($set->{'all'}); }
 					if (!empty($set->{'mana'})) { $mana = ($set->{'mana'}); }
+					if (!empty($set->{'health'})) { $health = ($set->{'health'}); }
 					if ($int != 0) { $content .= "  +" . $int . " int&nbsp&nbsp"; }
 					if ($wis != 0) { $content .= "  +" . $wis . " wis&nbsp&nbsp"; }
 					if ($str != 0) { $content .= "  +" . $str . " str&nbsp&nbsp"; }
@@ -900,14 +902,16 @@ if(!class_exists('daybreak')) {
 					if ($hategainmod !=0) { $content .= "  +" . $hategainmod . "%&nbspHate&nbspGain&nbsp&nbsp"; }
 					if ($flurry !=0) { $content .= "  +" . $flurry . "%&nbspFlurry&nbsp&nbsp"; }
 					if ($spelldoubleattackchance !=0) { $content .= "  +" . $spelldoubleattackchance . "%&nbspDoublecast Chance&nbsp&nbsp"; }
-					if ($mana !=0) { $content .= "  +" . $mana . "&nbspPower&nbsp&nbsp"; }			
+					if ($mana !=0) { $content .= "  +" . $mana . "&nbspPower&nbsp&nbsp"; }		
+					if ($health !=0) { $fhealth = number_format($health); $content .= "  +" . $fhealth . "&nbspHealth&nbsp&nbsp"; }		
 		if (!empty($set->{'effect'})) { $content .= "<br>&nbsp".($set->{'effect'}). " <br>"; }
 	    for ($d = 1; $d <= 30; $d++) {
 		if (!empty($set->{'descriptiontag_'.$d})) { $content .= "&nbsp".($set->{'descriptiontag_'.$d})."<br>"; }		
 		}
 			
-		}
-	}
+			}
+		
+        }
 		return $content;
 		}
 		
@@ -927,7 +931,7 @@ if(!class_exists('daybreak')) {
 			if ($count > 0) {
 				$content .= "</div>\n";
 			}
-		return $content;
+			return $content;
 		}
 		
 		protected function ItemPattern($item) 
@@ -944,8 +948,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-		}
-		return $content;
+			}
+			return $content;
 		}
 				
 		protected function ItemRecipe($item) 
@@ -962,8 +966,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-		}
-		return $content;
+			}
+			return $content;
 		}
 		
 		protected function ItemContainer($item) 
@@ -981,8 +985,8 @@ if(!class_exists('daybreak')) {
 					$content .= "<div style='font-weight: normal; color:white;'>".$display."</div>";
 				}
 			}
-		}
-		return $content;
+			}
+			return $content;
 		}
 		
 		protected function GenerateItemStatsHTML($myItem) {
