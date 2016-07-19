@@ -120,14 +120,14 @@ class guildImporter extends page_generic {
 			}
 
 			$this->tpl->add_js('
-			var guilddataArry = $.parseJSON(\''.json_encode($jsondata).'\');
+			var guilddataArry = JSON.parse(\''.json_encode($jsondata).'\');
 			function getData(i){
 				if (!i)
 					i=0;
 
 				if (guilddataArry.length >= i){
 					$.post("guildimporter.php'.$this->SID.'&del='.(($this->in->get('delete_old_chars',0)) ? 'true' : 'false').'&step=2&totalcount="+guilddataArry.length+"&actcount="+i, guilddataArry[i], function(data){
-						guilddata = $.parseJSON(data);
+						guilddata = JSON.parse(data);
 						if(guilddata.success == "available"){
 							successdata = "<span style=\"color:orange;\">'.$this->game->glang('uc_armory_impduplex').'</span>";
 						}else if(guilddata.success == "imported"){

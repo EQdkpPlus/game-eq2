@@ -18,7 +18,7 @@
  *	You should have received a copy of the GNU Affero General Public License
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 define('EQDKP_INC', true);
 $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
@@ -100,14 +100,14 @@ class charImporter extends page_generic {
 					</div>';
 
 		$this->tpl->add_js('
-			var chardataArry = $.parseJSON(\''.json_encode($memberArry).'\');
+			var chardataArry = JSON.parse(\''.json_encode($memberArry).'\');
 			function getData(i){
 				if (!i)
 					i=0;
-	
+
 				if (chardataArry.length >= i){
 					$.post("charimporter.php'.$this->SID.'&ajax_massupdate=true&totalcount="+chardataArry.length+"&actcount="+i, chardataArry[i], function(data){
-						chardata = $.parseJSON(data);
+						chardata = JSON.parse(data);
 						if(chardata.success == "imported"){
 							successdata = "<span style=\"color:green;\">'.$this->game->glang('uc_armory_updated').'</span>";
 						}else{
@@ -126,7 +126,7 @@ class charImporter extends page_generic {
 					});
 				}
 			}
-			
+
 			$( "#progressbar" ).progressbar({ value: 0 }); getData();
 			');
 
@@ -156,7 +156,7 @@ class charImporter extends page_generic {
 			$errormsg	= '';
 			$cdata 		= $chardata['character_list'][0];
 			$charname	= $cdata['name']['first'];
-			
+
 			$arrUpdateData = array(
 				'name'				=> $this->in->get('charname', ''),
 				'level'				=> $cdata['type']['level'],
@@ -169,7 +169,7 @@ class charImporter extends page_generic {
 			);
 			$charicon	= $this->game->obj['daybreak']->characterIcon($cdata['id']);
 			if ($charicon == "") $charicon	= $this->server_path.'images/global/avatar-default.svg';
-			
+
 			// insert into database
 			$info		= $this->pdh->put('member', 'addorupdate_member', array($this->in->get('charid', 0), $arrUpdateData, $this->in->get('overtakeuser')));
 			$this->pdh->process_hook_queue();
@@ -201,7 +201,7 @@ class charImporter extends page_generic {
 				<dt><label>'.$this->game->glang('uc_charname').'</label></dt>
 				<dd>'.new htext('charname', array('value' => (($tmpmemname) ? $tmpmemname : ''), 'size' => '25')).'</dd>
 			</dl>';
-		
+
 		// Server Name
 		$hmtlout .= '<dl>
 				<dt><label>'.$this->game->glang('servername').'</label></dt>
@@ -214,7 +214,7 @@ class charImporter extends page_generic {
 		}
 		$hmtlout .= '</dd>
 			</dl>';
-		
+
 		$hmtlout .= '</fieldset>';
 		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
 		return $hmtlout;
@@ -256,8 +256,8 @@ class charImporter extends page_generic {
 			$hmtlout	.= new hhidden('guild', array('value'=>$cdata['guild']['name']));
 			$hmtlout	.= new hhidden('picture', array('value'=>$cdata['id']));
 			$hmtlout	.= new hhidden('servername', array('value' => $cdata['locationdata']['world']));
-			
-			
+
+
 			// viewable Output
 			if(!isset($chardata['status'])){
 				$charicon = $this->game->obj['daybreak']->characterIcon($cdata['id']);
