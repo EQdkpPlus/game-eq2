@@ -18,7 +18,7 @@
  *	You should have received a copy of the GNU Affero General Public License
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 define('EQDKP_INC', true);
 $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
@@ -69,14 +69,15 @@ class guildImporter extends page_generic {
 		if($this->in->get('guildname', '') == ''){
 			return '<div class="infobox infobox-large infobox-red clearfix"><i class="fa fa-exclamation-triangle fa-4x pull-left"></i> <span id="error_message_txt>'.$this->game->glang('uc_imp_noguildname').'</span></div>';
 		}
-		
+
 		//Suspend all Chars
 		if ($this->in->get('delete_old_chars',0)){
 			$this->pdh->put('member', 'suspend', array('all'));
 		}
 
 		// generate output
-		$guilddata	= $this->game->obj['daybreak']->guild($this->in->get('guildname', ''), $this->config->get('servername'), true);
+		$servername = ($this->in->get('servername', '') != "") ? $this->in->get('servername', '') : $this->in->get('guildname', '');
+		$guilddata	= $this->game->obj['daybreak']->guild($this->in->get('guildname', ''), $servername, true);
 		$this->config->set('uc_guildid', $this->in->get('guildname', ''));
 
 		if(!isset($guilddata['status'])){
@@ -105,7 +106,7 @@ class guildImporter extends page_generic {
 				if($this->in->get('filter_level', 0) > 0 && (int)$guildchars['type']['level'] < $this->in->get('filter_level', 0)){
 					continue;
 				}
-				
+
 				// Build the array
 				$jsondata[] = array(
 					'name'		=> $guildchars['name']['first'],
@@ -123,7 +124,7 @@ class guildImporter extends page_generic {
 			function getData(i){
 				if (!i)
 					i=0;
-	
+
 				if (guilddataArry.length >= i){
 					$.post("guildimporter.php'.$this->SID.'&del='.(($this->in->get('delete_old_chars',0)) ? 'true' : 'false').'&step=2&totalcount="+guilddataArry.length+"&actcount="+i, guilddataArry[i], function(data){
 						guilddata = $.parseJSON(data);
@@ -145,7 +146,7 @@ class guildImporter extends page_generic {
 					});
 				}
 			}
-			
+
 			$( "#progressbar" ).progressbar({
 				value: 0
 			});
@@ -165,7 +166,7 @@ class guildImporter extends page_generic {
 			$successmsg = 'available';
 			$gamecharid = $this->pdh->get('member', 'picture', array($charid));
 			$charicon = $this->game->obj['daybreak']->characterIcon($gamecharid, true);
-			
+
 			//Revoke Char
 			if ($this->in->get('del', '') == 'true'){
 				$this->pdh->put('member', 'revoke', array($charid));
