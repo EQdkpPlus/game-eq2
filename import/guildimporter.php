@@ -76,7 +76,7 @@ class guildImporter extends page_generic {
 		}
 
 		// generate output
-		$servername = ($this->in->get('servername', '') != "") ? $this->in->get('servername', '') : $this->in->get('guildname', '');
+		$servername = ($this->in->get('servername', '') != "") ? $this->in->get('servername', '') : $this->config->get('servername');
 		$guilddata	= $this->game->obj['daybreak']->guild($this->in->get('guildname', ''), $servername, true);
 		$this->config->set('uc_guildid', $this->in->get('guildname', ''));
 

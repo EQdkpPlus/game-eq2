@@ -36,15 +36,15 @@ $german_array = array(
 		23	=> 'Hexenmeister',
 		12	=> 'Inquisitor',
 		8	=> 'Klagesänger',
-		1	=> 'Mönch',
-		1	=> 'Mystiker',
-		1	=> 'Nekromant',
-		1	=> 'Paladin',
+		13  => 'Mönch',
+		14  => 'Mystiker',
+		15  => 'Nekromant',
+		16  => 'Paladin',
 		4	=> 'Raufbold',
-		1	=> 'Säbelrassler',
+		19  => 'Säbelrassler',
 		7 	=> 'Schänder',
-		1	=> 'Schattenritter',
-		2	=> 'Templer',
+		18  => 'Schattenritter',
+		20  => 'Templer',
 		11	=> 'Thaumaturgist',
 		21	=> 'Troubadour',
 		10	=> 'Wächter',
@@ -54,7 +54,7 @@ $german_array = array(
 	),
 	'races' => array(
 		0	=> 'Unbekannt',
-		21  	=> 'Aerakyn',
+		21  => 'Aerakyn',
 		18	=> 'Arasai',
 		4	=> 'Barbar',
 		7	=> 'Dunkelelf',
@@ -82,25 +82,20 @@ $german_array = array(
 		'neutral'	=> 'Neutral'
 	),
 	'roles' => array(
-		1 => 'Priester',
+		1 => 'Heiler',
 		2 => 'Kämpfer',
 		3 => 'Magier',
 		4 => 'Kundschafter',
 	),
 	'realmlist' => array(
-		//US English
-		'Antonia Bayle',
-		'Halls of Fate',
-		'Maj\'Dul',
-		'Skyfire',	
-		'Valor',    //EU Deutsch
-		'Splitpaw', //EU English
-		'Storms',   //EU Francais
-		//US Time Locked Server
-		'Stormhold',//TLE
-		'Test',     //Public Test Server
-		'Beta',     //Public Beta Server
-		'Drunder',  //Prison Server
+		'Antonia Bayle', //US English
+		'Halls of Fate', //US English
+		'Maj\'Dul', //US English
+		'Skyfire', //US English
+		'Thurgadin', //EU English
+		'Stormhold', //TLE
+		'Test', //Public Test Server
+		'Beta', //Public Beta Server
 	),
 	'lang' => array(
 		'eq2'								=> 'EverQuest II',
@@ -112,7 +107,6 @@ $german_array = array(
 		'fighter'							=> 'Kämpfer',
 		'mage'								=> 'Magier',
 		'scout'								=> 'Kundschafter',
-		
 		// profile additions
 		'uc_gender'							=> 'Geschlecht',
 		'uc_male'							=> 'Männlich',
@@ -182,18 +176,18 @@ $german_array = array(
 		'malice'                  	        => 'Altar der Bosheit',
 		'general'                           => 'General',
 		'avatar'							=> 'Avatars',
-		'rum'							=> 'F.S. Distillery',
+		'rum'								=> 'F.S. Distillery',
+		'tot'								=> 'Terrors of Thalumbra',
+		'zek'								=> 'Zek, the Scourge Wastes',
 		'healermage'						=> 'Healer & Mage',
 		'fighterscout'						=> 'Fighter & Scout',
 		'uc_level'                          => 'Level',
 		'no_data'							=> 'Zu diesem Char konnten keine Informationen abgerufen werden. Bitte überprüfe ob der richtige Server in den Einstellungen eingestellt ist.',
 		'total_completed'					=> 'Abgeschlossen',
 		'uc_showachieve'					=> 'Erfolge anzeigen',
-
-		// Admin Settings
-		'core_sett_fs_gamesettings'		=> 'EverQuest II Einstellungen',
-		'uc_faction'					=> 'Fraktion',
-		'uc_faction_help'				=> 'Wähle die Standard-Fraktion',
+		'core_sett_fs_gamesettings'			=> 'EverQuest II Einstellungen',
+		'uc_faction'						=> 'Fraktion',
+		'uc_faction_help'					=> 'Wähle die Standard-Fraktion',
 	),
 );
 ?>

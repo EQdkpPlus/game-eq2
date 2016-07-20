@@ -54,7 +54,7 @@ $english_array = array(
 	),
 	'races' => array(
 		0	=> 'Unknown',
-		2	=> 'Aerakyn',
+		21  => 'Aerakyn',
 		18	=> 'Arasai',
 		4	=> 'Barbarian',
 		7	=> 'Dark Elf',
@@ -87,20 +87,15 @@ $english_array = array(
 		3	=> 'Mages',
 		4	=> 'Scouts',
 	),
-'realmlist' => array(
-		//US English
-		'Antonia Bayle',
-		'Halls of Fate',
-		'Maj\'Dul',
-		'Skyfire',	
-		'Valor',    //EU Deutsch
-		'Splitpaw', //EU English
-		'Storms',   //EU Francais
-		//US Time Locked Server
-		'Stormhold',//TLE
-		'Test',     //Public Test Server
-		'Beta',     //Public Beta Server
-		'Drunder',  //Prison Server
+	'realmlist' => array(
+		'Antonia Bayle', //US English
+		'Halls of Fate', //US English
+		'Maj\'Dul', //US English
+		'Skyfire', //US English
+		'Thurgadin', //EU English
+		'Stormhold', //TLE
+		'Test', //Public Test Server
+		'Beta', //Public Beta Server
 	),
 	'lang' => array(
 		'eq2'							=> 'EverQuest II',
@@ -122,7 +117,7 @@ $english_array = array(
 		'uc_class'						=> 'Class',
 		'uc_import_guild'				=> 'Import Guild',
 		'uc_import_guild_help'			=> 'Import all characters of a guild',
-		'servername'					=> 'Name of your realmserver',
+		'servername'					=> 'Name of your Server',
 		'uc_lockserver'					=> 'Lock the realm name for users',
 		'uc_update_all'					=> 'Update all characters',
 		'uc_importer_cache'				=> 'Reset importer cache',
@@ -183,17 +178,17 @@ $english_array = array(
 		'general'                       => 'General',
 		'avatar'						=> 'Avatars',
 		'rum'							=> 'F.S. Distillery',
+		'tot'							=> 'Terrors of Thalumbra',
+		'zek'							=> 'Zek, the Scourge Wastes',
 		'healermage'					=> 'Healer & Mage',
 		'fighterscout'					=> 'Fighter & Scout',
 		'no_data'						=> 'No Data.',
 		'total_completed'				=> 'Total Completed',
 		'uc_level'                      => 'Level',
 		'uc_showachieve'				=> 'Show Guild Achievements in Roster Page? (Can slow down loading time)',
-
-		// Admin Settings
 		'core_sett_fs_gamesettings'		=> 'EverQuest II Settings',
 		'uc_faction'					=> 'Faction',
 		'uc_faction_help'				=> 'Select the default faction',
-	),
+		),
 );
 ?>
