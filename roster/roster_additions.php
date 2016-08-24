@@ -71,10 +71,10 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		infotooltip_js();
 		//Achievement Detail
 		$arrTmpGAchievs = array();
-		$gp = 0; $gencount = 0; $gentotal = 2; 
+		$gp = 0; $gencount = 0; $gentotal = 4; 
 		$aomcount = 0; $aomtotal = 23; $avcount = 0; $avtotal = 24; $coecount = 0; $coetotal = 34;
 		$dofcount = 0; $doftotal = 10; $dovcount = 0; $dovtotal = 98; $eofcount = 0; $eoftotal = 13; 
-		$fdcount = 0; $fdtotal = 3; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
+		$fdcount = 0; $fdtotal = 6; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
 		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6; $rumcount = 0; $rumtotal = 10;
 		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7;
@@ -214,7 +214,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 345;
+ 			$total = 350;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
 				'BAR'	=> $this->jquery->progressbar('guildachievs_'.$id, 0, array('completed' => $achievecount, 'total' => $total,'text' => '%progress% (%percentage%)')),
