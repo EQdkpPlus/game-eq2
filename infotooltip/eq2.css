@@ -115,6 +115,9 @@ var.eq2-icon-sml img {height:16px;width:16px}
 .itemd_purple {
 	color: #ff00ff;
 }
+.itemd_orange {
+	color: #f5650f;
+}
 .adorncontainer {
     display: table;
 	width: auto; 
@@ -137,10 +140,16 @@ var.eq2-icon-sml img {height:16px;width:16px}
 .itemd_adiconpurple {
 	background-image: url(../infotooltip/images/purple.jpg); width: 32px; height: 32px; display: table-cell;
 }
-
 .itemd_adiconcyan {
 	background-image: url(../infotooltip/images/cyan.jpg); width: 32px; height: 32px; display: table-cell;
-}.itemd_recipe {
+}
+.itemd_adiconblack {
+	background-image: url(../infotooltip/images/black.jpg); width: 32px; height: 32px; display: table-cell;
+}
+.itemd_adiconorange {
+	background-image: url(../infotooltip/images/orange.jpg); width: 32px; height: 32px; display: table-cell;
+}
+.itemd_recipe {
 	color: #e6e970; margin-top: 12px; height: 150px; overflow: auto;
 }
 .itemd_effects {
