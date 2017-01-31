@@ -77,7 +77,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$fdcount = 0; $fdtotal = 6; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
 		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6; $rumcount = 0; $rumtotal = 10;
-		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7;
+		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7; $kascount = 0; $kastotal = 62;
 		if (isset($gdata)) {
 		function cmp($a, $b)
 		{
@@ -112,8 +112,8 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "F.S. Distillery") {($expans = "rum");($rumcount = $rumcount + 1);}
 		if ($expan == "Terrors of Thalumbra") {($expans = "tot");($totcount = $totcount + 1);}
 		if ($expan == "Zek, the Scourge Wastes") {($expans = "zek");($zekcount = $zekcount + 1);}
+		if ($expan == "Kunark Ascending") {($expans = "kas");($kascount = $kascount + 1);}
 		$ename = ($ad['name']);
-		if ($expans != "zek") { $ename = substr($ename, 7);}
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
 				'ANAME' => $ename,
@@ -174,6 +174,9 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$this->tpl->assign_block_vars('zekbar', array(
 		'BAR'	=> $this->jquery->progressbar('zekbar', 0, array('completed' => $zekcount, 'total' => $zektotal,'text' => '%progress% (%percentage%)')),
 		));
+		$this->tpl->assign_block_vars('kasbar', array(
+		'BAR'	=> $this->jquery->progressbar('kasbar', 0, array('completed' => $kascount, 'total' => $kastotal,'text' => '%progress% (%percentage%)')),
+		));
 		$this->jquery->Tab_header('eq2_roster');
 		$this->jquery->Tab_header('expansions');
 		$this->tpl->assign_vars(array(
@@ -202,19 +205,19 @@ $this->tpl->assign_vars(array(
 		'RUM'    	=> '<img src="../../games/eq2/profiles/images/expansions/rum.png" class="gameicon"/>',
 		'TOT'    	=> '<img src="../../games/eq2/profiles/images/expansions/tot.png" class="gameicon"/>',
 		'ZEK'    	=> '<img src="../../games/eq2/profiles/images/expansions/zek.png" class="gameicon"/>',
+		'KAS'    	=> '<img src="../../games/eq2/profiles/images/expansions/kas.png" class="gameicon"/>',
 		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
-		'POINTS'        => $gp,
+		'POINTS'    => $gp,
 ));
-
 //Achievement Total
 		$achievecount = 0;
 		if (!empty($guilddata)) {
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 350;
+ 			$total = 412;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
 				'BAR'	=> $this->jquery->progressbar('guildachievs_'.$id, 0, array('completed' => $achievecount, 'total' => $total,'text' => '%progress% (%percentage%)')),
@@ -240,9 +243,7 @@ if ($this->config->get('roster_classorrole') == 'role'){
 	
 	foreach ($this->pdh->aget('roles', 'name', 0, array($this->pdh->get('roles', 'id_list', array()))) as $key => $value){
 		if ($key == 0) continue;
-
 		$hptt = $this->get_hptt($this->hptt_page_settings, $arrRoleMembers[$key], $arrRoleMembers[$key], array('%link_url%' => $this->routing->simpleBuild('character'), '%link_url_suffix%' => '', '%with_twink%' => $this->skip_twinks, '%use_controller%' => true), 'role_'.$key);
-		
 		$this->tpl->assign_block_vars('class_row', array(
 			'CLASS_NAME'	=> $value,
 			'CLASS_ICONS'	=> $this->game->decorate('roles', $key),
@@ -251,16 +252,13 @@ if ($this->config->get('roster_classorrole') == 'role'){
 			'MEMBER_LIST'	=> $hptt->get_html_table($this->in->get('sort')),
 		));
 	}
-	
-	
+		
 } elseif($this->config->get('roster_classorrole') == 'raidgroup') {
 	$arrMembers = $this->pdh->aget('member', 'defaultrole', 0, array($this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks))));
 	$arrRaidGroups = $this->pdh->get('raid_groups', 'id_list', array());
 	foreach($arrRaidGroups as $intRaidGroupID){
 		$arrGroupMembers = $this->pdh->get('raid_groups_members', 'member_list', array($intRaidGroupID));
-				
 		$hptt = $this->get_hptt($this->hptt_page_settings, $arrGroupMembers, $arrGroupMembers, array('%link_url%' => $this->routing->simpleBuild('character'), '%link_url_suffix%' => '', '%with_twink%' => $this->skip_twinks, '%use_controller%' => true), 'raidgroup_'.$intRaidGroupID);
-		
 		$this->tpl->assign_block_vars('class_row', array(
 				'CLASS_NAME'	=> $this->pdh->get('raid_groups', 'name', array($intRaidGroupID)),
 				'CLASS_ICONS'	=> '',
@@ -272,16 +270,13 @@ if ($this->config->get('roster_classorrole') == 'role'){
 
 } else {
 	$arrMembers = $this->pdh->get('member', 'id_list', array($this->skip_inactive, $this->skip_hidden, true, $this->skip_twinks));
-	
 	$rosterClasses = $this->game->get_roster_classes();
-	
 	$arrRosterMembers = array();
 	foreach($arrMembers as $memberid){
 		$string = "";
 		foreach($rosterClasses['todisplay'] as $key => $val){
 			$string .= $this->pdh->get('member', 'profile_field', array($memberid, $this->game->get_name_for_type($val)))."_";
 		}
-	
 		$arrRosterMembers[$string][] = $memberid;
 	}
 	

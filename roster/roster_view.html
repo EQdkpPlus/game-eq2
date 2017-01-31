@@ -23,6 +23,7 @@
 			<div class="clear"></div>
 		<div id="expansions">
 		<ul>
+			<li><a href='#kas'><span>{GL_kas}</span></a></li>
 			<li><a href='#zek'><span>{GL_zek}</span></a></li>
 			<li><a href='#tot'><span>{GL_tot}</span></a></li>
 			<li><a href='#rum'><span>{GL_rum}</span></a></li>
@@ -42,6 +43,27 @@
 			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
 			<li><a href='#general'><span>{GL_general}</span></a></li>
 		</ul>
+			<div id="kas">
+			<br><center>{KAS}</center>
+			<center>
+			<!-- BEGIN kasbar -->
+			<div id="bar_guildachieves">{kasbar.BAR}</div>
+			<!-- END kasbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN kas_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{kas_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{kas_achievements.ANAME}<br /><i>{kas_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{kas_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END kas_achievements -->
+			</table>
+			</div>
 			<div id="zek">
 			<br><center>{ZEK}</center>
 			<center>
