@@ -115,8 +115,7 @@
 		$second_tradeskill = "";
 		foreach($cdata['secondarytradeskills'] as $key=>$value){
 		$second_tradeskill .= $this->jquery->ProgressBar('second_tradeskill'.$key, 0, array('total' => (int)$value['maxvalue'], 'completed' => (int)$value['totalvalue'], 'text' => ucfirst($key).' (%progress%)'));
-		}
-		$this->tpl->assign_vars(array(
+		}		foreach($cdata['ascension_list'] as $value){			$this->tpl->assign_block_vars('asc_list', array(				'NAME'=> ucfirst($value['name']),				'LEVEL'=> $value['level'],			));		}		$this->tpl->assign_vars(array(
 			'ARMORY' 		=> 1,
 			'CHAR_IMGURL'		=> $this->game->obj['daybreak']->imgurl,
 			'DATA_TRADESKILL'	=> ucfirst($tradeskill_keys[0]).' ('.$cdata['tradeskills'][$tradeskill_keys[0]]['level'].')',

@@ -28,7 +28,6 @@
 		
 		</div>
 		<div class="col9 last">
-		
 			<h1>{CHARDATA:name:prefix} {CHARDATA:name:first} {CHARDATA:name:last} {CHARDATA:name:suffix}</h1>
 			<div id="char1_tabs">
 				<ul>
@@ -42,7 +41,6 @@
 				<li><a href='#char1_tabs-8'><span>Factions</span></a></li>
 				<li><a href='#char1_tabs-9'><span>Raid Ready</span></a></li>
 				</ul>
-				
 				<div id="char1_tabs-1" style="height: 420px; overflow: auto;">
 					<table class="table fullwidth colorswitch hoverrows">
 						<tbody>
@@ -61,6 +59,11 @@
 							<tr>
 								<td>Secondary Tradeskills:</td><td>{DATA_SECOND_TRADESKILL}</td>
 							</tr>
+							<!-- BEGIN asc_list -->
+							<tr>
+								<td width="20%">Ascension Class : {asc_list.NAME}</td><td>Level: {asc_list.LEVEL}</td>
+							</tr>
+							<!-- END asc_list -->
 							<tr>
 								<td>Alternate Advancements:</td><td>{DATA_AA}</td>
 							</tr>
