@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="game" version="2.0.0">
+	<folder>eq2</folder>
+	<name>EverQuest 2</name>
+	<author>darkmaeg</author>
+	<authorEmail>webmaster@darknyc.com</authorEmail>
+	<creationDate>1427473656</creationDate>
+	<copyright>(C)2013 darkmaeg</copyright>
+	<version>2.3.3</version>
+	<level>stable</level>
+</install>

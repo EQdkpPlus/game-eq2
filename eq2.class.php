@@ -22,7 +22,7 @@ if ( !defined('EQDKP_INC') ){
 if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
 		protected static $apiLevel	= 20;
-		public $version			= '2.4.4';
+		public $version				= '2.5';
 		protected $this_game		= 'eq2';
 		protected $types			= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
 		protected $classes			= array();
@@ -31,7 +31,7 @@ if(!class_exists('eq2')) {
 		protected $filters			= array();
 		public $langs				= array('english', 'german');
 		public $objects				= array('eq2_daybreak');
-		public $no_reg_obj			= array('eq2_daybreak');
+		public $no_reg_obj			= array('eq2_daybreak');	
 
 		protected $class_dependencies = array(
 			array(
@@ -237,7 +237,7 @@ if(!class_exists('eq2')) {
 					array('name' => $this->glang('fighter', true, $lang), 'value' => 'class:2,4,10,13,16,18'),
 					array('name' => $this->glang('mage', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
 					array('name' => $this->glang('scout', true, $lang), 'value' => 'class:1,25,3,8,17,19,21'),
-
+					
 				));
 			}
 		}
