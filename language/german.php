@@ -179,6 +179,7 @@ $german_array = array(
 		'rum'								=> 'F.S. Distillery',
 		'tot'								=> 'Terrors of Thalumbra',
 		'zek'								=> 'Zek, the Scourge Wastes',
+		'kas'                 	            => 'Kunark Ascending',
 		'healermage'						=> 'Healer & Mage',
 		'fighterscout'						=> 'Fighter & Scout',
 		'uc_level'                          => 'Level',
