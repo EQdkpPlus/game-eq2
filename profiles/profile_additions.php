@@ -280,7 +280,6 @@
 		$arrTmpSpells = array();
 		foreach($cdata['spell_list'] as $value) { $arrTmpSpells[] = $value; }
 		$singularfocus = array('2662824675');
-		
 		//ER Setup
 		 switch ($classname) {
 				case 'Assassin':
@@ -399,6 +398,15 @@
 		$eresist = $cdata['resists']['elemental']['effective'];
 		if ($eresist >= $minresists) { $ermark = 'good'; }
 		else { $ermark = 'bad'; }
+		//Epic 2
+		$kaepic = '2878564578'; $kamark = 'bad';
+		$epcheck = 'Epic 2.0 NOT Completed';
+		$arrTmpAchiev = array();
+		foreach($cdata['achievements']['achievement_list'] as $acvalue) { 
+		$arrTmpAchiev[] = $acvalue;
+		if ($acvalue['id'] == $kaepic) {$kacheck = ($acvalue['completed_timestamp']);}
+		}
+		if ($kacheck != 0) {($kamark = 'good');($epcheck = 'Epic 2.0 Completed');}
 		 //Output
 		if (floor((float)$cdata['stats']['combat']['critchance']) >= $mincrit) { $cmark = 'good'; }
 		else { $cmark = 'bad'; }
@@ -430,8 +438,10 @@
 				'ERESIST'   => number_format($eresist),
 				'AAPNTS'    => $aatotal,
 				'PTPNTS'    => $aaptotal,
-				'AAMARK'     => $aamark,
-				'PTMARK'     => $ptmark,				
+				'AAMARK'    => $aamark,
+				'PTMARK'    => $ptmark,
+				'KEPMARK'   => $kamark,	
+				'EPMARK'    => $epcheck,
 			));
 		$this->tpl->add_css('
 			.spellbkg1{
