@@ -199,7 +199,7 @@ class charImporter extends page_generic {
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
 				<dt><label>'.$this->game->glang('uc_charname').'</label></dt>
-				<dd>'.new htext('charname', array('value' => (($tmpmemname) ? $tmpmemname : ''), 'size' => '25')).'</dd>
+				<dd>'.(new htext('charname', array('value' => (($tmpmemname) ? $tmpmemname : ''), 'size' => '25')))->output().'</dd>
 			</dl>';
 
 		// Server Name
@@ -208,9 +208,9 @@ class charImporter extends page_generic {
 				<dd>';
 		if($this->config->get('uc_lockserver') == 1){
 			$hmtlout .= ' @'.stripslashes($this->config->get('servername')).'<br/>';
-			$hmtlout .= new hhidden('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : '')));
+			$hmtlout .= (new hhidden('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''))))->output();
 		}else{
-			$hmtlout .= new htext('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''), 'size' => '25', 'autocomplete' => $this->game->get('realmlist')));
+			$hmtlout .= (new htext('servername', array('value' => (($this->config->get('servername')) ? stripslashes($this->config->get('servername')) : ''), 'size' => '25', 'autocomplete' => $this->game->get('realmlist'))))->output();
 		}
 		$hmtlout .= '</dd>
 			</dl>';
@@ -247,15 +247,15 @@ class charImporter extends page_generic {
 			$cdata = $chardata['character_list'][0];
 
 			// Basics
-			$hmtlout	.= new hhidden('member_id', array('value'=>$isindatabase));
-			$hmtlout	.= new hhidden('member_name', array('value'=>$isMemberName));
-			$hmtlout	.= new hhidden('member_level', array('value'=>$cdata['type']['level']));
-			$hmtlout	.= new hhidden('gender', array('value' => ucfirst($cdata['type']['gender'])));
-			$hmtlout	.= new hhidden('member_race_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races')));
-			$hmtlout	.= new hhidden('member_class_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes')));
-			$hmtlout	.= new hhidden('guild', array('value'=>$cdata['guild']['name']));
-			$hmtlout	.= new hhidden('picture', array('value'=>$cdata['id']));
-			$hmtlout	.= new hhidden('servername', array('value' => $cdata['locationdata']['world']));
+			$hmtlout	.= (new hhidden('member_id', array('value'=>$isindatabase)))->output();
+			$hmtlout	.= (new hhidden('member_name', array('value'=>$isMemberName)))->output();
+			$hmtlout	.= (new hhidden('member_level', array('value'=>$cdata['type']['level'])))->output();
+			$hmtlout	.= (new hhidden('gender', array('value' => ucfirst($cdata['type']['gender']))))->output();
+			$hmtlout	.= (new hhidden('member_race_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['raceid'], 'int', 'races'))))->output();
+			$hmtlout	.= (new hhidden('member_class_id', array('value'=>$this->game->obj['daybreak']->ConvertID((int)$cdata['type']['classid'], 'int', 'classes'))))->output();
+			$hmtlout	.= (new hhidden('guild', array('value'=>$cdata['guild']['name'])))->output();
+			$hmtlout	.= (new hhidden('picture', array('value'=>$cdata['id'])))->output();
+			$hmtlout	.= (new hhidden('servername', array('value' => $cdata['locationdata']['world'])))->output();
 
 
 			// viewable Output
@@ -277,10 +277,10 @@ class charImporter extends page_generic {
 					<dl>';
 				if(!$isindatabase){
 					if($this->user->check_auth('u_member_conn', false)){
-						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.new hradio('overtakeuser', array('value' => 1)).'</dd>';
+						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.(new hradio('overtakeuser', array('value' => 1)))->output().'</dd>';
 					}else{
-						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.new hradio('overtakeuser', array('value' => 1, 'disabled' => true)).'</dd>';
-						$hmtlout	.= new hhidden('overtakeuser', array('value' => '1'));
+						$hmtlout	.= '<dt>'.$this->user->lang('overtake_char').'</dt><dd>'.(new hradio('overtakeuser', array('value' => 1, 'disabled' => true)))->output().'</dd>';
+						$hmtlout	.= (new hhidden('overtakeuser', array('value' => '1')))->output();
 					}
 				}
 				$hmtlout	.= '

@@ -42,11 +42,11 @@ class guildImporter extends page_generic {
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
 				<dt><label>'.$this->game->glang('uc_guild_name').'</label></dt>
-				<dd>'.new htext('guildname', array('value' => $this->config->get('guildtag'), 'size' => '40')).'</dd>
+				<dd>'.(new htext('guildname', array('value' => $this->config->get('guildtag'), 'size' => '40')))->output().'</dd>
 			</dl>
 			<dl>
 				<dt><label>'.$this->game->glang('servername').'</label></dt>
-				<dd>'.new htext('servername', array('value'=> $this->config->get('servername'), 'size'=>'40', 'autocomplete' => $this->game->get('realmlist'))).'</dd>
+				<dd>'.(new htext('servername', array('value'=> $this->config->get('servername'), 'size'=>'40', 'autocomplete' => $this->game->get('realmlist'))))->output().'</dd>
 			</dl>
 			</fieldset>
 			<fieldset class="settings mediumsettings">
@@ -54,11 +54,11 @@ class guildImporter extends page_generic {
 
 				<dl>
 					<dt><label>'.$this->game->glang('uc_class_filter').'</label></dt>
-					<dd>'.new hdropdown('filter_class', array('options' => $classfilter)).'</dd>
+					<dd>'.(new hdropdown('filter_class', array('options' => $classfilter)))->output().'</dd>
 				</dl>
 				<dl>
 					<dt><label>'.$this->game->glang('uc_level_filter').'</label></dt>
-					<dd>'.new htext('filter_level', array('value' => 0, 'size' => '5')).'</dd>
+					<dd>'.(new htext('filter_level', array('value' => 0, 'size' => '5')))->output().'</dd>
 				</dl>
 			</fieldset>';
 		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
