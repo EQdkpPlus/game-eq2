@@ -85,30 +85,19 @@ $english_array = array(
 		4	=> 'Scouts',
 	),
 	'realmlist' => array(
-		'Valor', //EU Deutsch
-		'Splitpaw', //EU English
-		'Storms',	//EU Francais
-		'Sebilis', //China
+		'Antonia Bayle', //US English
+		'Halls of Fate', //US English
+		'Maj\'Dul', //US English
+		'Skyfire', //US English
+		'Thurgadin', //EU English
+		'Stormhold', //TLE
+		'Fallen Gate', //TLE
 		'Test', //Public Test Server
 		'Beta', //Public Beta Server
-		//US English
-		'Butcherblock',
-		'Nagafen',
-		'Guk',
-		'Freeport',
-		'Everfrost',
-		'Unrest',
-		'Oasis',
-		'Antonia Bayle',
-		'Permafrost',
-		'Crushbone',
-		//Russia
-		'Harla Dar',
-		'Barren Sky',
 	),
 	'lang' => array(
 		'eq2'							=> 'EverQuest II',
-		'very_light'					=> 'Cloth',
+		'very_light'				        	=> 'Cloth',
 		'light'							=> 'Leather',
 		'medium'						=> 'Chain',
 		'heavy'							=> 'Plate',
@@ -197,6 +186,12 @@ $english_array = array(
 		'core_sett_fs_gamesettings'		=> 'EverQuest II Settings',
 		'uc_faction'					=> 'Faction',
 		'uc_faction_help'				=> 'Select the default faction',
+		'uc_asc'						=> 'Ascension',
+		'uc_ascele'						=> 'Elementalist',
+		'uc_asceth'						=> 'Etherealist',
+		'uc_ascgeo'						=> 'Geomancer',
+		'uc_asctha'						=> 'Thaumaturgist',
+		'uc_ascnon'						=> 'None',
 	),
 );
 ?>
