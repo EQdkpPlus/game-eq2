@@ -77,7 +77,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$fdcount = 0; $fdtotal = 6; $koscount = 0; $kostotal = 16; $rokcount = 0; $roktotal = 9;
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
 		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6; $rumcount = 0; $rumtotal = 10;
-		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7; $kascount = 0; $kastotal = 72;
+		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7; $kascount = 0; $kastotal = 102;
 		if (isset($gdata)) {
 		function cmp($a, $b)
 		{
