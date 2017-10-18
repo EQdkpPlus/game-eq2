@@ -18,11 +18,9 @@
  *	You should have received a copy of the GNU Affero General Public License
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 define('EQDKP_INC', true);
 $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
-
 class charImporter extends page_generic {
 	public function __construct() {
 		$handler = array(
@@ -37,11 +35,9 @@ class charImporter extends page_generic {
 		$this->game->new_object('eq2_daybreak', 'daybreak', array());
 		$this->process();
 	}
-
 	public function perform_resetcache(){
 		// delete the cache folder
 		$this->game->obj['daybreak']-> DeleteCache();
-
 		// Output the success message
 		$hmtlout = '<div id="guildimport_dataset">
 						<div id="controlbox">
@@ -52,12 +48,10 @@ class charImporter extends page_generic {
 							</fieldset>
 						</div>
 					</div>';
-
 		$this->tpl->assign_vars(array(
 			'DATA'		=> $hmtlout,
 			'STEP'		=> ''
 		));
-
 		$this->core->set_vars(array(
 			'page_title'		=> $this->user->lang('raidevent_raid_guests'),
 			'header_format'		=> 'simple',
@@ -65,11 +59,9 @@ class charImporter extends page_generic {
 			'display'			=> true
 		));
 	}
-
 	public function perform_massupdate(){
 		// check permission again, cause this is for admins only
 		$this->user->check_auth('a_members_man');
-
 		$memberArry	= array();
 		$members	= $this->pdh->get('member', 'names', array());
 		if(is_array($members)){
@@ -98,13 +90,11 @@ class charImporter extends page_generic {
 						<fieldset class="settings data">
 						</fieldset>
 					</div>';
-
 		$this->tpl->add_js('
 			var chardataArry = JSON.parse(\''.json_encode($memberArry).'\');
 			function getData(i){
 				if (!i)
 					i=0;
-
 				if (chardataArry.length >= i){
 					$.post("charimporter.php'.$this->SID.'&ajax_massupdate=true&totalcount="+chardataArry.length+"&actcount="+i, chardataArry[i], function(data){
 						chardata = JSON.parse(data);
@@ -126,15 +116,12 @@ class charImporter extends page_generic {
 					});
 				}
 			}
-
 			$( "#progressbar" ).progressbar({ value: 0 }); getData();
 			');
-
 		$this->tpl->assign_vars(array(
 			'DATA'		=> $hmtlout,
 			'STEP'		=> ''
 		));
-
 		$this->core->set_vars(array(
 			'page_title'		=> $this->user->lang('raidevent_raid_guests'),
 			'header_format'		=> 'simple',
@@ -142,21 +129,21 @@ class charImporter extends page_generic {
 			'display'			=> true
 		));
 	}
-
 	public function ajax_massupdatedate(){
 		$this->config->set(array('uc_profileimported'=> $this->time->time));
 	}
-
 	public function ajax_massupdate(){
 		$char_server	= $this->pdh->get('member', 'profile_field', array($this->in->get('charid', 0), 'servername'));
 		$servername		= ($char_server != '') ? $char_server : $this->config->get('servername');
 		$chardata	= $this->game->obj['daybreak']->character($this->in->get('charname', ''), $servername, true);
-
 		if(!isset($chardata['status'])){
 			$errormsg	= '';
+			$ascactive  = 'none';
 			$cdata 		= $chardata['character_list'][0];
 			$charname	= $cdata['name']['first'];
-
+			foreach($cdata['ascension_list'] as $value){
+			 if ($value['active'] == 1) $ascactive  = ($value['name']);
+			}
 			$arrUpdateData = array(
 				'name'				=> $this->in->get('charname', ''),
 				'level'				=> $cdata['type']['level'],
@@ -166,10 +153,10 @@ class charImporter extends page_generic {
 				'class'				=> $this->game->obj['daybreak']->ConvertID($cdata['type']['classid'], 'int', 'classes'),
 				'guild'				=> $cdata['guild']['name'],
 				'picture'			=> $cdata['id'],
+				'ascension'         => ucfirst($ascactive),
 			);
 			$charicon	= $this->game->obj['daybreak']->characterIcon($cdata['id']);
 			if ($charicon == "") $charicon	= $this->server_path.'images/global/avatar-default.svg';
-
 			// insert into database
 			$info		= $this->pdh->put('member', 'addorupdate_member', array($this->in->get('charid', 0), $arrUpdateData, $this->in->get('overtakeuser')));
 			$this->pdh->process_hook_queue();
@@ -180,7 +167,6 @@ class charImporter extends page_generic {
 			$charname	= $this->in->get('charname', '');
 			$charicon	= $this->server_path.'images/global/avatar-default.svg';
 		}
-
 		die(json_encode(array(
 			'image'		=> $charicon,
 			'name'		=> $charname,
@@ -188,20 +174,17 @@ class charImporter extends page_generic {
 			'error'		=> $errormsg
 		)));
 	}
-
 	public function perform_step0(){
 		$tmpmemname = '';
 		if($this->in->get('member_id', 0) > 0){
 			$tmpmemname = $this->pdh->get('member', 'name', array($this->in->get('member_id', 0)));
 		}
-
 		// generate output
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
 				<dt><label>'.$this->game->glang('uc_charname').'</label></dt>
 				<dd>'.(new htext('charname', array('value' => (($tmpmemname) ? $tmpmemname : ''), 'size' => '25')))->output().'</dd>
 			</dl>';
-
 		// Server Name
 		$hmtlout .= '<dl>
 				<dt><label>'.$this->game->glang('servername').'</label></dt>
@@ -214,12 +197,10 @@ class charImporter extends page_generic {
 		}
 		$hmtlout .= '</dd>
 			</dl>';
-
 		$hmtlout .= '</fieldset>';
 		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
 		return $hmtlout;
 	}
-
 	public function perform_step1(){
 		$hmtlout = '';
 		if($this->in->get('member_id', 0) > 0){
@@ -240,12 +221,10 @@ class charImporter extends page_generic {
 				$is_mine	= (($hasuserid > 0) ? (($hasuserid == $this->user->data['user_id']) ? true : false) : true);	// we are a normal user
 			}
 		}
-
 		if($is_mine){
 			// Load the Armory Data
 			$chardata	= $this->game->obj['daybreak']->character($isMemberName, $isServerName, true);
 			$cdata = $chardata['character_list'][0];
-
 			// Basics
 			$hmtlout	.= (new hhidden('member_id', array('value'=>$isindatabase)))->output();
 			$hmtlout	.= (new hhidden('member_name', array('value'=>$isMemberName)))->output();
@@ -256,8 +235,6 @@ class charImporter extends page_generic {
 			$hmtlout	.= (new hhidden('guild', array('value'=>$cdata['guild']['name'])))->output();
 			$hmtlout	.= (new hhidden('picture', array('value'=>$cdata['id'])))->output();
 			$hmtlout	.= (new hhidden('servername', array('value' => $cdata['locationdata']['world'])))->output();
-
-
 			// viewable Output
 			if(!isset($chardata['status'])){
 				$charicon = $this->game->obj['daybreak']->characterIcon($cdata['id']);
@@ -266,7 +243,6 @@ class charImporter extends page_generic {
 				<div class="infobox infobox-large infobox-red clearfix">
 					<i class="fa fa-exclamation-triangle fa-4x pull-left"></i> '.$this->game->glang('uc_charfound3').'</div>
 				</div>
-
 				<fieldset class="settings mediumsettings">
 					<dl>
 						<dt><label><img src="'.$charicon.'" name="char_icon" alt="icon" height="100" align="middle" /></label></dt>
@@ -301,7 +277,6 @@ class charImporter extends page_generic {
 		}
 		return $hmtlout;
 	}
-
 	public function perform_step2(){
 		$data = array(
 			'name'				=> $this->in->get('member_name'),
@@ -326,7 +301,6 @@ class charImporter extends page_generic {
 		}
 		return $hmtlout;
 	}
-
 	public function display(){
 		$stepnumber		= ($this->config->get('servername') && $this->config->get('uc_server_loc') && $this->in->get('member_id',0) > 0 && $this->in->get('step',0) == 0) ? 1 : $this->in->get('step',0);
 		$urladdition	 = ($this->in->get('member_id',0)) ? '&amp;member_id='.$this->in->get('member_id',0) : '';
@@ -335,7 +309,6 @@ class charImporter extends page_generic {
 			'DATA'		=> $this->$funcname(),
 			'STEP'		=> ($stepnumber+1).$urladdition
 		));
-
 		$this->core->set_vars(array(
 			'page_title'		=> $this->user->lang('raidevent_raid_guests'),
 			'header_format'		=> 'simple',
@@ -344,6 +317,5 @@ class charImporter extends page_generic {
 		));
 	}
 }
-
 registry::register('charImporter');
 ?>
