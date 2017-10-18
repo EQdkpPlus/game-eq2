@@ -18,13 +18,10 @@
  *	You should have received a copy of the GNU Affero General Public License
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 define('EQDKP_INC', true);
 $eqdkp_root_path = './../../../';
 include_once ($eqdkp_root_path . 'common.php');
-
 class guildImporter extends page_generic {
-
 	public function __construct() {
 		$handler = array();
 		parent::__construct(false, $handler, array());
@@ -32,12 +29,10 @@ class guildImporter extends page_generic {
 		$this->game->new_object('eq2_daybreak', 'daybreak', array());
 		$this->process();
 	}
-
 	public function perform_step0(){
 		// classes array
 		$classfilter	= $this->game->get('classes');
 		$classfilter[0]	= $this->game->glang('uc_class_nofilter');
-
 		// generate output
 		$hmtlout = '<fieldset class="settings mediumsettings">
 			<dl>
@@ -51,7 +46,6 @@ class guildImporter extends page_generic {
 			</fieldset>
 			<fieldset class="settings mediumsettings">
 				<legend>'.$this->game->glang('uc_filter_name').'</legend>
-
 				<dl>
 					<dt><label>'.$this->game->glang('uc_class_filter').'</label></dt>
 					<dd>'.(new hdropdown('filter_class', array('options' => $classfilter)))->output().'</dd>
@@ -64,22 +58,18 @@ class guildImporter extends page_generic {
 		$hmtlout .= '<br/><button type="submit" name="submiti"><i class="fa fa-download"></i> '.$this->game->glang('uc_import_forw').'</button>';
 		return $hmtlout;
 	}
-
 	public function perform_step1(){
 		if($this->in->get('guildname', '') == ''){
 			return '<div class="infobox infobox-large infobox-red clearfix"><i class="fa fa-exclamation-triangle fa-4x pull-left"></i> <span id="error_message_txt>'.$this->game->glang('uc_imp_noguildname').'</span></div>';
 		}
-
 		//Suspend all Chars
 		if ($this->in->get('delete_old_chars',0)){
 			$this->pdh->put('member', 'suspend', array('all'));
 		}
-
 		// generate output
 		$servername = ($this->in->get('servername', '') != "") ? $this->in->get('servername', '') : $this->config->get('servername');
 		$guilddata	= $this->game->obj['daybreak']->guild($this->in->get('guildname', ''), $servername, true);
 		$this->config->set('uc_guildid', $this->in->get('guildname', ''));
-
 		if(!isset($guilddata['status'])){
 			$hmtlout = '<div id="guildimport_dataset">
 							<div id="controlbox">
@@ -94,19 +84,16 @@ class guildImporter extends page_generic {
 							<fieldset class="settings data">
 							</fieldset>
 						</div>';
-
 			$jsondata = array();
 			foreach($guilddata['character_list'] as $guildchars){
 				// filter: class
 				if($this->in->get('filter_class', 0) > 0 && $this->game->obj['daybreak']->ConvertID((int)$guildchars['type']['classid'], 'int', 'classes') != $this->in->get('filter_class', 0)){
 					continue;
 				}
-
 				// filter: level
 				if($this->in->get('filter_level', 0) > 0 && (int)$guildchars['type']['level'] < $this->in->get('filter_level', 0)){
 					continue;
 				}
-
 				// Build the array
 				$jsondata[] = array(
 					'name'		=> $guildchars['name']['first'],
@@ -118,13 +105,11 @@ class guildImporter extends page_generic {
 					'servername'=> $this->config->get('servername'),
 				);
 			}
-
 			$this->tpl->add_js('
 			var guilddataArry = JSON.parse(\''.json_encode($jsondata).'\');
 			function getData(i){
 				if (!i)
 					i=0;
-
 				if (guilddataArry.length >= i){
 					$.post("guildimporter.php'.$this->SID.'&del='.(($this->in->get('delete_old_chars',0)) ? 'true' : 'false').'&step=2&totalcount="+guilddataArry.length+"&actcount="+i, guilddataArry[i], function(data){
 						guilddata = JSON.parse(data);
@@ -146,7 +131,6 @@ class guildImporter extends page_generic {
 					});
 				}
 			}
-
 			$( "#progressbar" ).progressbar({
 				value: 0
 			});
@@ -157,16 +141,13 @@ class guildImporter extends page_generic {
 		}
 		return $hmtlout;
 	}
-
 	public function perform_step2(){
 		$strServername = $this->in->get('servername', '');
 		$intMemberID = $this->pdh->get('member', 'id', array($strMembername, array('servername' => $strServername)));
-
 		if($intMemberID){
 			$successmsg = 'available';
 			$gamecharid = $this->pdh->get('member', 'picture', array($charid));
 			$charicon = $this->game->obj['daybreak']->characterIcon($gamecharid, true);
-
 			//Revoke Char
 			if ($this->in->get('del', '') == 'true'){
 				$this->pdh->put('member', 'revoke', array($charid));
@@ -181,29 +162,24 @@ class guildImporter extends page_generic {
 				'picture'	=> $this->in->get('gamecharid', ''),
 				'servername'=> $strServername,
 			);
-
 			$charicon = $this->game->obj['daybreak']->characterIcon($this->in->get('gamecharid', ''), true);
 			$myStatus = $this->pdh->put('member', 'addorupdate_member', array(0, $dataarry));
 			$successmsg = ($myStatus) ? 'imported' : 'failed';
-
 			// reset the cache
 			$this->pdh->process_hook_queue();
 		}
-
 		die(json_encode(array(
 			'image'		=> ($charicon == '') ? $this->server_path.'images/global/avatar-default.svg' : $charicon,
 			'name'		=> $this->in->get('name', ''),
 			'success'	=> $successmsg
 		)));
 	}
-
 	public function display(){
 		$funcname = 'perform_step'.$this->in->get('step',0);
 		$this->tpl->assign_vars(array(
 			'DATA'		=> $this->$funcname(),
 			'STEP'		=> ($this->in->get('step',0)+1)
 		));
-
 		$this->core->set_vars(array(
 			'page_title'		=> $this->user->lang('raidevent_raid_guests'),
 			'header_format'		=> 'simple',
@@ -212,6 +188,5 @@ class guildImporter extends page_generic {
 		));
 	}
 }
-
 registry::register('guildImporter');
 ?>
