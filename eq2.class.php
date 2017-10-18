@@ -22,7 +22,7 @@ if ( !defined('EQDKP_INC') ){
 if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
 		protected static $apiLevel	= 20;
-		public $version				= '2.6.3';
+		public $version				= '2.7';
 		protected $this_game		= 'eq2';
 		protected $types			= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
 		protected $classes			= array();
@@ -32,7 +32,6 @@ if(!class_exists('eq2')) {
 		public $langs				= array('english', 'german');
 		public $objects				= array('eq2_daybreak');
 		public $no_reg_obj			= array('eq2_daybreak');	
-
 		protected $class_dependencies = array(
 			array(
 				'name'		=> 'faction',
@@ -152,6 +151,15 @@ if(!class_exists('eq2')) {
 		public function profilefields(){
 			$this->load_type('realmlist', array($this->lang));
 			$xml_fields = array(
+				'ascension'	=> array(
+					'type'			=> 'dropdown',
+					'category'		=> 'character',
+					'lang'			=> 'uc_asc',
+					'options'		=> array('None' => 'uc_ascnon', 'Elementalist' => 'uc_ascele', 'Etherealist' => 'uc_asceth',
+					'Geomancer' => 'uc_ascgeo', 'Thaumaturgist' => 'uc_asctha'),
+					'undeletable'	=> true,
+					'tolang'		=> true
+				),
 				'gender'	=> array(
 					'type'			=> 'dropdown',
 					'category'		=> 'character',
@@ -217,6 +225,12 @@ if(!class_exists('eq2')) {
 					'size'			=> '1',
 					'options'		=> array('yes' => 'Yes', 'no' => 'No'),
 					'default'		=> 'yes',
+				),
+				'uc_plat'	=> array(
+					'lang'			=> 'uc_plat',
+					'type'			=> 'int',
+					'size'			=> '12',
+					'options'		=> false,
 				)
 			);
 			return $settingsdata_admin;
@@ -241,7 +255,6 @@ if(!class_exists('eq2')) {
 				));
 			}
 		}
-
 		public function install($install=false){}
 	}
 }
