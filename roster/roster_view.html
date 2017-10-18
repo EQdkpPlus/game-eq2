@@ -23,6 +23,7 @@
 			<div class="clear"></div>
 		<div id="expansions">
 		<ul>
+			<li><a href='#pop'><span>{GL_pop}</span></a></li>
 			<li><a href='#kas'><span>{GL_kas}</span></a></li>
 			<li><a href='#zek'><span>{GL_zek}</span></a></li>
 			<li><a href='#tot'><span>{GL_tot}</span></a></li>
@@ -43,6 +44,27 @@
 			<li><a href='#classic'><span>{GL_eqclassic}</span></a></li>
 			<li><a href='#general'><span>{GL_general}</span></a></li>
 		</ul>
+			<div id="pop">
+			<br><center>{POP}</center>
+			<center>
+			<!-- BEGIN popbar -->
+			<div id="bar_guildachieves">{popbar.BAR}</div>
+			<!-- END popbar -->
+			</center>
+			<div class="clear"></div>
+			<table width="100%" class="colorswitch hoverrows" cellspacing="0" cellpadding="6">
+			<!-- BEGIN pop_achievements -->	
+			<tr>
+			<td class="nowrap"><div id='achicon'>{pop_achievements.AICON}</div>
+			</td>
+			<td class="nowrap">{pop_achievements.ANAME}<br /><i>{pop_achievements.ADESC}</i>
+			</td>
+			<td class="nowrap">{pop_achievements.ADATE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			</tr>
+			<!-- END pop_achievements -->
+			</table>
+			</div>
 			<div id="kas">
 			<br><center>{KAS}</center>
 			<center>
