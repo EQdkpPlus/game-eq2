@@ -78,6 +78,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$sfcount = 0; $sftotal = 7; $classiccount = 0; $classictotal = 14; $sscount = 0; $sstotal = 2; 
 		$tovcount = 0; $tovtotal = 36; $tsocount = 0; $tsototal = 6; $rumcount = 0; $rumtotal = 10;
 		$totcount = 0; $tottotal = 31; $zekcount = 0; $zektotal = 7; $kascount = 0; $kastotal = 102;
+		$popcount = 0; $poptotal = 147;
 		if (isset($gdata)) {
 		function cmp($a, $b)
 		{
@@ -113,6 +114,7 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		if ($expan == "Terrors of Thalumbra") {($expans = "tot");($totcount = $totcount + 1);}
 		if ($expan == "Zek, the Scourge Wastes") {($expans = "zek");($zekcount = $zekcount + 1);}
 		if ($expan == "Kunark Ascending") {($expans = "kas");($kascount = $kascount + 1);}
+		if ($expan == "Planes of Prophecy") {($expans = "pop");($popcount = $popcount + 1);}
 		$ename = ($ad['name']);
 		$this->tpl->assign_block_vars($expans.'_achievements', array(
 				'AICON' => $aic,
@@ -177,6 +179,9 @@ if ($this->config->get('uc_showachieve') == 'yes') {
 		$this->tpl->assign_block_vars('kasbar', array(
 		'BAR'	=> $this->jquery->progressbar('kasbar', 0, array('completed' => $kascount, 'total' => $kastotal,'text' => '%progress% (%percentage%)')),
 		));
+		$this->tpl->assign_block_vars('popbar', array(
+		'BAR'	=> $this->jquery->progressbar('popbar', 0, array('completed' => $popcount, 'total' => $poptotal,'text' => '%progress% (%percentage%)')),
+		));
 		$this->jquery->Tab_header('eq2_roster');
 		$this->jquery->Tab_header('expansions');
 		$this->tpl->assign_vars(array(
@@ -206,6 +211,7 @@ $this->tpl->assign_vars(array(
 		'TOT'    	=> '<img src="../../games/eq2/profiles/images/expansions/tot.png" class="gameicon"/>',
 		'ZEK'    	=> '<img src="../../games/eq2/profiles/images/expansions/zek.png" class="gameicon"/>',
 		'KAS'    	=> '<img src="../../games/eq2/profiles/images/expansions/kas.png" class="gameicon"/>',
+		'POP'    	=> '<img src="../../games/eq2/profiles/images/expansions/pop.png" class="gameicon"/>',
 		'REALM'	 	=> $this->config->get('servername'),
 		'GUILD'		=> $this->config->get('guildtag'),
 		'LEVEL'		=> $level = $guilddata['guild_list'][0]['level'],
@@ -217,7 +223,7 @@ $this->tpl->assign_vars(array(
 		foreach ($achieves as $achieve) 
 		{ $achievecount = $achievecount + 1; 
 		}
- 			$total = 412;
+ 			$total = 657;
 			$this->tpl->assign_block_vars('guildachievs', array(
 				'TOTAL'	=> 'Total Completed',
 				'BAR'	=> $this->jquery->progressbar('guildachievs_'.$id, 0, array('completed' => $achievecount, 'total' => $total,'text' => '%progress% (%percentage%)')),
