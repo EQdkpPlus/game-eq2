@@ -1,19 +1,22 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2009
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 if ( !defined('EQDKP_INC') ){
@@ -51,7 +54,7 @@ $german_array = array(
 	),
 	'races' => array(
 		0	=> 'Unbekannt',
-		21  => 'Aerakyn'
+		21  => 'Aerakyn',
 		18	=> 'Arasai',
 		4	=> 'Barbar',
 		7	=> 'Dunkelelf',
@@ -79,32 +82,20 @@ $german_array = array(
 		'neutral'	=> 'Neutral'
 	),
 	'roles' => array(
-		1 => 'Priester',
+		1 => 'Heiler',
 		2 => 'Kämpfer',
 		3 => 'Magier',
 		4 => 'Kundschafter',
 	),
 	'realmlist' => array(
-		'Valor', //EU Deutsch
-		'Splitpaw', //EU English
-		'Storms',	//EU Francais
-		'Sebilis', //China
+		'Antonia Bayle', //US English
+		'Halls of Fate', //US English
+		'Maj\'Dul', //US English
+		'Skyfire', //US English
+		'Thurgadin', //EU English
+		'Stormhold', //TLE
 		'Test', //Public Test Server
 		'Beta', //Public Beta Server
-		//US English
-		'Butcherblock',
-		'Nagafen',
-		'Guk',
-		'Freeport',
-		'Everfrost',
-		'Unrest',
-		'Oasis',
-		'Antonia Bayle',
-		'Permafrost',
-		'Crushbone',
-		//Russia
-		'Harla Dar',
-		'Barren Sky',
 	),
 	'lang' => array(
 		'eq2'								=> 'EverQuest II',
@@ -116,7 +107,6 @@ $german_array = array(
 		'fighter'							=> 'Kämpfer',
 		'mage'								=> 'Magier',
 		'scout'								=> 'Kundschafter',
-		
 		// profile additions
 		'uc_gender'							=> 'Geschlecht',
 		'uc_male'							=> 'Männlich',
@@ -164,7 +154,6 @@ $german_array = array(
 		'uc_imp_failed'						=> 'Beim Import der Daten trat ein Fehler auf. Bitte versuche es erneut.',
 		"uc_updat_armory" 					=> "Von Daybreak aktualisieren",
 		'uc_charname'						=> 'Charaktername',
-		'servername'						=> 'Server\'s name',
 		'uc_charfound'						=> "Der Charakter  <b>%1\$s</b> wurde gefunden.",
 		'uc_charfound2'						=> "Das letzte Update dieses Charakters war am <b>%1\$s</b>.",
 		'uc_charfound3'						=> 'ACHTUNG: Beim Import werden bisher gespeicherte Daten überschrieben!',
@@ -187,17 +176,26 @@ $german_array = array(
 		'malice'                  	        => 'Altar der Bosheit',
 		'general'                           => 'General',
 		'avatar'							=> 'Avatars',
+		'rum'								=> 'F.S. Distillery',
+		'tot'								=> 'Terrors of Thalumbra',
+		'zek'								=> 'Zek, the Scourge Wastes',
+		'kas'                 	            => 'Kunark Ascending',
+		'pop'                  		        => 'Planes of Prohecy',
 		'healermage'						=> 'Healer & Mage',
 		'fighterscout'						=> 'Fighter & Scout',
 		'uc_level'                          => 'Level',
 		'no_data'							=> 'Zu diesem Char konnten keine Informationen abgerufen werden. Bitte überprüfe ob der richtige Server in den Einstellungen eingestellt ist.',
 		'total_completed'					=> 'Abgeschlossen',
 		'uc_showachieve'					=> 'Erfolge anzeigen',
-
-		// Admin Settings
-		'core_sett_fs_gamesettings'		=> 'EverQuest II Einstellungen',
-		'uc_faction'					=> 'Fraktion',
-		'uc_faction_help'				=> 'Wähle die Standard-Fraktion',
+		'core_sett_fs_gamesettings'			=> 'EverQuest II Einstellungen',
+		'uc_faction'						=> 'Fraktion',
+		'uc_faction_help'					=> 'Wähle die Standard-Fraktion',
+		'uc_asc'							=> 'Ascension',
+		'uc_ascele'							=> 'Elementalist',
+		'uc_asceth'							=> 'Etherealist',
+		'uc_ascgeo'							=> 'Geomancer',
+		'uc_asctha'							=> 'Thaumaturgist',
+		'uc_ascnon'							=> 'None'
 	),
 );
 ?>

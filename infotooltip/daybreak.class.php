@@ -173,7 +173,7 @@ if(!class_exists('daybreak')) {
 		$content .= "</div>\n";
 		$content .= "<div class='itemd_blue'>";
 		$attackspeed = 0; $dps = 0; $doubleattackchance = 0; $critbonus = 0; $spellweaponattackspeed = 0;
-		$spellweapondamagebonus = 0; $spelldoubleattackchance = 0; 
+		$spellweapondamagebonus = 0; $spelldoubleattackchance = 0;  $ferver = 0; $resolve = 0;
 		$spellweapondps = 0; $spellweapondoubleattackchance = 0; $weapondamagebonus = 0; $basemodifier = 0; $maxhpperc = 0;
 		$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0;
 		for ($j = 1; $j <= $lev; $j++) {
@@ -229,6 +229,9 @@ if(!class_exists('daybreak')) {
 		if (!empty(${"m{$j}"}->{'hategainmod'})) {
 		$hategainmod = $hategainmod + (${"m{$j}"}->{'hategainmod'});
 		}
+		if (!empty(${"m{$j}"}->{'fervor'})) {
+		$fervor = $fervor + (${"m{$j}"}->{'fervor'});
+		}		
 		if (!empty(${"m{$j}"}->{'all'})) {
 		$all = $all + (${"m{$j}"}->{'all'});
 		}
@@ -250,7 +253,9 @@ if(!class_exists('daybreak')) {
 		if ($spellcastpct != 0) { $content .= $spellcastpct . "% Ability Casting Speed<br>"; }
 		if ($spelltimereusespellonly != 0) { $content .= $spelltimereusespellonly . "% Spell Reuse Speed<br>"; }
 		if ($hategainmod !=0) { $content .= $hategainmod . "% Hate Gain<br>"; }
+		if ($fervor !=0) { $content .= $fervor . " Fervor<br>"; }
 		if ($all !=0) { $content .= "+". $all . " Ability Modifier<br>"; }
+		
 		return $content;
 		}
 		else { return ""; }
@@ -349,16 +354,18 @@ if(!class_exists('daybreak')) {
 				$tierShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(200, 89, 230), 0px 0px 4px rgb(200, 89, 230);";
 			}
 			$presColor = "#52d017";
-			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(40, 87, 19), 0px 0px 4px rgb(40, 87, 19);";	
+			$presShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(213,105,0), 0px 0px 4px rgb(82, 208, 23)";
+			$ethColor = "#ffc993";
+			$ethShadow = "text-shadow: -1px 0px 0px rgb(0, 0, 0), 0px 1px 0px rgb(0, 0, 0), 1px 0px 0px rgb(0, 0, 0), 0px -1px 0px rgb(0, 0, 0), 0px 0px 4px rgb(223, 83, 95), 0px 0px 4px rgb(223, 83, 95);";
 			$pr = "";
 			$rel = "";
 			$unique = $item->{'unique_equipment_group'};
 			$relic = $unique->{'text'};
 			$prestige = $unique->{'prestige'};
-			
 			if ($relic == "RELIC") { $rel = ", RELIC"; }
+			if ($relic == "GREATER RELIC") { $rel = ", GREATER RELIC"; }
+			if ($relic == "ETHEREAL") { $rel = ", ETHEREAL"; }
 			if ($prestige == "true") { $pr = "<div style='color: $presColor; $presShadow' class='itemd_tier'>PRESTIGE</div>"; }
-			
 			return "<div style='color: $tierColor; $tierShadow' class='itemd_tier'>$tierName".$rel."</div>".$pr;
 		}
 		
@@ -414,6 +421,24 @@ if(!class_exists('daybreak')) {
 					if ($count % 5 == 0) { $content .= "</div>\n"; }
 				}
 			}
+			
+			
+			$count2 = 0;
+			foreach($modifiers as $key => $value) {
+				$type = $value->{'type'};
+				if ($type == "maxpool") {
+					if ($count2 % 5 == 0) {
+						$content .= "<br><div class='itemd_green'>";
+					}
+					$content .= "+" . strtoupper($value->{'value'}) . " ";
+					$content .= $value->{'displayname'} . " &nbsp;";
+					$count2++;
+					if ($count2 % 5 == 0) { $content .= "</div>\n"; }
+				}
+			}
+			
+			
+			
 			}
 			return $content;
 		}
@@ -476,8 +501,20 @@ if(!class_exists('daybreak')) {
 					}
 					# format the value
 					$content .= sprintf ("%01.1f", $value->{'value'});
-					$content .= '% ' . $value->{'displayname'} . " <br/>";
+					if ($value->{'displayname'} == 'Fervor' || $value->{'displayname'} == 'Resolve') {$content .= ' ' . $value->{'displayname'} . " <br/>"; } else {
+					$content .= '% ' . $value->{'displayname'} . " <br/>";}
 				}
+				
+				
+				if ($type == "overcapmod") {
+					$count++;
+					if ($count == 1) {
+						$content .= "<div class='itemd_orange'>";
+					}
+				$content .= "<font color='f5650f'>".number_format ( $value->{'value'} ) ." ". $value->{'displayname'} . " Overcap </font><br/>";
+				}
+				
+				
 				if ($type == "normalizedmod") {
 					$count++;
 					if ($count == 1) {
@@ -728,6 +765,7 @@ if(!class_exists('daybreak')) {
 			$content .= "</div>";
 			return $content;
 		}
+		
 		protected function ItemTypeMount($item)
 		{
 			$content .= "<br>";
@@ -848,13 +886,13 @@ if(!class_exists('daybreak')) {
 					$agi = 0; $int = 0; $sta = 0; $str = 0; $wis = 0; 
 					$attackspeed = 0; $dps = 0; $doubleattackchance = 0; $critbonus = 0; $spellweaponattackspeed = 0; $flurry = 0; 
 					$spellweapondps = 0; $spellweapondoubleattackchance = 0; $weapondamagebonus = 0; $basemodifier = 0; $maxhpperc = 0;
-					$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0;
-					$spelldoubleattackchance = 0; $mana = 0; $effect = 0;
+					$armormitigationincrease = 0; $strikethrough = 0; $spellcastpct = 0; $spelltimereusespellonly = 0; $hategainmod = 0; $all = 0; $spelldoubleattackchance = 0; $mana = 0; $effect = 0; $ferv = 0; $oferv = 0; $ocb = 0;
 					if (!empty($set->{'agi'})) { $agi = ($set->{'agi'}); }
 					if (!empty($set->{'int'})) { $int = ($set->{'int'}); }
 					if (!empty($set->{'sta'})) { $sta = ($set->{'sta'}); }
 					if (!empty($set->{'str'})) { $str = ($set->{'str'}); }
 					if (!empty($set->{'wis'})) { $wis = ($set->{'wis'}); }
+					if (!empty($set->{'fervor'})) { $ferv = ($set->{'fervor'}); }
 					if (!empty($set->{'attackspeed'})) { $attackspeed = ($set->{'attackspeed'}); }
 					if (!empty($set->{'dps'})) { $dps = ($set->{'dps'}); }
 					if (!empty($set->{'flurry'})) { $flurry = ($set->{'flurry'}); }
@@ -875,11 +913,15 @@ if(!class_exists('daybreak')) {
 					if (!empty($set->{'hategainmod'})) { $hategainmod = ($set->{'hategainmod'}); }
 					if (!empty($set->{'all'})) { $all = ($set->{'all'}); }
 					if (!empty($set->{'mana'})) { $mana = ($set->{'mana'}); }
+					if (!empty($set->{'critbonus_overcap'})) { $ocb = ($set->{'Crit Bonus Overcap'}); } 
+					if (!empty($set->{'fervor_overcap'})) { $oferv = ($set->{'Fervir Overcap'}); }
 					if ($int != 0) { $content .= "  +" . $int . " int&nbsp&nbsp"; }
 					if ($wis != 0) { $content .= "  +" . $wis . " wis&nbsp&nbsp"; }
 					if ($str != 0) { $content .= "  +" . $str . " str&nbsp&nbsp"; }
 					if ($agi != 0) { $content .= "  +" . $agi . " agi&nbsp&nbsp"; }
 					if ($sta != 0) { $content .= "  +" . $sta . " sta&nbsp&nbsp"; }
+					if ($ocb != 0) { $content .= "<font color='f5650f'>  +" . $ocb . " sta&nbsp&nbsp</font>"; }
+					if ($oferv != 0) { $content .= "<font color='f5650f'>  +" . $oferv . " sta&nbsp&nbsp</font>"; }
 					if ($attackspeed != 0) { $content .= "  +" . $attackspeed . "%&nbspAttack&nbspSpeed&nbsp&nbsp"; }
 					if ($dps != 0) { $content .= "  +" . $dps . "&nbspDamage&nbspPer&nbspSecond&nbsp&nbsp"; }
 					if ($doubleattackchance != 0) { $content .= "  +" . $doubleattackchance . "%&nbspMulti&nbspAttack&nbspChance&nbsp&nbsp"; }
@@ -899,7 +941,8 @@ if(!class_exists('daybreak')) {
 					if ($hategainmod !=0) { $content .= "  +" . $hategainmod . "%&nbspHate&nbspGain&nbsp&nbsp"; }
 					if ($flurry !=0) { $content .= "  +" . $flurry . "%&nbspFlurry&nbsp&nbsp"; }
 					if ($spelldoubleattackchance !=0) { $content .= "  +" . $spelldoubleattackchance . "%&nbspDoublecast Chance&nbsp&nbsp"; }
-					if ($mana !=0) { $content .= "  +" . $mana . "&nbspPower&nbsp&nbsp"; }			
+					if ($mana !=0) { $content .= "  +" . $mana . "&nbspPower&nbsp&nbsp"; }	
+					if ($ferv !=0) { $content .= "  +" . $ferv . "&nbspFervor&nbsp&nbsp"; }	
 		if (!empty($set->{'effect'})) { $content .= "<br>&nbsp".($set->{'effect'}). " <br>"; }
 	    for ($d = 1; $d <= 30; $d++) {
 		if (!empty($set->{'descriptiontag_'.$d})) { $content .= "&nbsp".($set->{'descriptiontag_'.$d})."<br>"; }		

@@ -1,19 +1,22 @@
 <?php
- /*
- * Project:		EQdkp-Plus
- * License:		Creative Commons - Attribution-Noncommercial-Share Alike 3.0 Unported
- * Link:		http://creativecommons.org/licenses/by-nc-sa/3.0/
- * -----------------------------------------------------------------------
- * Began:		2009
- * Date:		$Date$
- * -----------------------------------------------------------------------
- * @author		$Author$
- * @copyright	2006-2011 EQdkp-Plus Developer Team
- * @link		http://eqdkp-plus.com
- * @package		eqdkp-plus
- * @version		$Rev$
- * 
- * $Id$
+/*	Project:	EQdkp-Plus
+ *	Package:	Everquest2 game package
+ *	Link:		http://eqdkp-plus.eu
+ *
+ *	Copyright (C) 2006-2015 EQdkp-Plus Developer Team
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU Affero General Public License as published
+ *	by the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU Affero General Public License for more details.
+ *
+ *	You should have received a copy of the GNU Affero General Public License
+ *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 if ( !defined('EQDKP_INC') ){
@@ -91,13 +94,12 @@ $english_array = array(
 		'Skyfire', //US English
 		'Thurgadin', //EU English
 		'Stormhold', //TLE
-		'Fallen Gate', //TLE
 		'Test', //Public Test Server
 		'Beta', //Public Beta Server
 	),
 	'lang' => array(
 		'eq2'							=> 'EverQuest II',
-		'very_light'				        	=> 'Cloth',
+		'very_light'					=> 'Cloth',
 		'light'							=> 'Leather',
 		'medium'						=> 'Chain',
 		'heavy'							=> 'Plate',
@@ -115,7 +117,7 @@ $english_array = array(
 		'uc_class'						=> 'Class',
 		'uc_import_guild'				=> 'Import Guild',
 		'uc_import_guild_help'			=> 'Import all characters of a guild',
-		'servername'					=> 'Name of your realmserver',
+		'servername'					=> 'Name of your Server',
 		'uc_lockserver'					=> 'Lock the realm name for users',
 		'uc_update_all'					=> 'Update all characters',
 		'uc_importer_cache'				=> 'Reset importer cache',
@@ -175,14 +177,17 @@ $english_array = array(
 		'malice'                        => 'Altar of Malice',
 		'general'                       => 'General',
 		'avatar'						=> 'Avatars',
+		'rum'							=> 'F.S. Distillery',
+		'tot'							=> 'Terrors of Thalumbra',
+		'zek'							=> 'Zek, the Scourge Wastes',
+		'kas'                           => 'Kunark Ascending',
+		'pop'                           => 'Planes of Prohecy',
 		'healermage'					=> 'Healer & Mage',
 		'fighterscout'					=> 'Fighter & Scout',
 		'no_data'						=> 'No Data.',
 		'total_completed'				=> 'Total Completed',
 		'uc_level'                      => 'Level',
 		'uc_showachieve'				=> 'Show Guild Achievements in Roster Page? (Can slow down loading time)',
-
-		// Admin Settings
 		'core_sett_fs_gamesettings'		=> 'EverQuest II Settings',
 		'uc_faction'					=> 'Faction',
 		'uc_faction_help'				=> 'Select the default faction',
@@ -191,7 +196,7 @@ $english_array = array(
 		'uc_asceth'						=> 'Etherealist',
 		'uc_ascgeo'						=> 'Geomancer',
 		'uc_asctha'						=> 'Thaumaturgist',
-		'uc_ascnon'						=> 'None',
-	),
+		'uc_ascnon'						=> 'None'
+		),
 );
 ?>
