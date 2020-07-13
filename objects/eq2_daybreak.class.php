@@ -25,8 +25,8 @@ if ( !defined('EQDKP_INC') ){
 
 class eq2_daybreak {
 
-	protected $apiurl		= 'http://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/';
-	public $imgurl			= 'http://census.daybreakgames.com/s:eqdkpplus/img/eq2/';
+	protected $apiurl		= 'https://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/';
+	public $imgurl			= 'https://census.daybreakgames.com/s:eqdkpplus/img/eq2/';
 	private $chariconUpdates = 0;
 	private $chardataUpdates = 0;
 	

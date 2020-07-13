@@ -22,7 +22,7 @@ if ( !defined('EQDKP_INC') ){
 if(!class_exists('eq2')) {
 	class eq2 extends game_generic {
 		protected static $apiLevel	= 20;
-		public $version				= '2.7';
+		public $version				= '3.0';
 		protected $this_game		= 'eq2';
 		protected $types			= array('classes', 'races', 'factions', 'roles', 'filters', 'realmlist');
 		protected $classes			= array();
@@ -147,108 +147,6 @@ if(!class_exists('eq2')) {
 			parent::__construct();
 			$this->pdh->register_read_module($this->this_game, $this->path . 'pdh/read/'.$this->this_game);
 		}
-		
-				public function cronjobOptions(){
-			$arrOptions = array(
-					'char_import_ranks_level'	=> array(
-							'lang'	=> 'Import characters with a level higher than',
-							'name'	=> 'char_import_ranks_level',
-							'type'	=> 'text',
-					),
-			);
-			return $arrOptions;
-		}
-		
-		public function cronjob($arrParams = array()){
-			//Guildimport
-			$servername = unsanitize($this->config->get('servername'));
-			$guildname = unsanitize($this->config->get('guildtag'));
-			
-			$this->game->new_object('eq2_daybreak', 'daybreak');
-			$guilddata	= $this->game->obj['daybreak']->guild($guildname, $servername, true);
-						
-			if($guilddata && !isset($guilddata['status'])){
-				foreach($guilddata['character_list'] as $guildchars){
-					$jsondata = array(
-							'name'		=> $guildchars['name']['first'],
-							'class'		=> (int)$guildchars['type']['classid'],
-							'race'		=> (int)$guildchars['type']['raceid'],
-							'level'		=> (int)$guildchars['type']['level'],
-							'gamecharid'=> (string)$guildchars['id'],
-							//Take the config servername, until we get it for the chars
-							'servername'=> $servername,
-					);
-					
-					
-					//char available
-					$intMemberID = $this->pdh->get('member', 'id', array($jsondata['name'], array('servername' => $jsondata['servername'])));
-					
-					if(!$intMemberID){
-						if ((int)$arrParams['char_import_ranks_level'] > 0 && (int)$jsondata['level'] < (int)$arrParams['char_import_ranks_level']) {
-							continue;
-						}
-						
-						//Logging is still active, because its a new char
-						$myStatus = $this->pdh->put('member', 'addorupdate_member', array(0, $jsondata));
-						
-						echo "<br/>add member ".$jsondata['name'];
-						
-						// reset the cache
-						$this->pdh->process_hook_queue();
-					}
-				}
-				
-			}
-			
-			//Char update
-			
-			$ratepersecond = 100;
-			$rate 		= 1000000/$ratepersecond;
-			
-			$arrMemberIDs = $this->pdh->get('member', 'id_list', array());
-			shuffle($arrMemberIDs);
-			foreach($arrMemberIDs as $memberID){
-				$strMemberName = $this->pdh->get('member', 'name', array($memberID));
-				if (strlen($strMemberName)){
-					$char_server	= $this->pdh->get('member', 'profile_field', array($memberID, 'servername'));
-					$servername		= ($char_server != '') ? $char_server : $this->config->get('servername');
-					
-					$chardata	= $this->game->obj['daybreak']->character($strMemberName, $servername, true);
-					if(!isset($chardata['status'])){
-						$errormsg	= '';
-						$ascactive  = 'none';
-						$cdata 		= $chardata['character_list'][0];
-						$charname	= $cdata['name']['first'];
-						foreach($cdata['ascension_list'] as $value){
-							if ($value['active'] == 1) $ascactive  = ($value['name']);
-						}
-						$arrUpdateData = array(
-								'name'				=> $charname,
-								'level'				=> $cdata['type']['level'],
-								'gender'			=> $this->in->get('gender', 'male'),
-								'gender'            => ucfirst($cdata['type']['gender']),
-								'race'				=> $this->game->obj['daybreak']->ConvertID($cdata['type']['raceid'], 'int', 'races'),
-								'class'				=> $this->game->obj['daybreak']->ConvertID($cdata['type']['classid'], 'int', 'classes'),
-								'guild'				=> $cdata['guild']['name'],
-								'picture'			=> $cdata['id'],
-								'ascension'         => ucfirst($ascactive),
-						);
-						$charicon	= $this->game->obj['daybreak']->characterIcon($cdata['id']);
-						if ($charicon == "") $charicon	= $this->server_path.'images/global/avatar-default.svg';
-						// insert into database
-						$info		= $this->pdh->put('member', 'addorupdate_member', array($memberID, $arrUpdateData, 0));
-						$this->pdh->process_hook_queue();
-						
-						echo "<br/>update memberid ".$memberID;
-					}
-					
-					if($rate > 0){
-						usleep($rate);
-					}
-					
-				}
-			}
-		}
 
 		public function profilefields(){
 			$this->load_type('realmlist', array($this->lang));
@@ -314,25 +212,6 @@ if(!class_exists('eq2')) {
 					'type'			=> 'radio',
 					'size'			=> false,
 					'options'		=> false,
-				),
-				'uc_resists'	=> array(
-					'name'		=> 'uc_resists',
-					'type'		=> 'text',
-					'size'		=> '10',
-					'options'	=> false,
-				),
-				'uc_showachieve'	=> array(
-					'lang'			=> 'uc_showachieve',
-					'type'			=> 'dropdown',
-					'size'			=> '1',
-					'options'		=> array('yes' => 'Yes', 'no' => 'No'),
-					'default'		=> 'yes',
-				),
-				'uc_plat'	=> array(
-					'lang'			=> 'uc_plat',
-					'type'			=> 'int',
-					'size'			=> '12',
-					'options'		=> false,
 				)
 			);
 			return $settingsdata_admin;
@@ -353,7 +232,6 @@ if(!class_exists('eq2')) {
 					array('name' => $this->glang('fighter', true, $lang), 'value' => 'class:2,4,10,13,16,18'),
 					array('name' => $this->glang('mage', true, $lang), 'value' => 'class:5,6,11,15,23,24'),
 					array('name' => $this->glang('scout', true, $lang), 'value' => 'class:1,25,3,8,17,19,21'),
-					
 				));
 			}
 		}

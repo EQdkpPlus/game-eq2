@@ -181,6 +181,7 @@ $english_array = array(
 		'tot'							=> 'Terrors of Thalumbra',
 		'zek'							=> 'Zek, the Scourge Wastes',
 		'kas'                           => 'Kunark Ascending',
+		'pop'                           => 'Planes of Prohecy',
 		'healermage'					=> 'Healer & Mage',
 		'fighterscout'					=> 'Fighter & Scout',
 		'no_data'						=> 'No Data.',
@@ -190,6 +191,12 @@ $english_array = array(
 		'core_sett_fs_gamesettings'		=> 'EverQuest II Settings',
 		'uc_faction'					=> 'Faction',
 		'uc_faction_help'				=> 'Select the default faction',
+		'uc_asc'						=> 'Ascension',
+		'uc_ascele'						=> 'Elementalist',
+		'uc_asceth'						=> 'Etherealist',
+		'uc_ascgeo'						=> 'Geomancer',
+		'uc_asctha'						=> 'Thaumaturgist',
+		'uc_ascnon'						=> 'None'
 		),
 );
 ?>
