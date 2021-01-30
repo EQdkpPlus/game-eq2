@@ -78,8 +78,10 @@ if(!class_exists('daybreak')) {
 			$item['link'] = $url;
 			$data = $this->puf->fetch($item['link']);
 			$itemdata = json_decode($data);
+
 			if ($itemdata){
 				$myItem = $itemdata->{'item_list'}[0];
+
 				if ($myItem){
 					$content = $this->GenerateItemStatsHTML($myItem);
 					$template_html = trim(file_get_contents($this->root_path.'games/eq2/infotooltip/templates/eq2_daybreak_popup.tpl'));
@@ -88,6 +90,7 @@ if(!class_exists('daybreak')) {
 					$item['lang'] = $lang;
 					$item['icon'] = $myItem->{'iconid'};
 					$item['name'] = $myItem->{'displayname'};
+									
 					return $item;
 				}
 			}
@@ -112,22 +115,26 @@ if(!class_exists('daybreak')) {
 				
 		protected function ItemDescription($item)
 		{
-		//$description = $item->{'description'};
-		$description=htmlspecialchars_decode($item->{'description'});
-					if (substr($description, 0, 2) == '\#') { 
-						$desccolor   = substr($description,1,7);
-						$description = substr($description,8);
-						$description = str_replace("\\/c","",$description);
-						$description = "<span style='color:" . $desccolor . ";'>" . $description . "</span>";
-					}
-		if (is_string($description)) {
-		return "<div class='itemd_desc'>" . $description . "</div>\n";
-		} else { return ""; }
+		    if(is_string($item->{'description'})){
+		        $description=htmlspecialchars_decode($item->{'description'});
+		        if (substr($description, 0, 2) == '\#') {
+		            $desccolor   = substr($description,1,7);
+		            $description = substr($description,8);
+		            $description = str_replace("\\/c","",$description);
+		            $description = "<span style='color:" . $desccolor . ";'>" . $description . "</span>";
+		        }
+		        if (is_string($description)) {
+		            return "<div class='itemd_desc'>" . $description . "</div>\n";
+		        }
+		    } else {
+		        return "";
+		    }
+		    
 		}
 			
 		protected function GreenAdornMax($item)
 		{
-		if (array_key_exists('growth_table',$item))
+		    if (property_exists($item, 'growth_table'))
 		{
 		    $content .= "<br><div style='width: 80px; float: left; color: white;'>Level</div>";
 			$itemLevel = $item->{'leveltouse'};
@@ -267,7 +274,8 @@ if(!class_exists('daybreak')) {
 			$typeInfo = $item->{'typeinfo'};
 			$growth = $typeInfo->{'growthdescription'};
 			$growthinfo = $growth->{'growthdescription'};
-			if (array_key_exists('growth_table',$item)) { 
+			
+			if (property_exists($item, 'growth_table')) { 
 			$content = "<div class='itemd_desc'><font color='yellow'>" . $growthinfo . "</font></div>"; }
 			else { $content = ""; }
 		return $content;
@@ -405,7 +413,7 @@ if(!class_exists('daybreak')) {
 			$typeInfo = $item->{'typeinfo'};
 			$growth = $typeInfo->{'growthdescription'};
 			$growthinfo = $growth->{'growthdescription'};
-			if (array_key_exists('growth_table',$item)) { $content = ""; } 
+			if (property_exists($item, 'growth_table')) { $content = ""; } 
 			else {
 			$modifiers = $item->{'modifiers'};
 			$count = 0;
