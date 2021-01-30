@@ -28,7 +28,7 @@ if(!class_exists('daybreak')) {
 		public function __construct($init=false, $config=false, $root_path=false, $cache=false, $puf=false, $pdl=false){
 			parent::__construct($init, $config, $root_path, $cache, $puf, $pdl);
 			$g_settings = array(
-				'eq2' => array('icon_loc' => 'https://census.daybreakgames.coms:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
+				'eq2' => array('icon_loc' => 'https://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/', 'icon_ext' => '/item/', 'default_icon' => 'unknown'),
 			);
 			$this->settings = array(
 				'itt_icon_loc' => array(
@@ -57,7 +57,7 @@ if(!class_exists('daybreak')) {
 		private function getItemIDfromUrl($itemname, $lang, $searchagain=0){
 			$searchagain++;
 			$itemInfo = urlencode($itemname);
-			$link = 'https://census.daybreakgames.coms:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
+			$link = 'https://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/?displayname=' . $itemInfo;
 			$data = $this->puf->fetch($link);
 			$this->searched_langs[] = $lang;
 			$itemData = json_decode($data);
@@ -74,7 +74,7 @@ if(!class_exists('daybreak')) {
 		protected function getItemData($item_id, $lang, $itemname='', $type='items'){
 			$item = array('id' => $item_id);
 			if(!$item_id) return null;
-			$url = 'https://census.daybreakgames.coms:eqdkpplus/json/get/eq2/item/' . $item['id'];
+			$url = 'https://census.daybreakgames.com/s:eqdkpplus/json/get/eq2/item/' . $item['id'];
 			$item['link'] = $url;
 			$data = $this->puf->fetch($item['link']);
 			$itemdata = json_decode($data);
@@ -317,7 +317,7 @@ if(!class_exists('daybreak')) {
 		protected function ItemIcon($item) 
 		{
 			$iconId = $item->{'iconid'};
-			return "<div class='itemd_icon'><img src='https://census.daybreakgames.coms:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
+			return "<div class='itemd_icon'><img src='https://census.daybreakgames.com/s:eqdkpplus/img/eq2/icons/$iconId/item/'></div>";
 		}
 		
 		protected function ItemTier($item) 
